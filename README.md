@@ -9,7 +9,7 @@
 - 🛡️ **权限沙箱**：只读/工作区/全电脑三级文件围栏，安全可控
 - 🌐 **主流模型全兼容**：DeepSeek / OpenAI / Claude / 通义 / 智谱 / 本地 Ollama
 
-**⬇️ 本仓库为 Aruhan 官方下载站 → [前往 Releases 发布页](https://gitee.com/guleng2005/Aruhan-AI/releases) 下载最新版本**
+**⬇️ 本仓库为 Aruhan 官方下载站 → [前往 Releases 发布页](https://github.com/xizhihao1/Aruhan-AI/releases) 下载最新版本**
 （仅分发编译产物安装包，不含源代码）
 
 ---
@@ -30,7 +30,7 @@
 
 ## 📥 下载
 
-前往 **[Releases 发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)** 下载最新安装包：
+前往 **[Releases 发布页](https://github.com/xizhihao1/Aruhan-AI/releases)** 下载最新安装包：
 
 | 平台 | 安装包 | 说明 |
 | --- | --- | --- |

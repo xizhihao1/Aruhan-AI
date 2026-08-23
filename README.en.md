@@ -9,7 +9,7 @@
 - 🛡️ **Permission Sandbox**: read-only / workspace / full-access file fence
 - 🌐 **All mainstream models**: DeepSeek / OpenAI / Claude / Qwen / Zhipu / local Ollama
 
-**⬇️ Official download hub → [Releases page](https://gitee.com/guleng2005/Aruhan-AI/releases)**
+**⬇️ Official download hub → [Releases page](https://github.com/xizhihao1/Aruhan-AI/releases)**
 (compiled installers only, no source code)
 
 ---
@@ -30,7 +30,7 @@
 
 ## 📥 Download
 
-Get the latest packages from the **[Releases page](https://gitee.com/guleng2005/Aruhan-AI/releases)**:
+Get the latest packages from the **[Releases page](https://github.com/xizhihao1/Aruhan-AI/releases)**:
 
 | Platform | Package | Description |
 | --- | --- | --- |
