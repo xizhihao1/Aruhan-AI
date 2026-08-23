@@ -24,7 +24,7 @@ This repository is the **release distribution repo** (binaries & docs only, no s
 
 ## 📥 Download
 
-Get the latest packages from the **[Releases page](https://gitee.com/guleng2005/aruhan-releases/releases)**:
+Get the latest packages from the **[Releases page](https://gitee.com/guleng2005/Aruhan-AI/releases)**:
 
 | Platform | Package | Description |
 | --- | --- | --- |

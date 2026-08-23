@@ -24,7 +24,7 @@ Aruhan AI 智能助手面向开发与日常办公场景，提供与主流大模�
 
 ## 📥 下载
 
-前往 **[Releases 发布页](https://gitee.com/guleng2005/aruhan-releases/releases)** 下载最新安装包：
+前往 **[Releases 发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)** 下载最新安装包：
 
 | 平台 | 安装包 | 说明 |
 | --- | --- | --- |
