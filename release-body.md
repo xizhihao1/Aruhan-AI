@@ -17,6 +17,11 @@ Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面�
 - Linux / macOS：`aruhan-*-*.tar.gz` 通用安装包 / TUI 安装器
 - VSCode：`aruhan-vscode.vsix`（内置 CLI 引擎，三平台通用）
 
+## 🚀 终端启动（TUI / 非TUI）
+- `aruhan` — 非 TUI（REPL）：轻量 ANSI 界面，支持 `@文件` / `#任务` 补全
+- `aruhan -t` 或 `aruhan --tui` — TUI：Bubble Tea 全屏专业界面
+- `aruhan --accessible` — 无障碍纯文本模式
+
 完整使用说明见仓库 README.md（中文）/ README.en.md（English）。
 
 ---
@@ -37,5 +42,10 @@ Aruhan AI Assistant v1.0.0 — first official release (Terminal · Desktop · ID
 - Windows: NSIS installers (Desktop / CLI) / TUI installer
 - Linux / macOS: tar.gz universal packages / TUI installer
 - VSCode: aruhan-vscode.vsix (bundled CLI, cross-platform)
+
+## 🚀 Terminal Launch (TUI / Non-TUI)
+- `aruhan` — Non-TUI (REPL): lightweight ANSI with `@file` / `#task` completion
+- `aruhan -t` or `aruhan --tui` — TUI: Bubble Tea full-screen interface
+- `aruhan --accessible` — plain-text accessibility mode
 
 Docs: README.md / README.en.md in this repo.
