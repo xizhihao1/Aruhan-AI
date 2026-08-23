@@ -1,10 +1,16 @@
-# Aruhan AI Assistant
+# 🚀 Aruhan AI Assistant
 
-> Aruhan — your all-in-one AI assistant across **Terminal CLI · Desktop App · IDE Extension**.
+> **A free all-in-one AI assistant — one-click install.**
+> **Terminal (TUI/Non-TUI) · Desktop · VS Code Extension** — one config, every frontend.
 
-Aruhan connects to mainstream LLM providers (DeepSeek / Anthropic / OpenAI / Qwen / Zhipu / local Ollama, etc.) and ships with a **three-party debate engine**, multi-platform **Bot Gateway**, intelligent **context compaction**, and **permission controls**.
+- 🗣️ **Three-party Debate Engine**: Pro/Con/Judge adversarial review for complex tasks
+- 🤖 **Multi-platform Bot Gateway**: Feishu / WeCom / DingTalk / Telegram / Slack
+- 🧠 **Context Auto-Compaction**: long sessions never overflow
+- 🛡️ **Permission Sandbox**: read-only / workspace / full-access file fence
+- 🌐 **All mainstream models**: DeepSeek / OpenAI / Claude / Qwen / Zhipu / local Ollama
 
-This repository is the **release distribution repo** (binaries & docs only, no source code).
+**⬇️ Official download hub → [Releases page](https://gitee.com/guleng2005/Aruhan-AI/releases)**
+(compiled installers only, no source code)
 
 ---
 
