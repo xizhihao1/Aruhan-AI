@@ -55,6 +55,16 @@ cd aruhan-linux-amd64
 
 > On first use, run `/provider` to pick a provider and set your API key, then `/model` to switch models.
 
+### Two Terminal Launch Modes
+
+| Command | Mode | Description |
+| --- | --- | --- |
+| `aruhan` | **Non-TUI (REPL)** | Lightweight ANSI interface with `@file` / `#task` completion and slash-command suggestions |
+| `aruhan -t` or `aruhan --tui` | **TUI** | Bubble Tea full-screen interface: status bar, tool cards, split layout |
+| `aruhan --accessible` | Accessibility mode | Plain-text output (no color/emoji/box-drawing) for screen readers |
+
+Both modes share the same config and session — switch anytime. In TUI mode press `F1` or `?` for all shortcuts.
+
 ### 2. Desktop App
 
 - Windows: install from the NSIS package, or run the portable binary.
