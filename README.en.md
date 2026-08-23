@@ -16,7 +16,7 @@ This repository is the **release distribution repo** (binaries & docs only, no s
 | 🤖 Bot Gateway | Feishu / WeCom / DingTalk / Telegram / Slack with OAuth QR login and in-IM commands |
 | 📝 CodeMirror Editor | Multi-language code editor built into Desktop (Go/JS/Python/Rust/SQL/…) |
 | 🧠 Context Auto-Compaction | auto-compact + Vault exact restore, long sessions never overflow |
-| 🛡️ Permission Controls | permission modes + sandbox execution + file access fence + tool approval |
+| 🛡️ Permission Controls | permission modes + sandbox execution + file access fence (read-only / workspace / full access) + tool approval |
 | 🌐 Multi-provider | DeepSeek / Anthropic / OpenAI / Qwen / Zhipu / Ollama… with cache & effort-level adaptation |
 | 🖥️ One codebase, three frontends | Terminal (TUI/REPL), Desktop (Wails), IDE (VSCode) share config & sessions |
 
@@ -37,11 +37,15 @@ Get the latest packages from the **[Releases page](https://gitee.com/guleng2005/
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Usage Guide
 
-### 1. Terminal CLI
+### 1. Terminal CLI (TUI / Non-TUI)
 
-**Windows NSIS**: double-click `Aruhan-Desktop-Setup-*.exe` or `Aruhan-CLI-Setup-*.exe` and follow the wizard.
+The terminal is Aruhan's full-featured workbench with **two interface modes that share the same config and session** — switch anytime.
+
+#### 1.1 Install
+
+**Windows**: double-click `Aruhan-Desktop-Setup-*.exe` or `Aruhan-CLI-Setup-*.exe` and follow the wizard (PATH is configured automatically).
 
 **Linux / macOS**:
 
@@ -51,11 +55,20 @@ cd aruhan-linux-amd64
 ./install.sh
 ```
 
-**Launch**: type `aruhan` in your terminal to enter the interactive REPL.
+**Cross-platform TUI installer**: download the `aruhan-tui-installer-*` for your platform, chmod +x, run it, and pick the install directory.
 
-> On first use, run `/provider` to pick a provider and set your API key, then `/model` to switch models.
+#### 1.2 First-run Configuration
 
-### Two Terminal Launch Modes
+Run `aruhan` in your terminal, then in the REPL:
+
+```
+/provider   pick a provider and enter your API key (env vars ARUHAN_API_KEY / <PROVIDER>_API_KEY also work)
+/model      switch models
+```
+
+Config is stored locally and shared across all three frontends — configure once.
+
+#### 1.3 Launch Modes
 
 | Command | Mode | Description |
 | --- | --- | --- |
@@ -63,23 +76,104 @@ cd aruhan-linux-amd64
 | `aruhan -t` or `aruhan --tui` | **TUI** | Bubble Tea full-screen interface: status bar, tool cards, split layout |
 | `aruhan --accessible` | Accessibility mode | Plain-text output (no color/emoji/box-drawing) for screen readers |
 
-Both modes share the same config and session — switch anytime. In TUI mode press `F1` or `?` for all shortcuts.
+- **Non-TUI (REPL)**: classic line-by-line interaction, lightweight and low-overhead — great for SSH and constrained environments. Type `@file/path` to auto-read a file into context, `#task` to reference a task, and slash-command suggestions pop up as you type (`Tab` to complete).
+- **TUI**: full-screen professional interface with a top status bar (model / permission / workspace / session state), live tool cards, and a split layout (chat and tool output side by side). Press `F1` or `?` inside TUI for all shortcuts.
 
-### 2. Desktop App
+TUI and REPL share the same config file and session history — resume the same conversation in either mode at any time.
 
-- Windows: install from the NSIS package, or run the portable binary.
-- The Desktop opens on the **chat view**; the side buttons toggle the terminal panel, file preview, and settings.
-- Configure provider / model / API key in Settings — changes apply immediately across all three frontends.
+#### 1.4 Common Operations
 
-### 3. VSCode Extension
+- **Tasks**: `/task-create <name> [desc]` to create, `/task-show` to list, `/task-done <id>` to complete, `/task-cancel <id>` to cancel. Tasks are bound to a workspace; tool results are archived per task.
+- **Workspaces**: `/workspace` creates / switches the working directory. File reads and writes are confined to the workspace by default.
+- **Debate engine**: `/debate on 3` enables N-round adversarial review, `/debate off` disables it, `/debate on 0` runs unlimited rounds.
+- **Context management**: `/compact` to compact manually, `/rewind` to roll back to a previous conversation node.
+- **Permission modes**: `/perm` cycles auto / ask / read-only / bypass; combined with the file access scope (read-only / workspace / full access) it controls which tools the AI may run.
+- **Skills & memory**: `/skill` to use skills, `/remember` to write a memory, `/memories` to view memories.
+- **Exit**: `/quit` (non-TUI); press `Ctrl+C` twice or `Ctrl+D` in TUI.
 
-1. Download `aruhan-vscode.vsix`;
-2. VSCode Extensions view → `...` → **Install from VSIX…** and select the file;
-3. Restart VSCode — the Aruhan icon appears in the sidebar. Chat right away (the CLI engine is bundled, no separate install needed).
+#### 1.5 TUI Shortcuts
+
+| Key | Action |
+| --- | --- |
+| `F1` / `?` | Toggle help panel |
+| `Ctrl+R` | Reverse history search |
+| `Ctrl+G` | Toggle reasoning display |
+| `Ctrl+E` | Multi-line paste mode |
+| `Ctrl+Insert` | Copy selection |
+| `Ctrl+C ×2` | Quit TUI |
+| `Ctrl+D` | Force quit |
 
 ---
 
-## ⌨️ Commands
+### 2. Desktop App
+
+A complete graphical experience that opens on the **chat view** by default.
+
+#### 2.1 Install & Launch
+
+Windows: run `Aruhan-Desktop-Setup-*.exe` and launch after install. Linux / macOS: extract the `tar.gz` and run the desktop binary or `install.sh`.
+
+#### 2.2 Navigation (left sidebar)
+
+| Entry | Description |
+| --- | --- |
+| Chat | Default home — chat with AI, start tasks, view tool cards and streaming output |
+| Tasks | Task list and progress management |
+| Skills | Skill marketplace and installed skills |
+| Sessions | Browse / resume history sessions |
+| Memory | View and edit long-term memory |
+| Terminal | Built-in terminal panel (`Ctrl+\``), with split / toggle / fullscreen; the chat window stays resident |
+| Settings | Provider / model / API key / effort / generation params / media keys / theme / language |
+
+#### 2.3 Chat & Workflows
+
+- Above the input box are the **permission mode** and **file access scope** selectors (read-only / workspace / full access), saved per task and applied instantly.
+- The chat view renders the three-party debate process in real time, tool-call cards, and task-approval dialogs.
+- **Sound alerts** fire on task completion, errors, and pending approvals (toggle in Settings).
+
+#### 2.4 Files & Terminal
+
+- Built-in file explorer: browse workspace files, preview and edit with CodeMirror multi-language highlighting, and view change diffs.
+- Terminal panel works side by side with chat: conversation on the left, commands on the right. `Ctrl+\`` toggles it, with fullscreen support.
+
+#### 2.5 Keyboard Shortcuts
+
+| Shortcut | Action |
+| --- | --- |
+| `Ctrl+\`` | Toggle terminal panel |
+| `Ctrl+B` | Toggle sidebar |
+| `Ctrl+Shift+B` | Toggle browser view |
+| `Ctrl+Shift+T` | Cycle theme (light / dark) |
+| `Ctrl+Shift+L` | Toggle UI language (CN / EN) |
+
+---
+
+### 3. VSCode Extension
+
+Use Aruhan right inside your editor — no window switching.
+
+#### 3.1 Install
+
+1. Download `aruhan-vscode.vsix`;
+2. VSCode Extensions view → `...` → **Install from VSIX…** and select the file;
+3. Restart VSCode — the Aruhan icon appears in the sidebar (the CLI engine is bundled; no separate Aruhan install needed).
+
+#### 3.2 Usage
+
+- Click the Aruhan icon in the sidebar to open the chat panel and start chatting or creating tasks.
+- **Workspace integration**: the extension workspace is managed by the IDE — open a folder in VSCode and it auto-binds to an Aruhan workspace, letting the AI read and write your project files directly.
+- The input box has a **file access scope** selector (read-only / workspace / full access) that fences where AI tools can reach; out-of-scope access is denied.
+- All slash commands, `@file` references, code diff viewing, session and skill management are supported, sharing config and sessions with Terminal / Desktop.
+
+#### 3.3 Common Operations
+
+- Select code and reference it in chat, or have the AI answer / modify files directly in the workspace.
+- Approval: when the AI requests a write operation or a risky command, confirm or reject it in the panel.
+- Scheduled tasks, model switching, media generation, etc. behave the same as Terminal / Desktop.
+
+---
+
+## ⌨️ Command Reference
 
 ### CLI / TUI Slash Commands
 
@@ -112,18 +206,6 @@ Both modes share the same config and session — switch anytime. In TUI mode pre
 - Type `#task` to reference a task;
 - Slash-command suggestions pop up as you type; press `Tab` to complete.
 
-### TUI Shortcuts
-
-| Key | Action |
-| --- | --- |
-| `F1` / `?` | Toggle help panel |
-| `Ctrl+R` | Reverse history search |
-| `Ctrl+G` | Toggle reasoning display |
-| `Ctrl+E` | Multi-line paste mode |
-| `Ctrl+Insert` | Copy selection |
-| `Ctrl+C ×2` | Quit TUI |
-| `Ctrl+D` | Force quit |
-
 ### Bot (IM) Commands
 
 In a DM or group chat (Feishu / WeCom / DingTalk / Telegram / Slack) with the bot mentioned:
@@ -150,6 +232,17 @@ No. Built-in auto-compact + Vault restore compress context automatically before 
 
 **Q: Are the three frontends in sync?**
 Yes. Terminal / Desktop / IDE share the same config and daemon session — configure once, use everywhere.
+
+**Q: What's the difference between TUI and REPL?**
+The functionality is identical; only the interface differs: REPL is a lightweight line-by-line interaction, TUI is a full-screen interface with status bar, tool cards and split layout. Enter with the other mode anytime — the session continues.
+
+---
+
+## 📮 Contact
+
+Questions, suggestions, or partnership inquiries are welcome:
+
+- 📧 Email: **37735973@qq.com**
 
 ---
 

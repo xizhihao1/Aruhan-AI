@@ -26,6 +26,14 @@ Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面�
 
 ---
 
+## 📮 联系方式
+
+如有问题、建议或合作意向，欢迎通过以下方式联系：
+
+- 📧 邮箱：**37735973@qq.com**
+
+---
+
 # English
 
 Aruhan AI Assistant v1.0.0 — first official release (Terminal · Desktop · IDE).
