@@ -50,7 +50,7 @@
 | macOS | Intel / Apple Silicon | macOS 11+ |
 | VS Code | 三平台 | 1.85+ |
 
-> ⚠️ **风险提示**：请仅从官方 Releases 页下载安装包，并以 Release 页公布的 SHA256 校验和核对完整性；Windows 安装包暂未代码签名，SmartScreen/杀毒软件可能误报；Aruhan 具备 AI 自主工具执行能力，请善用权限模式与文件访问围栏（只读 / 工作区 / 全电脑）。完整校验表见 [Releases 页](https://github.com/xizhihao1/Aruhan-AI/releases)。
+> ⚠️ **版本与风险提示**：当前 v1.0.0 为公开**体验 / 测试版**，可能存在缺陷且功能随迭代调整。请仅从官方 Releases 页下载安装包，并以 Release 页公布的 SHA256 校验和核对完整性；Windows 安装包暂未代码签名，首次运行若出现 SmartScreen 提示「Windows 已保护你的电脑」或要求点「更多信息 → 仍要运行」，请先核对 SHA256 一致后再放行（属未签名软件的常见现象）；Aruhan 具备 AI 自主工具执行能力，请善用权限模式与文件访问围栏（只读 / 工作区 / 全电脑）。完整校验表见 [Releases 页](https://github.com/xizhihao1/Aruhan-AI/releases)。
 
 ---
 
