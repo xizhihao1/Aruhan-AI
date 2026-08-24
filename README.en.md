@@ -50,7 +50,7 @@ Get the latest packages from the **[Releases page](https://github.com/xizhihao1/
 | macOS | Intel / Apple Silicon | macOS 11+ |
 | VS Code | Win / macOS / Linux | 1.85+ |
 
-> ⚠️ **Risk Notice**: Only download installers from the official Releases page and verify integrity with the SHA256 checksums published there. Windows binaries are not code-signed yet, so SmartScreen/antivirus may warn. Aruhan can autonomously execute tools — use permission modes and the file-access fence (read-only / workspace / full access) wisely. Full checksum table: [Releases page](https://github.com/xizhihao1/Aruhan-AI/releases).
+> ⚠️ **Version & Risk Notice**: v1.0.0 is a public **experience / beta release** — defects may exist and features may change. Only download installers from the official Releases page and verify integrity with the SHA256 checksums published there. Windows binaries are not code-signed yet; on first run SmartScreen may show "Windows protected your PC" or ask you to click "More info → Run anyway" — cross-check the SHA256 checksum before allowing (normal for unsigned software). Aruhan can autonomously execute tools — use permission modes and the file-access fence (read-only / workspace / full access) wisely. Full checksum table: [Releases page](https://github.com/xizhihao1/Aruhan-AI/releases).
 
 ---
 
