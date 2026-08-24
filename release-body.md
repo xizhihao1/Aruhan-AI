@@ -33,21 +33,26 @@ Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面�
 
 | 文件 | 格式/架构 | SHA256 |
 | --- | --- | --- |
-| Aruhan-Desktop-Setup-1.0.0.exe | PE x86 | 770426CAB5356786F3AF7BB13B35080B1DEB4717C0BA6A9DA70C74614DE9BA66 |
-| Aruhan-CLI-Setup-1.0.0.exe | PE x86 | 257EDBC559962F7023188BEBF3DC29F8CBC51C5A15573440ECBD856A31C0BDD9 |
-| aruhan-tui-installer-windows-amd64.exe | PE x86_64 | 28166AF9310376F5D4D4A825014C421186041EA7353520C3C6B1A4B9C88B65A2 |
-| aruhan-tui-installer-windows-arm64.exe | PE ARM64 | B1A5685520C706816EEBE64D4DD1CF9526302B749A71329CA8502F6AC8D186DA |
-| aruhan-linux-amd64-1.0.0.tar.gz | tar.gz | 92BB72499D253BCF25C80833066A6E703881E114614CB320428976E7FD236A5A |
-| aruhan-linux-arm64-1.0.0.tar.gz | tar.gz | B0CCF0FE7B62974F7645797C1725952D0AE077ABA22DB60F13263FDC1452B5A5 |
-| aruhan-darwin-amd64-1.0.0.tar.gz | tar.gz | 86418CC2E7436890DAEEC0A8AB8BEC41643FA26D9B541BAEA666E89C6A1E6DA0 |
-| aruhan-darwin-arm64-1.0.0.tar.gz | tar.gz | B5B8CBE29547998B2E030BCDAC7BF78B04FD2F5058282BAE779367AFD2090A41 |
-| aruhan-tui-installer-linux-amd64 | ELF x86_64 | F4AB79EE9C4AF66D7C2BA95C9EC6EF175F1B1C08B04FB31A5D7764CC293BB299 |
-| aruhan-tui-installer-linux-arm64 | ELF ARM64 | 6E2D6FB2C7173B1148B9DACEFF95C3986C56E81D85B55F2CBFF31B00910E68DC |
-| aruhan-tui-installer-darwin-amd64 | Mach-O x86_64 | 08AD0043C2F97EC861AA3F581A21002CC909903492F524A61DFCEE6A9E2CD171 |
-| aruhan-tui-installer-darwin-arm64 | Mach-O ARM64 | 4CC87EFDD0DC7E428008F86BEEFD806A9524B09CBF0ADF31DFEC1D9C60BC3ED8 |
-| aruhan-vscode.vsix | ZIP (VSIX) | 9E12D558BF039767F22258FB6887FE941AC64D2DA3E59686084251915288B719 |
+| Aruhan-Desktop-Setup-1.0.0.exe | PE x86 | 0E2E2CD97A2D96FB180C331D5C83301D1CBA3123E4404154238E2509AEDD0751 |
+| Aruhan-CLI-Setup-1.0.0.exe | PE x86 | E70E43BB2A4F87C20689E312396DA9861A2278CC9BC8513C21E2BEA7B5B0D527 |
+| aruhan-tui-installer-windows-amd64.exe | PE x86_64 | A2F7F94DA0296ADF0DB7C6AB4F565C88B8BCA365A693BF5FE6FFCA0483462B57 |
+| aruhan-tui-installer-windows-arm64.exe | PE ARM64 | 136BEBD87FD310CFE78D052D396C35E3FB22D6F050F9EB64CE35FE66812BA56A |
+| aruhan-linux-amd64-1.0.0.tar.gz | tar.gz | C979F65C88CA59D443B758450CF29BAAC5902B78B4E8207737B1518295EA822C |
+| aruhan-linux-arm64-1.0.0.tar.gz | tar.gz | 92B7912429C71B8A4341EEADE07ACC148E66372F88B657CD3C1E8C1D658943F6 |
+| aruhan-darwin-amd64-1.0.0.tar.gz | tar.gz | D66E5E7F8F20B8ABA7A8CF88BABC6088D3F9B36210F587EF331651839B40D53A |
+| aruhan-darwin-arm64-1.0.0.tar.gz | tar.gz | 2A66B06F4E9B66E55B4D756DB7875C8D352FE9E521E2896511BCE16512504938 |
+| aruhan-tui-installer-linux-amd64 | ELF x86_64 | 3C2F936C8B93C14A5BC8B9BE2543D701AC94354D83188506B13A48EA0E454627 |
+| aruhan-tui-installer-linux-arm64 | ELF ARM64 | E17DCBD1AE1C94E69C051C1C3B1754B0AA04C63751C37EEAC1CF3EEEB0715EFD |
+| aruhan-tui-installer-darwin-amd64 | Mach-O x86_64 | AF2E6DEED63DE7CFC3953750B00FD490A11EFE7E65BC6A0A08B632616F2DF17F |
+| aruhan-tui-installer-darwin-arm64 | Mach-O ARM64 | 6B2306630CB4CC2840514FF648DA0826542EA229B99C04CCEFA37EC323AB6B5E |
+| aruhan-vscode.vsix | ZIP (VSIX) | 350557A2B522B620E3FF79F6B034F3BB17635576FF9E8322DD02A121E8DBBE75 |
 
 校验方法：Windows PowerShell 执行 `Get-FileHash <文件> -Algorithm SHA256`；Linux/macOS 执行 `sha256sum <文件>`。
+
+## 🧪 版本状态（体验 / 测试版）
+- 当前 v1.0.0 为公开**体验 / 测试版本**：可能存在尚未发现的缺陷，界面与功能可能随版本迭代调整，不保证与未来正式版完全兼容。
+- **Windows 首次运行说明**：本版本安装包暂未进行代码签名（Authenticode）。在全新电脑上首次运行下载的安装包时，Windows SmartScreen 可能提示「Windows 已保护你的电脑」，或要求点击「更多信息 → 仍要运行」。请先确认下载来源为官方 Releases 页并核对上方 SHA256 校验和一致后，再放行运行。
+- 若被杀毒软件误报：请先核对 SHA256 校验和；确认一致后可将文件加入信任区，或将样本上报给杀毒厂商（Windows Defender 的「从以下位置下载的文件」提示属正常现象）。
 
 ## ⚠️ 风险提示
 - 请仅从官方 Releases 页面下载安装包；第三方渠道转发的安装包无法保证完整性，请务必使用上方 SHA256 校验和核对。
@@ -99,6 +104,11 @@ Aruhan AI Assistant v1.0.0 — first official release (Terminal · Desktop · ID
 | macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.0.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
 | macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.0.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
 | VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
+
+## 🧪 Release Status (Experience / Beta)
+- v1.0.0 is a public **experience / beta release**: defects may exist, and UI/features may change between releases without full backward-compatibility guarantees.
+- **First run on Windows**: these installers are not code-signed (Authenticode) yet. On a clean machine, Windows SmartScreen may show "Windows protected your PC" or ask you to click "More info → Run anyway". Confirm the download source is the official Releases page and the SHA256 checksum matches, then allow it.
+- If flagged by antivirus: verify the SHA256 checksum first; if it matches, allow/trust the file or submit the sample to your AV vendor.
 
 ## ⚠️ Risk Notice
 - Only download installers from the official Releases page. Third-party copies cannot be trusted — verify integrity with the SHA256 checksums above.
