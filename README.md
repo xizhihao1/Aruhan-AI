@@ -41,6 +41,17 @@
 | 全平台 | `aruhan-tui-installer-*` | TUI 交互式安装器 |
 | VSCode | `aruhan-vscode.vsix` | IDE 插件（内置 CLI 引擎，三平台通用） |
 
+### 支持系统
+
+| 平台 | 架构 | 最低要求 |
+| --- | --- | --- |
+| Windows | x86_64 / ARM64 | Windows 10 / 11 |
+| Linux | x86_64 / ARM64 | 主流发行版（glibc / musl） |
+| macOS | Intel / Apple Silicon | macOS 11+ |
+| VS Code | 三平台 | 1.85+ |
+
+> ⚠️ **风险提示**：请仅从官方 Releases 页下载安装包，并以 Release 页公布的 SHA256 校验和核对完整性；Windows 安装包暂未代码签名，SmartScreen/杀毒软件可能误报；Aruhan 具备 AI 自主工具执行能力，请善用权限模式与文件访问围栏（只读 / 工作区 / 全电脑）。完整校验表见 [Releases 页](https://github.com/xizhihao1/Aruhan-AI/releases)。
+
 ---
 
 ## 🚀 使用说明
@@ -241,6 +252,9 @@ API Key 仅保存在本地配置文件（`aruhan.json` / 各端配置文件）�
 
 **Q：TUI 和 REPL 有什么区别？**
 两者功能一致，仅界面形态不同：REPL 轻量逐行交互，TUI 为全屏专业界面（状态栏、工具卡片、分屏）。随时用另一模式进入，会话不断。
+
+**Q：ARUHAN_BINARY 环境变量是什么？**
+它记录最近一次安装的 Aruhan 二进制完整路径，供 VS Code 插件 / dsh 等客户端定位引擎。多版本共存时指向最后安装的版本；卸载时仅当该值仍指向本次安装目录才清理，不会误删你自定义的值。终端 CLI 优先通过 PATH 查找，不受其影响。
 
 ---
 
