@@ -41,6 +41,17 @@ Get the latest packages from the **[Releases page](https://github.com/xizhihao1/
 | All | `aruhan-tui-installer-*` | Interactive TUI installer |
 | VSCode | `aruhan-vscode.vsix` | IDE extension (bundled CLI engine, cross-platform) |
 
+### Supported Systems
+
+| Platform | Arch | Minimum |
+| --- | --- | --- |
+| Windows | x86_64 / ARM64 | Windows 10 / 11 |
+| Linux | x86_64 / ARM64 | Mainstream distros (glibc / musl) |
+| macOS | Intel / Apple Silicon | macOS 11+ |
+| VS Code | Win / macOS / Linux | 1.85+ |
+
+> ⚠️ **Risk Notice**: Only download installers from the official Releases page and verify integrity with the SHA256 checksums published there. Windows binaries are not code-signed yet, so SmartScreen/antivirus may warn. Aruhan can autonomously execute tools — use permission modes and the file-access fence (read-only / workspace / full access) wisely. Full checksum table: [Releases page](https://github.com/xizhihao1/Aruhan-AI/releases).
+
 ---
 
 ## 🚀 Usage Guide
@@ -241,6 +252,9 @@ Yes. Terminal / Desktop / IDE share the same config and daemon session — confi
 
 **Q: What's the difference between TUI and REPL?**
 The functionality is identical; only the interface differs: REPL is a lightweight line-by-line interaction, TUI is a full-screen interface with status bar, tool cards and split layout. Enter with the other mode anytime — the session continues.
+
+**Q: What is the ARUHAN_BINARY environment variable?**
+It stores the full path of the most recently installed Aruhan binary so clients like the VS Code extension and dsh can locate the engine. When multiple versions coexist it points to the last installer run; uninstalling cleans it up only when it still points to the current install directory, never overwriting custom values. The terminal CLI resolves via PATH first and is unaffected.
 
 ---
 
