@@ -65,6 +65,16 @@ Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面�
 - `aruhan -t` 或 `aruhan --tui` — TUI：Bubble Tea 全屏专业界面
 - `aruhan --accessible` — 无障碍纯文本模式
 
+## 🔐 商业授权
+- **个人非商业用途**：免费试用，无需另行授权。
+- **企业 / 团队商业使用 / 私有化部署 / 二次定制改造**：须取得商业授权后方可进行。
+- **禁止**：任何形式的转售、再分发、商品化销售，以及对编译产物的反编译、反汇编等逆向工程行为；禁止移除或篡改软件内版权与身份标识。
+- 商业授权 / 私有化部署 / 定制开发联系：**37735973@qq.com**。
+- 完整授权条款见仓库 README.md「🔐 商业授权」章节。
+
+## ⭐ Star 支持
+如果本项目对你有帮助，欢迎在 GitHub / Gitee 仓库右上角点一个 Star ⭐ —— 你的支持是项目持续迭代的动力。
+
 完整使用说明见仓库 README.md（中文）/ README.en.md（English）。
 
 ---
@@ -120,5 +130,15 @@ Aruhan AI Assistant v1.0.0 — first official release (Terminal · Desktop · ID
 - `aruhan` — Non-TUI (REPL): lightweight ANSI with `@file` / `#task` completion
 - `aruhan -t` or `aruhan --tui` — TUI: Bubble Tea full-screen interface
 - `aruhan --accessible` — plain-text accessibility mode
+
+## 🔐 Commercial License
+- **Personal non-commercial use**: free trial, no separate authorization required.
+- **Enterprise / team commercial use / private deployment / secondary customization**: commercial license required prior to use.
+- **Prohibited**: any form of resale, redistribution, or sale as a product; decompilation, disassembly, or other reverse engineering of compiled artifacts; removing or altering any copyright or identity notices in the software.
+- For commercial licensing / private deployment / custom development: **37735973@qq.com**.
+- Full license terms: see the "🔐 Commercial License" section in README.md.
+
+## ⭐ Star Support
+If this project helps you, please tap Star ⭐ at the top right of the GitHub / Gitee repository — your support keeps the project iterating.
 
 Docs: README.md / README.en.md in this repo.
