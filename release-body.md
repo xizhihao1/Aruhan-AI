@@ -6,11 +6,21 @@ Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面�
 
 ## ✨ 核心能力
 - 🗣️ 三方辩论引擎 V5：五维评分 + 置信度复核 + 多轮对抗评审
+- 💻 Code Agent：代码生成 / 解释 / 审查 / 调试修复 / 重构 / 测试 / Git / 命令执行
 - 🤖 Bot 网关：飞书 / 企业微信 / 钉钉 / Telegram / Slack，OAuth 扫码登录
 - 📝 CodeMirror 多语言编辑器（桌面版文件预览编辑）
+- 📄 文档处理：Office / PDF / Markdown / CSV 读写、总结、翻译、转换
+- 🖼️ 图像处理：AI 图像生成与理解、图像分析（已实现，未充分测试）
+- 🎬 视频处理：AI 视频生成与理解、视频内容分析（已实现，未充分测试）
 - 🧠 上下文智能压缩（auto-compact + Vault 精确恢复）
 - 🛡️ 权限模式管控 + 沙箱执行 + 文件访问围栏
 - 🖥️ 三端一体：配置与会话互通（终端 / 桌面 / IDE）
+
+## 🧪 测试状态
+- **重点测试**：编程功能为主，已使用 **DeepSeek** 完成端到端测试；
+- **已实现未充分测试**：图像处理、视频处理功能已实现但尚未充分测试；
+- **可自主测试**：其他模型（OpenAI / Claude / 通义 / 智谱 / Ollama 等）及非编程功能，欢迎自主测试反馈。
+- 完整能力清单见仓库 README.md「🧩 能力总览（编程 & 非编程）」章节。
 
 ## 📦 安装包
 - Windows：`Aruhan-Desktop-Setup`（NSIS 图形安装）/ `Aruhan-CLI-Setup` / TUI 安装器
@@ -93,11 +103,21 @@ Aruhan AI Assistant v1.0.0 — first official release (Terminal · Desktop · ID
 
 ## ✨ Highlights
 - 🗣️ Debate Engine V5: 5-dim scoring + confidence check + multi-round review
+- 💻 Code Agent: code generation / explanation / review / debug & fix / refactor / tests / Git / command execution
 - 🤖 Bot Gateway: Feishu / WeCom / DingTalk / Telegram / Slack with OAuth login
 - 📝 CodeMirror multi-language editor
+- 📄 Document Processing: Office / PDF / Markdown / CSV read & write, summary, translation, conversion
+- 🖼️ Image Processing: AI image generation & understanding, image analysis (implemented, not fully tested)
+- 🎬 Video Processing: AI video generation & understanding, video content analysis (implemented, not fully tested)
 - 🧠 Context auto-compaction (auto-compact + Vault restore)
 - 🛡️ Permission modes + sandbox + file access fence
 - 🖥️ One config, three frontends
+
+## 🧪 Testing Status
+- **Primary testing**: coding capabilities, end-to-end tested with **DeepSeek**;
+- **Implemented, not fully tested**: image and video processing;
+- **Self-test welcome**: other models (OpenAI / Claude / Qwen / Zhipu / Ollama, etc.) and non-coding capabilities.
+- Full capability list: see "🧩 Capability Overview (Coding & Non-coding)" in README.md.
 
 ## 📦 Packages
 - Windows: NSIS installers (Desktop / CLI) / TUI installer
