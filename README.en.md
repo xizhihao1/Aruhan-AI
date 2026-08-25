@@ -9,7 +9,7 @@
 - 🛡️ **Permission Sandbox**: read-only / workspace / full-access file fence
 - 🌐 **All mainstream models**: DeepSeek / OpenAI / Claude / Qwen / Zhipu / local Ollama
 
-**⬇️ Official download hub → [Releases page](https://github.com/xizhihao1/Aruhan-AI/releases)**
+**⬇️ Official download hub → [Releases page](https://gitee.com/guleng2005/Aruhan-AI/releases)**
 (compiled installers only, no source code)
 
 ---
@@ -30,7 +30,7 @@
 
 ## 📥 Download
 
-Get the latest packages from the **[Releases page](https://github.com/xizhihao1/Aruhan-AI/releases)**:
+Get the latest packages from the **[Releases page](https://gitee.com/guleng2005/Aruhan-AI/releases)**:
 
 | Platform | Package | Description |
 | --- | --- | --- |
@@ -50,7 +50,7 @@ Get the latest packages from the **[Releases page](https://github.com/xizhihao1/
 | macOS | Intel / Apple Silicon | macOS 11+ |
 | VS Code | Win / macOS / Linux | 1.85+ |
 
-> ⚠️ **Version & Risk Notice**: v1.0.0 is a public **experience / beta release** — defects may exist and features may change. Only download installers from the official Releases page and verify integrity with the SHA256 checksums published there. Windows binaries are not code-signed yet; on first run SmartScreen may show "Windows protected your PC" or ask you to click "More info → Run anyway" — cross-check the SHA256 checksum before allowing (normal for unsigned software). Aruhan can autonomously execute tools — use permission modes and the file-access fence (read-only / workspace / full access) wisely. Full checksum table: [Releases page](https://github.com/xizhihao1/Aruhan-AI/releases).
+> ⚠️ **Version & Risk Notice**: v1.0.0 is a public **experience / beta release** — defects may exist and features may change. Only download installers from the official Releases page and verify integrity with the SHA256 checksums published there. Windows binaries are not code-signed yet; on first run SmartScreen may show "Windows protected your PC" or ask you to click "More info → Run anyway" — cross-check the SHA256 checksum before allowing (normal for unsigned software). Aruhan can autonomously execute tools — use permission modes and the file-access fence (read-only / workspace / full access) wisely. Full checksum table: [Releases page](https://gitee.com/guleng2005/Aruhan-AI/releases).
 
 ---
 
@@ -266,8 +266,51 @@ Questions, suggestions, or partnership inquiries are welcome:
 
 ---
 
-## 📄 License & Disclaimer
+## 📄 License & Open Source Notice
 
 - This repo distributes **compiled binaries only** (installer packages); no source code is included.
 - By using this software you agree it is provided "as is"; the author is not liable for any loss caused by its use.
 - Ensure you are entitled to use the AI provider services you select and comply with their terms.
+- This software does not require or enforce any AI provider's terms; users must ensure their own compliance.
+
+---
+
+## 🔐 Commercial License
+
+| Use case | Authorization |
+| --- | --- |
+| Personal non-commercial use | **Free trial**, no separate authorization required |
+| Enterprise / team commercial use | Commercial license required prior to use |
+| Private deployment | Commercial license required, deployed within the licensed scope |
+| Secondary customization | Commercial license required prior to any customization |
+| Resale / redistribution | **Prohibited** — no resale, redistribution, or sale as a product in any form |
+| Reverse engineering | **Prohibited** — no decompilation, disassembly, or other reverse engineering of compiled artifacts |
+| Removing copyright notices | **Prohibited** — do not remove or alter any copyright, trademark, or identity information in the software |
+
+For commercial licensing, private deployment, or custom development, contact **37735973@qq.com**.
+
+---
+
+## ⚠️ Disclaimer
+
+- This software (including installers, documentation, and all related materials) is provided "as is", **without any express or implied warranties**, including but not limited to warranties of **merchantability, fitness for a particular purpose, or non-infringement**.
+- Users bear **all risks** of using this software; the author is not liable for any **direct or indirect damages** (including data loss, business interruption, loss of profit, etc.) arising from using or being unable to use this software.
+- **Not for high-risk production environments**: including but not limited to medical, aviation, nuclear facilities, autonomous driving, core financial trading systems, industrial control systems, or any scenario that could materially affect personal safety or major property. Use in such environments requires written authorization and a separate liability agreement.
+- AI-generated content may contain errors, biases, or inappropriate information; users must verify and bear the consequences of use. Do not use AI output directly for legal, medical, investment, or other high-risk decisions.
+- Users must comply with the laws and regulations of their country / region and must not use this software for any illegal purpose.
+
+---
+
+## ⭐ Star Support
+
+If this project helps you, please tap **Star ⭐** at the top right of the GitHub / Gitee repository — your support is the biggest motivation for continuous iteration, bug fixes, and feature improvements.
+
+- GitHub: [xizhihao1/Aruhan-AI](https://github.com/xizhihao1/Aruhan-AI)
+- Issues and suggestions are welcome for feedback or discussion.
+
+---
+
+## 🙏 Acknowledgements
+
+- Thanks to all contributors of open-source dependencies (full list bundled in each installer).
+- Thanks to DeepSeek / Anthropic / OpenAI / Qwen / Zhipu / Ollama and other AI providers for their model capabilities.
