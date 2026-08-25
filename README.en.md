@@ -19,12 +19,55 @@
 | Capability | Description |
 | --- | --- |
 | 🗣️ Three-party Debate Engine | Pro / Con / Judge multi-round adversarial review with 5-dimension scoring + confidence check; auto-converges at ≥9.8 before execution |
+| 💻 Code Agent | Read / write / search codebase, run commands, debug & fix, multi-file refactoring, Git operations — full coding-assistant workflow |
 | 🤖 Bot Gateway | Feishu / WeCom / DingTalk / Telegram / Slack with OAuth QR login and in-IM commands |
 | 📝 CodeMirror Editor | Multi-language code editor built into Desktop (Go/JS/Python/Rust/SQL/…) |
+| 📄 Document Processing | Office / PDF / Markdown / CSV read & write, summarization, translation, format conversion, spreadsheet formulas & charts |
+| 🖼️ Image Processing | AI image generation & understanding, image analysis, format / size conversion (implemented, not fully tested) |
+| 🎬 Video Processing | AI video generation & understanding, video content analysis (implemented, not fully tested) |
 | 🧠 Context Auto-Compaction | auto-compact + Vault exact restore, long sessions never overflow |
 | 🛡️ Permission Controls | permission modes + sandbox execution + file access fence (read-only / workspace / full access) + tool approval |
 | 🌐 Multi-provider | DeepSeek / Anthropic / OpenAI / Qwen / Zhipu / Ollama… with cache & effort-level adaptation |
 | 🖥️ One codebase, three frontends | Terminal (TUI/REPL), Desktop (Wails), IDE (VSCode) share config & sessions |
+
+---
+
+## 🧩 Capability Overview (Coding & Non-coding)
+
+### 💻 Coding Capabilities (Primary Testing Focus)
+
+| Capability | Description |
+| --- | --- |
+| Code Generation | Generate functions, modules, or full project scaffolds on demand, multi-language |
+| Code Explanation | Explain complex code, algorithms, and dependencies step by step |
+| Code Review | Static review, defect detection, security & performance suggestions |
+| Debug & Fix | Locate errors, analyze, auto-fix with regression verification |
+| Multi-file Refactoring | Cross-file rename, extract, split, and structural adjustments |
+| Test Authoring | Generate unit / integration tests and run verification |
+| Git Operations | Commit, branching, history analysis, conflict resolution |
+| Command Execution | Run builds, compilations, scripts, and automation tasks in sandbox |
+| Technical Docs | Generate README, API docs, comments, and changelogs |
+
+### 🎯 Non-coding Capabilities
+
+| Capability | Description |
+| --- | --- |
+| Document Processing | Office / PDF / Markdown / CSV read & write, summarization, translation, format conversion |
+| Spreadsheet Processing | Formula calculation, data cleaning, pivots & chart generation |
+| Slides | PPT creation, editing, and polishing |
+| Image Processing | AI image generation & understanding, image analysis, format / size conversion (implemented, not fully tested) |
+| Video Processing | AI video generation & understanding, video content analysis (implemented, not fully tested) |
+| Information Retrieval | Web search, page fetching & content distillation |
+| Writing & Polishing | Copywriting, multi-language translation, grammar checking |
+| Debate Engine | Multi-round adversarial reasoning for complex decisions / plan review |
+| Bot Automation | Send / receive messages and in-chat commands via Feishu / WeCom / DingTalk / Telegram / Slack |
+| Task Assistant | Todo management, meeting notes, scheduling |
+
+### 🧪 Testing Status
+
+- **Primary testing**: Coding capabilities are the main validation focus, end-to-end tested with **DeepSeek**;
+- **Implemented, not fully tested**: Image and video processing are implemented but not yet fully tested;
+- **Self-test welcome**: Other models (OpenAI / Claude / Qwen / Zhipu / Ollama, etc.) and non-coding capabilities — developers and users are welcome to test and report issues.
 
 ---
 
