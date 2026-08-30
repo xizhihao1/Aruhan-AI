@@ -110,7 +110,7 @@ The terminal is Aruhan's full-featured workbench with **two interface modes that
 **Linux / macOS**:
 
 ```bash
-tar -xzf aruhan-linux-amd64-1.0.0.tar.gz
+tar -xzf aruhan-linux-amd64-1.1.0.tar.gz
 cd aruhan-linux-amd64
 ./install.sh
 ```
