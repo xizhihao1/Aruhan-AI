@@ -1,8 +1,8 @@
-# Aruhan v1.0.0
+# Aruhan v1.1.0
 
 **中文** | [English](#english)
 
-Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面版 · IDE 插件。
+Aruhan AI 智能助手最新版本，覆盖三端：终端 CLI · 桌面版 · IDE 插件。
 
 ## ✨ 核心能力
 - 🗣️ 三方辩论引擎 V5：五维评分 + 置信度复核 + 多轮对抗评审
@@ -30,37 +30,37 @@ Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面�
 ## 🖥️ 支持系统
 | 平台 | 架构 | 安装包 |
 | --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.0.0.exe` / `Aruhan-CLI-Setup-1.0.0.exe` / `aruhan-tui-installer-windows-amd64.exe` |
+| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-tui-installer-windows-amd64.exe` |
 | Windows 10/11 | ARM64 | `aruhan-tui-installer-windows-arm64.exe` |
-| Linux | x86_64 | `aruhan-linux-amd64-1.0.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
-| Linux | ARM64 | `aruhan-linux-arm64-1.0.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
-| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.0.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
-| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.0.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
+| Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
+| Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
+| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
+| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
 | VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
 
-## ✅ 安装包校验（2026-08-30 重新编译版）
-全部 14 个安装包已通过基础校验：PE / ELF / Mach-O 格式与架构正确、tar.gz 与 VSIX 压缩包完整。SHA256 校验和如下：
+## ✅ 安装包校验（v1.1.0 · 2026-08-30 编译）
+全部 13 个安装包已通过基础校验：PE / ELF / Mach-O 格式与架构正确、tar.gz 与 VSIX 压缩包完整。SHA256 校验和如下：
 
 | 文件 | 格式/架构 | SHA256 |
 | --- | --- | --- |
-| Aruhan-Desktop-Setup-1.0.0.exe | PE x86 | 48D7C1ECD5A04EF9490191B44D7520435FE1FB24E515937E24E307C4831880F8 |
-| Aruhan-CLI-Setup-1.0.0.exe | PE x86 | E82507DF7320A417B6878D36D04533B786889C4DA48412B20BC8757608B344D1 |
-| aruhan-tui-installer-windows-amd64.exe | PE x86_64 | 1A86C15D462656B6B5F702C869102F869FC15606F65BC533A73172E073824B2D |
-| aruhan-tui-installer-windows-arm64.exe | PE ARM64 | 3E0B8A476B9F41AC4309EF629F45E3491CAA70352FD09E0D6DCEEAB0BD0E2B62 |
-| aruhan-linux-amd64-1.0.0.tar.gz | tar.gz | E0729699BE24DB360D5EF6AE77DFB8288E559683CDF81E74C33561AD95317F91 |
-| aruhan-linux-arm64-1.0.0.tar.gz | tar.gz | A9271732645A78240E5077FD1E2B254E09B3E7091E5ECBAE452DD460A946C191 |
-| aruhan-darwin-amd64-1.0.0.tar.gz | tar.gz | 7FF0953A37C22C306F0F9FB0D1548282F7922413F5EF3BCA60C9DB86E3BC0A36 |
-| aruhan-darwin-arm64-1.0.0.tar.gz | tar.gz | AC95F86AF5D5FB88C403DDF7D4E0500700FC8B26805B1CB067CE8C11B383B197 |
-| aruhan-tui-installer-linux-amd64 | ELF x86_64 | EE54CFB781541C9EE59782C3242BCCA206095D2BB694A2D99395A1E565174EA9 |
-| aruhan-tui-installer-linux-arm64 | ELF ARM64 | 0BCFF9471F1A0E4E8675B08B51FCA4EFC7F1DBF2A6EBFEB86981816356502F98 |
-| aruhan-tui-installer-darwin-amd64 | Mach-O x86_64 | 2A47DC93C1CBB01C7DEDB3842842A918EE8AAE045B0209ECE13DBD6A88B46553 |
-| aruhan-tui-installer-darwin-arm64 | Mach-O ARM64 | 599BD20D13DD31C08BF3FC73401797ABCCF734DEB20A6AD2A54D196CB3BA9886 |
-| aruhan-vscode.vsix | ZIP (VSIX) | DD0E7C7ECFE967747C1B7E5B63C81A67BFF2C0EAFF3CDBAF2A7F07BC2EFE1CDA |
+| Aruhan-Desktop-Setup-1.1.0.exe | PE x86 | FBA5DF88D8B2CA3742B66057198FDA6B5767161DFB309120020F6A99D1728046 |
+| Aruhan-CLI-Setup-1.1.0.exe | PE x86 | 8030C370109069D561FF3454764FB8F65385B848C240BB11D09BB55ED2014D14 |
+| aruhan-tui-installer-windows-amd64.exe | PE x86_64 | B1B497647A119A8DBFCC8D0DB9613217BFE7D447F3A01F4D4BF619C4186089FE |
+| aruhan-tui-installer-windows-arm64.exe | PE ARM64 | F840DBE29D9794322B3188E95730F83CB394D8336E059AD9488EDC2F58ECFCEC |
+| aruhan-linux-amd64-1.1.0.tar.gz | tar.gz | 7EF6750C7FCB3A60CE4C0CEFE05E4B86C66DD7381EFBF32A4CDC5A473E19F663 |
+| aruhan-linux-arm64-1.1.0.tar.gz | tar.gz | D630B10D9D835990D2F204D39E4A782A22B14F19E48FB5BD5F96E23475CF3102 |
+| aruhan-darwin-amd64-1.1.0.tar.gz | tar.gz | 6D6A25A9AD0632DCA5AD07E751D08B95654B170D4A54E4D27E147643DE8400C3 |
+| aruhan-darwin-arm64-1.1.0.tar.gz | tar.gz | 36CD489DE0DF2041A1C846F5A50CBABC5CD9667B2B73096B226CF260A0D30342 |
+| aruhan-tui-installer-linux-amd64 | ELF x86_64 | 2D389E99A45FFAC175436C074349672156DE8015EF18B888924EB7D03F029A02 |
+| aruhan-tui-installer-linux-arm64 | ELF ARM64 | 8EA3E66B03B3F4C66DCEF90AC01D567A030A81EE55E89860A2009B66CCDD8385 |
+| aruhan-tui-installer-darwin-amd64 | Mach-O x86_64 | 39F64A61EF83FE84B829629C7BE600A01797F124CF642902D0A8C6915072BA22 |
+| aruhan-tui-installer-darwin-arm64 | Mach-O ARM64 | A3DBB6F88C1D8C878860F8B262471A92FEA78F29A3BBACAD91E03384759D3A86 |
+| aruhan-vscode.vsix | ZIP (VSIX) | 80BA67FA8767DAEC07E0098373B10961B7143F82D86834D367E2A6E233AE4C88 |
 
 校验方法：Windows PowerShell 执行 `Get-FileHash <文件> -Algorithm SHA256`；Linux/macOS 执行 `sha256sum <文件>`。
 
 ## 🧪 版本状态（体验 / 测试版）
-- 当前 v1.0.0 为公开**体验 / 测试版本**：可能存在尚未发现的缺陷，界面与功能可能随版本迭代调整，不保证与未来正式版完全兼容。
+- 当前 v1.1.0 为公开**体验 / 测试版本**：可能存在尚未发现的缺陷，界面与功能可能随版本迭代调整，不保证与未来正式版完全兼容。
 - **Windows 首次运行说明**：本版本安装包暂未进行代码签名（Authenticode）。在全新电脑上首次运行下载的安装包时，Windows SmartScreen 可能提示「Windows 已保护你的电脑」，或要求点击「更多信息 → 仍要运行」。请先确认下载来源为官方 Releases 页并核对上方 SHA256 校验和一致后，再放行运行。
 - 若被杀毒软件误报：请先核对 SHA256 校验和；确认一致后可将文件加入信任区，或将样本上报给杀毒厂商（Windows Defender 的「从以下位置下载的文件」提示属正常现象）。
 
@@ -99,7 +99,7 @@ Aruhan AI 智能助手首个正式版本，覆盖三端：终端 CLI · 桌面�
 
 # English
 
-Aruhan AI Assistant v1.0.0 — first official release (Terminal · Desktop · IDE).
+Aruhan AI Assistant v1.1.0 — latest release (Terminal · Desktop · IDE).
 
 ## ✨ Highlights
 - 🗣️ Debate Engine V5: 5-dim scoring + confidence check + multi-round review
@@ -127,16 +127,16 @@ Aruhan AI Assistant v1.0.0 — first official release (Terminal · Desktop · ID
 ## 🖥️ Supported Systems
 | Platform | Arch | Packages |
 | --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.0.0.exe` / `Aruhan-CLI-Setup-1.0.0.exe` / `aruhan-tui-installer-windows-amd64.exe` |
+| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-tui-installer-windows-amd64.exe` |
 | Windows 10/11 | ARM64 | `aruhan-tui-installer-windows-arm64.exe` |
-| Linux | x86_64 | `aruhan-linux-amd64-1.0.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
-| Linux | ARM64 | `aruhan-linux-arm64-1.0.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
-| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.0.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
-| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.0.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
+| Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
+| Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
+| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
+| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
 | VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
 
 ## 🧪 Release Status (Experience / Beta)
-- v1.0.0 is a public **experience / beta release**: defects may exist, and UI/features may change between releases without full backward-compatibility guarantees.
+- v1.1.0 is a public **experience / beta release**: defects may exist, and UI/features may change between releases without full backward-compatibility guarantees.
 - **First run on Windows**: these installers are not code-signed (Authenticode) yet. On a clean machine, Windows SmartScreen may show "Windows protected your PC" or ask you to click "More info → Run anyway". Confirm the download source is the official Releases page and the SHA256 checksum matches, then allow it.
 - If flagged by antivirus: verify the SHA256 checksum first; if it matches, allow/trust the file or submit the sample to your AV vendor.
 
