@@ -109,6 +109,14 @@ The terminal is Aruhan's full-featured workbench with **two interface modes that
 
 **Windows portable zip (extract-and-run, required for ARM64)**: download `aruhan-windows-{amd64,arm64}-1.1.0.zip` (CLI) or `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip` (Desktop), extract and run — no install needed. Windows ARM64 users must use the zip packages (NSIS installers only support x86_64).
 
+**Windows one-line install (PowerShell, recommended)**:
+
+```powershell
+irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
+```
+
+Auto-detects the architecture (amd64/arm64), downloads the matching zip from Release, installs `aruhan.exe`, and configures user-level PATH and `ARUHAN_BINARY` (no admin rights needed; installs to `%LOCALAPPDATA%\Aruhan\bin` by default). The Gitee direct link works best in mainland China; the GitHub mirror is also available: `irm https://raw.githubusercontent.com/xizhihao1/Aruhan-AI/main/install-online.ps1 | iex`.
+
 **Linux / macOS one-line install (recommended)**:
 
 ```bash
