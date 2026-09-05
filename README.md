@@ -115,6 +115,14 @@
 
 **Windows 通用 zip（解压即用，ARM64 必选）**：下载 `aruhan-windows-{amd64,arm64}-1.1.0.zip`（CLI）或 `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip`（桌面版），解压后直接运行，无需安装。Windows ARM64 用户请使用 zip 包（NSIS 安装包仅支持 x86_64）。
 
+**Windows 一键安装（PowerShell，推荐）**：
+
+```powershell
+irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
+```
+
+自动检测架构（amd64/arm64），从 Release 下载对应 zip 并安装 `aruhan.exe`，配置用户级 PATH 与 `ARUHAN_BINARY`（无需管理员权限，默认装到 `%LOCALAPPDATA%\Aruhan\bin`）。国内网络首选 Gitee 直链；GitHub 镜像同样可用：`irm https://raw.githubusercontent.com/xizhihao1/Aruhan-AI/main/install-online.ps1 | iex`。
+
 **Linux / macOS 一键安装（推荐）**：
 
 ```bash
