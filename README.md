@@ -107,7 +107,15 @@
 
 **Windows**：双击 `Aruhan-Desktop-Setup-*.exe` 或 `Aruhan-CLI-Setup-*.exe`，按向导完成安装（自动写入 PATH）。
 
-**Linux / macOS**：
+**Linux / macOS 一键安装（推荐）**：
+
+```bash
+curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
+```
+
+自动检测平台/架构，从 Release 下载对应二进制并配置 PATH 与 `ARUHAN_BINARY`（无需 sudo，默认装到 `~/.local/bin`）。
+
+**Linux / macOS 手动安装**：
 
 ```bash
 tar -xzf aruhan-linux-amd64-1.1.0.tar.gz
