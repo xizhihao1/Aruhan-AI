@@ -23,10 +23,18 @@ Aruhan AI 智能助手最新版本，覆盖三端：终端 CLI · 桌面版 · I
 - 完整能力清单见仓库 README.md「🧩 能力总览（编程 & 非编程）」章节。
 
 ## 📦 安装包
-- Windows：`Aruhan-Desktop-Setup`（NSIS 图形安装）/ `Aruhan-CLI-Setup` / TUI 安装器
+- Windows：`Aruhan-Desktop-Setup`（NSIS 图形安装）/ `Aruhan-CLI-Setup` / TUI 安装器 / 在线一键安装（见下方命令）
 - Windows 通用 zip（与 CI 对齐）：`aruhan-windows-{amd64,arm64}-1.1.0.zip`（CLI）/ `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip`（桌面版），解压即用，无需安装。**ARM64 用户请使用 zip 包**（NSIS 不支持 arm64 安装包）。
 - Linux / macOS：`aruhan-*-*.tar.gz` 通用安装包 / TUI 安装器
 - VSCode：`aruhan-vscode.vsix`（内置 CLI 引擎，三平台通用）
+
+### ⚡ Windows 一键安装（PowerShell，推荐）
+
+```powershell
+irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
+```
+
+自动检测架构（amd64/arm64），从本 Release 下载对应 zip 并安装 `aruhan.exe`，配置用户级 PATH 与 `ARUHAN_BINARY`（无需管理员权限，默认装到 `%LOCALAPPDATA%\Aruhan\bin`）。也可下载本 Release 附件 `install-online.ps1` 后直接执行。
 
 ### ⚡ Linux / macOS 一键安装（推荐）
 
@@ -135,10 +143,18 @@ Aruhan AI Assistant v1.1.0 — latest release (Terminal · Desktop · IDE).
 - Full capability list: see "🧩 Capability Overview (Coding & Non-coding)" in README.md.
 
 ## 📦 Packages
-- Windows: NSIS installers (Desktop / CLI) / TUI installer
+- Windows: NSIS installers (Desktop / CLI) / TUI installer / one-line install (see commands below)
 - Windows portable zip (CI-aligned): `aruhan-windows-{amd64,arm64}-1.1.0.zip` (CLI) / `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip` (Desktop), extract and run, no install needed. **ARM64 users should use the zip packages** (NSIS does not support arm64 installers).
 - Linux / macOS: tar.gz universal packages / TUI installer
 - VSCode: aruhan-vscode.vsix (bundled CLI, cross-platform)
+
+### ⚡ Windows one-line install (PowerShell, recommended)
+
+```powershell
+irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
+```
+
+Auto-detects the architecture (amd64/arm64), downloads the matching zip from this Release, installs `aruhan.exe`, and configures user-level PATH and `ARUHAN_BINARY` (no admin rights needed; installs to `%LOCALAPPDATA%\Aruhan\bin` by default). You can also download the `install-online.ps1` attachment from this Release and run it directly.
 
 ### ⚡ Linux / macOS one-line install (recommended)
 
