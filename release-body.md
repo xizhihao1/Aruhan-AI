@@ -24,6 +24,7 @@ Aruhan AI 智能助手最新版本，覆盖三端：终端 CLI · 桌面版 · I
 
 ## 📦 安装包
 - Windows：`Aruhan-Desktop-Setup`（NSIS 图形安装）/ `Aruhan-CLI-Setup` / TUI 安装器
+- Windows 通用 zip（与 CI 对齐）：`aruhan-windows-{amd64,arm64}-1.1.0.zip`（CLI）/ `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip`（桌面版），解压即用，无需安装。**ARM64 用户请使用 zip 包**（NSIS 不支持 arm64 安装包）。
 - Linux / macOS：`aruhan-*-*.tar.gz` 通用安装包 / TUI 安装器
 - VSCode：`aruhan-vscode.vsix`（内置 CLI 引擎，三平台通用）
 
@@ -38,16 +39,18 @@ curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh |
 ## 🖥️ 支持系统
 | 平台 | 架构 | 安装包 |
 | --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-tui-installer-windows-amd64.exe` |
-| Windows 10/11 | ARM64 | `aruhan-tui-installer-windows-arm64.exe` |
+| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-windows-amd64-1.1.0.zip` / `aruhan-desktop-windows-amd64-1.1.0.zip` / `aruhan-tui-installer-windows-amd64.exe` |
+| Windows 10/11 | ARM64 | `aruhan-windows-arm64-1.1.0.zip` / `aruhan-desktop-windows-arm64-1.1.0.zip` / `aruhan-tui-installer-windows-arm64.exe` |
 | Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
 | Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
 | macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
 | macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
 | VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
 
-## ✅ 安装包校验（v1.1.0 · 2026-08-30 编译）
-全部 13 个安装包已通过基础校验：PE / ELF / Mach-O 格式与架构正确、tar.gz 与 VSIX 压缩包完整。SHA256 校验和如下：
+## ✅ 安装包校验（v1.1.0）
+全部 17 个安装包已通过基础校验：PE / ELF / Mach-O 格式与架构正确、tar.gz / zip 与 VSIX 压缩包完整。SHA256 校验和如下：
+
+> 📅 **编译批次说明**：NSIS 安装包（`Aruhan-*-Setup-*.exe`）与 TUI 安装器为 2026-08-30 编译；Windows 通用 zip 包（`aruhan-windows-*.zip` / `aruhan-desktop-windows-*.zip`）为 2026-09-05 编译，与 CI `release.yml` 打包行为一致。两者版本号均为 v1.1.0，二进制内容可能略有差异，请按需选择。
 
 | 文件 | 格式/架构 | SHA256 |
 | --- | --- | --- |
@@ -63,6 +66,10 @@ curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh |
 | aruhan-tui-installer-linux-arm64 | ELF ARM64 | 8EA3E66B03B3F4C66DCEF90AC01D567A030A81EE55E89860A2009B66CCDD8385 |
 | aruhan-tui-installer-darwin-amd64 | Mach-O x86_64 | 39F64A61EF83FE84B829629C7BE600A01797F124CF642902D0A8C6915072BA22 |
 | aruhan-tui-installer-darwin-arm64 | Mach-O ARM64 | A3DBB6F88C1D8C878860F8B262471A92FEA78F29A3BBACAD91E03384759D3A86 |
+| aruhan-windows-amd64-1.1.0.zip | ZIP PE x86_64 (CLI, 2026-09-05) | C0ADEC098E363F2FF3490CDE763D794A1D9F365B934F005A4B3C61F58D358D6C |
+| aruhan-windows-arm64-1.1.0.zip | ZIP PE ARM64 (CLI, 2026-09-05) | E1462F3EA4708FEF9043706816B3468C1568ABCE7CBADE0EE30041563E66FB73 |
+| aruhan-desktop-windows-amd64-1.1.0.zip | ZIP PE x86_64 (Desktop, 2026-09-05) | B57B54BDDF8C01929C3D0B8838DC44A3B45E3EF29BCA342C3B8E4A9A9504F025 |
+| aruhan-desktop-windows-arm64-1.1.0.zip | ZIP PE ARM64 (Desktop, 2026-09-05) | 97A4F733B922A14CB69571E25B9273C42E4CC2676B80644332D3A6ED14D1C1CB |
 | aruhan-vscode.vsix | ZIP (VSIX) | 7526AAD24E29F28BAA9A312AD4E839C9AE2E854416829B3A58487A009C8B8A97 |
 
 校验方法：Windows PowerShell 执行 `Get-FileHash <文件> -Algorithm SHA256`；Linux/macOS 执行 `sha256sum <文件>`。
@@ -129,6 +136,7 @@ Aruhan AI Assistant v1.1.0 — latest release (Terminal · Desktop · IDE).
 
 ## 📦 Packages
 - Windows: NSIS installers (Desktop / CLI) / TUI installer
+- Windows portable zip (CI-aligned): `aruhan-windows-{amd64,arm64}-1.1.0.zip` (CLI) / `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip` (Desktop), extract and run, no install needed. **ARM64 users should use the zip packages** (NSIS does not support arm64 installers).
 - Linux / macOS: tar.gz universal packages / TUI installer
 - VSCode: aruhan-vscode.vsix (bundled CLI, cross-platform)
 
@@ -143,8 +151,8 @@ Auto-detects platform/arch, downloads the binary from Release, and configures PA
 ## 🖥️ Supported Systems
 | Platform | Arch | Packages |
 | --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-tui-installer-windows-amd64.exe` |
-| Windows 10/11 | ARM64 | `aruhan-tui-installer-windows-arm64.exe` |
+| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-windows-amd64-1.1.0.zip` / `aruhan-desktop-windows-amd64-1.1.0.zip` / `aruhan-tui-installer-windows-amd64.exe` |
+| Windows 10/11 | ARM64 | `aruhan-windows-arm64-1.1.0.zip` / `aruhan-desktop-windows-arm64-1.1.0.zip` / `aruhan-tui-installer-windows-arm64.exe` |
 | Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
 | Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
 | macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
