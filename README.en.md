@@ -107,7 +107,15 @@ The terminal is Aruhan's full-featured workbench with **two interface modes that
 
 **Windows**: double-click `Aruhan-Desktop-Setup-*.exe` or `Aruhan-CLI-Setup-*.exe` and follow the wizard (PATH is configured automatically).
 
-**Linux / macOS**:
+**Linux / macOS one-line install (recommended)**:
+
+```bash
+curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
+```
+
+Auto-detects platform/arch, downloads the binary from Release, and configures PATH and `ARUHAN_BINARY` (no sudo required, installs to `~/.local/bin` by default).
+
+**Linux / macOS manual install**:
 
 ```bash
 tar -xzf aruhan-linux-amd64-1.1.0.tar.gz
