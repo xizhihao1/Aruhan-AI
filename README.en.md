@@ -107,6 +107,8 @@ The terminal is Aruhan's full-featured workbench with **two interface modes that
 
 **Windows**: double-click `Aruhan-Desktop-Setup-*.exe` or `Aruhan-CLI-Setup-*.exe` and follow the wizard (PATH is configured automatically).
 
+**Windows portable zip (extract-and-run, required for ARM64)**: download `aruhan-windows-{amd64,arm64}-1.1.0.zip` (CLI) or `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip` (Desktop), extract and run — no install needed. Windows ARM64 users must use the zip packages (NSIS installers only support x86_64).
+
 **Linux / macOS one-line install (recommended)**:
 
 ```bash
