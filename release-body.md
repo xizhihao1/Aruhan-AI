@@ -27,6 +27,14 @@ Aruhan AI 智能助手最新版本，覆盖三端：终端 CLI · 桌面版 · I
 - Linux / macOS：`aruhan-*-*.tar.gz` 通用安装包 / TUI 安装器
 - VSCode：`aruhan-vscode.vsix`（内置 CLI 引擎，三平台通用）
 
+### ⚡ Linux / macOS 一键安装（推荐）
+
+```bash
+curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
+```
+
+自动检测平台/架构，从 Release 下载对应二进制并配置 PATH 与 `ARUHAN_BINARY`（无需 sudo，默认装到 `~/.local/bin`）。也可下载本 Release 附件 `install-online.sh` 后执行 `bash install-online.sh`。
+
 ## 🖥️ 支持系统
 | 平台 | 架构 | 安装包 |
 | --- | --- | --- |
@@ -123,6 +131,14 @@ Aruhan AI Assistant v1.1.0 — latest release (Terminal · Desktop · IDE).
 - Windows: NSIS installers (Desktop / CLI) / TUI installer
 - Linux / macOS: tar.gz universal packages / TUI installer
 - VSCode: aruhan-vscode.vsix (bundled CLI, cross-platform)
+
+### ⚡ Linux / macOS one-line install (recommended)
+
+```bash
+curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
+```
+
+Auto-detects platform/arch, downloads the binary from Release, and configures PATH and `ARUHAN_BINARY` (no sudo required, installs to `~/.local/bin` by default). You can also download the `install-online.sh` attachment from this Release and run `bash install-online.sh`.
 
 ## 🖥️ Supported Systems
 | Platform | Arch | Packages |
