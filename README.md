@@ -1,410 +1,482 @@
-# 🚀 Aruhan AI 智能助手
+# Aruhan
 
-> **免费的全场景 AI 智能助手，一键安装即用。**
-> **终端 (TUI/非TUI) · 桌面版 · VS Code 插件** 三端一体，一处配置全端生效。
+> A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-- 🗣️ **三方辩论引擎**：正方/反方/判官多轮对抗评审，复杂任务自动把关
+**Version:** 2.1.15 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
-- 🤖 **多平台 Bot 网关**：飞书/企业微信/钉钉/Telegram/Slack，手机即用
+[English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
-- 🧠 **上下文智能压缩**：长会话自动压缩，永不超窗
+---
 
-- 🛡️ **权限沙箱**：只读/工作区/全电脑三级文件围栏，安全可控
+## English
 
-- 🌐 **主流模型全兼容**：DeepSeek / OpenAI / Claude / 通义 / 智谱 / 本地 Ollama
+### What Aruhan is
 
-**⬇️ 本仓库为 Aruhan 官方下载站 →** **[前往 Releases 发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)** **下载最新版本**
-（仅分发编译产物安装包，不含源代码）
+Aruhan is a family of clients built on one shared local runtime:
 
-***
+| Client | What it is for | Entry point |
+|---|---|---|
+| **CLI / REPL** | Scriptable, line-oriented assistant for shells, CI, and remote machines | `aruhan`, `aruhan --plain` |
+| **TUI** | Full-screen terminal workspace with panels, modes, and key bindings | `aruhan chat` |
+| **Desktop** | Native window with chat, terminal, files, Git, sessions, memory, skills, MCP, bots, and settings | `aruhan-desktop` / Start Menu |
+| **VS Code extension** | In-editor chat, selection actions, review, sessions, memory, and Git/worktree commands | VSIX |
+| **Factory** | Pipeline-driven software production with a local web console, runs, gates, artifacts, backups, and multi-tenant controls | `factory` / `factory serve` |
 
-## ✨ 功能特性
+All clients share the same configuration directory. Configure a provider once and every client sees it.
 
-| 能力                | 说明                                                           |
-| ----------------- | ------------------------------------------------------------ |
-| 🗣️ 三方辩论引擎        | 正方 / 反方 / 判官 多轮对抗评审，五维评分 + 置信度复核，自动收敛至 ≥9.8 分后落地             |
-| 💻 Code Agent     | 读 / 写 / 搜索代码库、执行命令、调试修复、多文件重构、Git 操作，编程助手全流程                 |
-| 🤖 Bot 网关         | 飞书 / 企业微信 / 钉钉 / Telegram / Slack，支持 OAuth 扫码登录与 IM 内指令      |
-| 📝 CodeMirror 编辑器 | 桌面版内置多语言代码编辑器（Go/JS/Python/Rust/SQL/…）                       |
-| 📄 文档处理           | Office / PDF / Markdown / CSV 读写、总结、翻译、格式转换、表格公式与图表          |
-| 🖼️ 图像处理          | AI 图像生成与理解、图像分析、格式 / 尺寸转换（已实现，未充分测试）                         |
-| 🎬 视频处理           | AI 视频生成与理解、视频内容分析（已实现，未充分测试）                                 |
-| 🧠 上下文智能压缩        | auto-compact + Vault 精确恢复，长会话不超窗                             |
-| 🛡️ 权限管控          | 权限模式 + 沙箱执行 + 文件访问围栏（只读 / 工作区 / 全电脑）+ 工具审批                   |
-| 🌐 多供应商           | DeepSeek / Anthropic / OpenAI / 通义 / 智谱 / Ollama… 缓存与思考档位全适配 |
-| 🖥️ 三端一体          | 终端（TUI/REPL）、桌面（Wails）、IDE（VSCode 插件）配置与会话互通                 |
+> **Your `models.json` and `aruhan.json` are the runtime authority.**
+> Built-in providers and models are only a seed used when those files are missing or corrupt.
+> Adding, editing, or deleting entries in any client changes what every client sees.
 
-***
+### Download
 
-## 🧩 能力总览（编程 & 非编程）
+Download the latest packages from the official Releases pages:
 
-### 💻 编程能力（重点测试）
+- **GitHub:** <https://github.com/xizhihao1/Aruhan-AI/releases>
+- **Gitee:** <https://gitee.com/guleng2005/Aruhan-AI/releases>
 
-| 能力     | 说明                      |
-| ------ | ----------------------- |
-| 代码生成   | 按需求生成函数、模块、完整项目骨架，多语言支持 |
-| 代码解释   | 逐段解读复杂代码、算法原理、依赖关系      |
-| 代码审查   | 静态审查、缺陷定位、安全与性能建议       |
-| 调试修复   | 定位报错、断点式分析、自动修复并回归验证    |
-| 多文件重构  | 跨文件重命名、抽取、拆分、结构调整       |
-| 测试编写   | 生成单元测试 / 集成测试并执行验证      |
-| Git 操作 | 提交、分支、历史分析、冲突解决         |
-| 命令执行   | 沙箱内运行编译、构建、脚本、自动化任务     |
-| 技术文档   | 生成 README、接口文档、注释与变更日志  |
+| Platform | Package | Notes |
+|---|---|---|
+| Windows | `Aruhan-Setup-<version>.exe` | CLI + TUI + Desktop (NSIS installer) |
+| Windows | `Aruhan-CLI-Setup-<version>.exe` | CLI/TUI only |
+| Windows | `Aruhan-Desktop-Setup-<version>.exe` | Desktop only |
+| Windows | `Factory-Setup-<version>.exe` | Factory |
+| Windows | `aruhan-windows-{amd64,arm64}-<version>.zip` | Portable CLI/TUI |
+| Windows | `aruhan-desktop-windows-{amd64,arm64}-<version>.zip` | Portable Desktop |
+| Linux | `aruhan-linux-{amd64,arm64}-<version>.tar.gz` | CLI + Desktop + `install.sh` |
+| Linux | `factory-linux-{amd64,arm64}-<version>.tar.gz` | Factory + `install.sh` |
+| macOS | `aruhan-darwin-{amd64,arm64}-<version>.tar.gz` | CLI + Desktop + `install.sh` |
+| macOS | `factory-darwin-{amd64,arm64}-<version>.tar.gz` | Factory + `install.sh` |
+| Cross-platform | `aruhan-tui-installer-*` | Interactive TUI installer |
+| VS Code | `aruhan-vscode.vsix` | Extension with a bundled CLI engine |
 
-### 🎯 非编程能力
+| Platform | Architectures | Minimum |
+|---|---|---|
+| Windows | x86_64 / ARM64 | Windows 10 / 11 |
+| Linux | x86_64 / ARM64 | Common glibc/musl distributions |
+| macOS | Intel / Apple Silicon | macOS 11+ |
+| VS Code | All three platforms | 1.85+ |
 
-| 能力      | 说明                                          |
-| ------- | ------------------------------------------- |
-| 文档处理    | Office / PDF / Markdown / CSV 读写、总结、翻译、格式转换 |
-| 表格处理    | 公式计算、数据清洗、透视与图表生成                           |
-| 幻灯片     | PPT 创建、编辑与美化                                |
-| 图像处理    | AI 图像生成与理解、图像分析、格式 / 尺寸转换（已实现，未充分测试）        |
-| 视频处理    | AI 视频生成与理解、视频内容分析（已实现，未充分测试）                |
-| 信息检索    | 联网搜索、网页抓取与内容提炼                              |
-| 写作润色    | 文案创作、多语言翻译、语法校对                             |
-| 三方辩论    | 复杂决策 / 方案评审的多轮对抗论证                          |
-| Bot 自动化 | 通过飞书 / 企微 / 钉钉 / Telegram / Slack 收发消息、群内指令 |
-| 任务助理    | 待办管理、会议纪要、日程安排                              |
+> This repository distributes **compiled artifacts only**. It does not contain source code.
+> Always download from the official Releases pages and verify `SHA256SUMS` before running.
+> Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### 🧪 测试状态
+### What's new in 2.1.15
 
-- **重点测试**：编程功能为当前主要验证方向，已使用 **DeepSeek** 完成端到端测试；
+- **Media-model settings in Desktop and VS Code:** list the user-authoritative media
+  catalog, set image/video defaults, enable/disable models, merge new built-in entries,
+  and reset built-in defaults.
+- **Desktop Factory console:** set a local console, test the connection before opening
+  deep links, and get clear success/failure feedback.
+- **Model catalog:** full CRUD for providers and models in all clients; user files remain
+  authoritative and deleted built-in entries stay deleted.
+- **Documentation:** bilingual manuals (English first, Chinese below) for every client,
+  plus a comprehensive security and legal chapter.
+- **Reliability:** regression tests for the media catalog RPC and the Factory console
+  connection probe; media route tests are isolated from user data.
 
-- **已实现未充分测试**：图像处理、视频处理功能已实现，但尚未进行充分测试；
+See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
 
-- **可自主测试**：其他模型（OpenAI / Claude / 通义 / 智谱 / Ollama 等）及非编程功能，欢迎感兴趣的开发者与用户自主测试并反馈问题。
+### Quick start
 
-***
+#### Windows
 
-## 📥 下载
+1. Download an installer from the Releases page.
+2. Run it. The default install root is `%LOCALAPPDATA%\Aruhan`.
+3. Open **Aruhan Desktop**, or run `aruhan setup` in a new terminal.
+4. Add a provider and API key, then choose a default model.
+5. Open a folder/workspace and start chatting.
 
-前往 **[Releases 发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)** 下载最新安装包：
+Portable ZIP builds do not install services or modify `PATH`; run the executable directly.
+Windows ARM64 users should prefer the ZIP packages.
 
-| 平台      | 安装包                                    | 说明                           |
-| ------- | -------------------------------------- | ---------------------------- |
-| Windows | `Aruhan-Desktop-Setup-*.exe`           | NSIS 图形安装向导（桌面版 + CLI）       |
-| Windows | `Aruhan-CLI-Setup-*.exe`               | NSIS CLI 安装向导（自动配置 PATH）     |
-| Linux   | `aruhan-linux-{amd64,arm64}-*.tar.gz`  | 通用安装包（CLI + 桌面 + install.sh） |
-| macOS   | `aruhan-darwin-{amd64,arm64}-*.tar.gz` | 通用安装包（CLI + 桌面 + install.sh） |
-| 全平台     | `aruhan-tui-installer-*`               | TUI 交互式安装器                   |
-| VSCode  | `aruhan-vscode.vsix`                   | IDE 插件（内置 CLI 引擎，三平台通用）      |
-
-### 支持系统
-
-| 平台      | 架构                    | 最低要求                |
-| ------- | --------------------- | ------------------- |
-| Windows | x86\_64 / ARM64       | Windows 10 / 11     |
-| Linux   | x86\_64 / ARM64       | 主流发行版（glibc / musl） |
-| macOS   | Intel / Apple Silicon | macOS 11+           |
-| VS Code | 三平台                   | 1.85+               |
-
-> ⚠️ **版本与风险提示**：当前 v1.1.0 为公开**体验 / 测试版**，可能存在缺陷且功能随迭代调整。请仅从官方 Releases 页下载安装包，并以 Release 页公布的 SHA256 校验和核对完整性；Windows 安装包暂未代码签名，首次运行若出现 SmartScreen 提示「Windows 已保护你的电脑」或要求点「更多信息 → 仍要运行」，请先核对 SHA256 一致后再放行（属未签名软件的常见现象）；Aruhan 具备 AI 自主工具执行能力，请善用权限模式与文件访问围栏（只读 / 工作区 / 全电脑）。完整校验表见 [Releases 页](https://gitee.com/guleng2005/Aruhan-AI/releases)。
-
-***
-
-## 🚀 使用说明
-
-### 一、终端 CLI（TUI / 非TUI 两种模式）
-
-终端是 Aruhan 的完整工作台，支持两种界面模式，**共用同一套配置与会话，随时可切换**。
-
-#### 1. 安装
-
-**Windows**：双击 `Aruhan-Desktop-Setup-*.exe` 或 `Aruhan-CLI-Setup-*.exe`，按向导完成安装（自动写入 PATH）。
-
-**Windows 通用 zip（解压即用，ARM64 必选）**：下载 `aruhan-windows-{amd64,arm64}-1.1.0.zip`（CLI）或 `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip`（桌面版），解压后直接运行，无需安装。Windows ARM64 用户请使用 zip 包（NSIS 安装包仅支持 x86_64）。
-
-**Windows 一键安装（PowerShell，推荐）**：
-
-```powershell
-irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
-```
-
-自动检测架构（amd64/arm64），从 Release 下载对应 zip 并安装 `aruhan.exe`，配置用户级 PATH 与 `ARUHAN_BINARY`（无需管理员权限，默认装到 `%LOCALAPPDATA%\Aruhan\bin`）。国内网络首选 Gitee 直链；GitHub 镜像同样可用：`irm https://raw.githubusercontent.com/xizhihao1/Aruhan-AI/main/install-online.ps1 | iex`。
-
-**Linux / macOS 一键安装（推荐）**：
+#### Linux / macOS
 
 ```bash
-curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
-```
-
-自动检测平台/架构，从 Release 下载对应二进制并配置 PATH 与 `ARUHAN_BINARY`（无需 sudo，默认装到 `~/.local/bin`）。
-
-**Linux / macOS 手动安装**：
-
-```bash
-tar -xzf aruhan-linux-amd64-1.1.0.tar.gz
+# CLI + Desktop
+tar -xzf aruhan-linux-amd64-<version>.tar.gz
 cd aruhan-linux-amd64
-./install.sh
+./install.sh --user          # installs under ~/.local/share/aruhan
+# or: sudo ./install.sh      # installs under /usr/local/aruhan
+
+# Factory
+tar -xzf factory-linux-amd64-<version>.tar.gz
+cd factory-linux-amd64
+./install.sh --autostart     # optional user-level login autostart
 ```
 
-**全平台 TUI 交互式安装器**：下载对应平台的 `aruhan-tui-installer-*`，赋予执行权限后直接运行，按提示选择安装目录。
+Verify the installation:
 
-#### 2. 首次配置
-
-终端输入 `aruhan` 进入 REPL 后：
-
-```
-/provider   选择供应商并填写 API Key（也支持环境变量 ARUHAN_API_KEY / <供应商>_API_KEY）
-/model      切换模型
+```bash
+aruhan --version
+aruhan doctor
 ```
 
-配置保存在本地，三端同步，无需重复设置。
+#### VS Code
 
-#### 3. 启动两种模式
+Install `aruhan-vscode.vsix` from **Extensions → … → Install from VSIX…**, then open the
+Aruhan panel. The extension bundles its own CLI engine and uses the same shared configuration.
 
-| 命令                           | 模式              | 说明                                    |
-| ---------------------------- | --------------- | ------------------------------------- |
-| `aruhan`                     | **非 TUI（REPL）** | 轻量 ANSI 界面，支持 `@文件` / `#任务` 补全与斜杠指令联想 |
-| `aruhan -t` 或 `aruhan --tui` | **TUI**         | Bubble Tea 全屏专业界面：状态栏、工具卡片、分屏布局       |
-| `aruhan --accessible`        | 无障碍模式           | 纯文本输出（无颜色/表情/制表符），供屏幕阅读器使用            |
+### First configuration
+
+Interactive:
+
+```bash
+aruhan setup
+```
+
+Non-interactive (the plaintext key comes from the provider's console; Aruhan cannot recover it):
+
+```bash
+export MY_API_KEY="..."
+aruhan setup --provider <catalog-key> --model <model-id> --api-key-env MY_API_KEY --yes
+```
+
+The same settings can be managed in Desktop → **Settings / Models**, in the VS Code chat
+settings panel, or in the Factory console under **Settings → Execution models**.
+
+Media models (image/video) are managed separately in `media.json`, with their own defaults,
+enable/disable state, sync, and reset actions.
+
+### Shared files
+
+| File | Purpose |
+|---|---|
+| `models.json` | Text model catalog: providers, base URLs, protocols, models, context limits |
+| `media.json` | Media catalog: image/video models, defaults, enabled/disabled state |
+| `aruhan.json` | Shared secrets and active selections; keys are encrypted at rest |
+| `terminal.json`, `desktop.json`, `vscode.json` | Per-client preferences (theme, permission mode, work mode, sandbox) |
+| `sessions/`, `memory/`, `logs/`, `history.json` | Local runtime data |
+
+Default locations:
+
+- Windows: `%APPDATA%\Aruhan`
+- Linux: `${XDG_CONFIG_HOME:-~/.config}/Aruhan`
+- macOS: `~/Library/Application Support/Aruhan`
+
+Override with `ARUHAN_HOME` (highest priority) or `ARUHAN_DATA_DIR`.
+
+### Capabilities
+
+- **One shared model catalog** for CLI, TUI, Desktop, VS Code, and Factory.
+- **Full provider/model CRUD**, including built-in entries; deletions are protected by
+  tombstones so upgrades do not silently resurrect them.
+- **Separate media catalog** (`media.json`) for text-to-image and text-to-video.
+- **Encrypted credentials** in `aruhan.json`; plaintext provider keys are never stored.
+- **Local-first:** files, sessions, memory, and credentials stay on your machine; model
+  requests go only to the provider you configure.
+- **Permission and sandbox layers:** permission mode, work mode, and file-access scope are
+  independent controls.
+- **Code agent:** read/write/search the workspace, run commands, debug, refactor, and use Git.
+- **Long-running work:** autonomous goals (`aruhan goal`) and Factory pipelines with
+  pause/resume/rollback.
+- **Operations:** diagnostics (`aruhan doctor`), audit hash chain, SBOM, license inventory,
+  backups, and checksums.
+- **Bots and integrations:** Feishu, WeCom, DingTalk, Telegram, and Slack gateways.
+- **Content tools:** Office/PDF/Markdown/CSV processing, image and video analysis/generation
+  (implemented; image/video features are not yet fully tested).
 
-- **非 TUI（REPL）**：传统逐行交互，轻量快速，资源占用低，适合 SSH 等受限环境；输入 `@文件路径` 自动读入上下文、`#任务` 引用任务，指令输入时自动弹出斜杠命令联想（`Tab` 补全）。
+### Documentation
 
-- **TUI 模式**：全屏专业界面，含顶部状态栏（模型 / 权限 / 工作区 / 会话状态）、实时工具卡片、分屏布局（对话与工具输出分区展示）。TUI 内按 `F1` 或 `?` 查看全部快捷键。
+The bilingual manuals are published with every release as `Aruhan-Manuals-<version>.zip`.
+They are organized by client, with English first and Chinese below:
 
-TUI 与 REPL 共用同一配置文件与会话历史，随时以另一模式进入继续对话。
+- Installation and package selection
+- CLI / REPL
+- TUI
+- Desktop
+- VS Code extension
+- Factory
+- Models and credentials
+- Troubleshooting
+- Security and legal
 
-#### 4. 常用操作
+### Verification and security
 
-- **任务管理**：`/task-create 任务名 [描述]` 创建任务，`/task-show` 查看，`/task-done <id>` 完成，`/task-cancel <id>` 取消。任务与工作区绑定，工具执行结果按任务归档。
+- Verify every download against `SHA256SUMS` published on the Releases page.
+- Windows builds are currently unsigned; SmartScreen warnings are expected for unsigned binaries.
+- Aruhan executes model-requested tools. Review permission mode and sandbox scope before
+  enabling `auto` or `yolo`.
+- Do not commit `aruhan.json`, `models.json` with embedded secrets, session databases, or logs.
+- Reverse engineering, decompilation, disassembly, or attempts to bypass licensing, tenant
+  isolation, or credential protection are prohibited by project policy and may violate law
+  or third-party terms.
+
+### Contact
+
+For questions, suggestions, bug reports, or partnership inquiries:
+
+- **Email:** <37735973@qq.com>
+
+### License and commercial use
+
+This repository distributes compiled binaries only. Use of the software is subject to the
+following terms:
+
+| Scenario | Authorization |
+|---|---|
+| Personal, non-commercial use | Free to try; no separate authorization required |
+| Enterprise / team commercial use | Commercial authorization required |
+| Private deployment | Commercial authorization required |
+| Custom modification | Commercial authorization required |
+| Resale / redistribution | **Prohibited** |
+| Reverse engineering | **Prohibited** (no decompilation, disassembly, or other reverse engineering) |
+| Removing copyright notices | **Prohibited** |
+
+For commercial licensing, private deployment, or custom development, contact
+<37735973@qq.com>.
+
+### Disclaimer
+
+- The software, installers, documentation, and all related materials are provided **“as is”**,
+  without any express or implied warranty, including merchantability, fitness for a
+  particular purpose, and non-infringement.
+- You use the software **at your own risk**. The author is not liable for any direct or
+  indirect loss, including data loss, business interruption, or lost profits.
+- **Do not use in high-risk production environments**, including medical, aviation, nuclear,
+  autonomous driving, core financial trading, or industrial control systems, without written
+  authorization and a separate liability agreement.
+- AI-generated content may be incorrect, biased, or inappropriate. Verify it independently;
+  do not use it as the sole basis for legal, medical, or investment decisions.
+- You must comply with the laws and regulations of your jurisdiction and may not use the
+  software for unlawful purposes.
+- You are responsible for complying with the terms of any AI provider you configure.
+
+### Acknowledgements
+
+- Thanks to the contributors of all open-source dependencies (the full list is included in
+  each package's license inventory).
+- Thanks to the model providers that make the supported workflows possible.
+
+---
+
+## 中文
+
+> 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
+
+**版本：** 2.1.15 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+
+[English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
+
+### Aruhan 是什么
+
+Aruhan 是一套共享同一套本地运行时的多端产品：
+
+| 客户端 | 用途 | 入口 |
+|---|---|---|
+| **CLI / REPL** | 面向 Shell、CI、远程机器的行式助手，可脚本化 | `aruhan`、`aruhan --plain` |
+| **TUI** | 全屏终端工作台，带面板、模式与快捷键 | `aruhan chat` |
+| **桌面端** | 原生窗口，集成聊天、终端、文件、Git、会话、记忆、技能、MCP、机器人与设置 | `aruhan-desktop` / 开始菜单 |
+| **VS Code 插件** | 编辑器内聊天、选区操作、代码审查、会话、记忆与 Git/Worktree 命令 | VSIX |
+| **Factory（软件工厂）** | 流水线化软件生产：本机 Web 控制台、运行、卡点、工件、备份与多租户能力 | `factory` / `factory serve` |
+
+所有客户端共用同一个配置目录。配置一次供应商，各端都能使用。
 
-- **工作区**：`/workspace` 创建 / 切换工作目录，所有文件读写默认限定在工作区内。
+> **你的 `models.json` 和 `aruhan.json` 才是运行时权威。**
+> 内置供应商和模型只在文件缺失或损坏时作为种子生成。
+> 在任意一端新增、修改或删除，都会改变其他端看到的内容。
 
-- **三方辩论**：`/debate on 3` 开启 N 轮辩论评审，`/debate off` 关闭，`/debate on 0` 无限轮。
+### 下载
+
+请从官方发布页下载最新安装包：
 
-- **上下文管理**：`/compact` 手动压缩，`/rewind` 回退对话节点。
+- **GitHub：** <https://github.com/xizhihao1/Aruhan-AI/releases>
+- **Gitee：** <https://gitee.com/guleng2005/Aruhan-AI/releases>
 
-- **权限模式**：`/perm` 在 自动 / 询问 / 只读 / 绕过 之间切换；`/perm` 配合文件访问范围（只读 / 工作区 / 全电脑）控制 AI 可执行的工具范围。
+| 平台 | 安装包 | 说明 |
+|---|---|---|
+| Windows | `Aruhan-Setup-<版本>.exe` | CLI + TUI + 桌面端（NSIS 安装向导） |
+| Windows | `Aruhan-CLI-Setup-<版本>.exe` | 仅 CLI/TUI |
+| Windows | `Aruhan-Desktop-Setup-<版本>.exe` | 仅桌面端 |
+| Windows | `Factory-Setup-<版本>.exe` | 软件工厂 |
+| Windows | `aruhan-windows-{amd64,arm64}-<版本>.zip` | 便携版 CLI/TUI |
+| Windows | `aruhan-desktop-windows-{amd64,arm64}-<版本>.zip` | 便携版桌面端 |
+| Linux | `aruhan-linux-{amd64,arm64}-<版本>.tar.gz` | CLI + 桌面端 + `install.sh` |
+| Linux | `factory-linux-{amd64,arm64}-<版本>.tar.gz` | 软件工厂 + `install.sh` |
+| macOS | `aruhan-darwin-{amd64,arm64}-<版本>.tar.gz` | CLI + 桌面端 + `install.sh` |
+| macOS | `factory-darwin-{amd64,arm64}-<版本>.tar.gz` | 软件工厂 + `install.sh` |
+| 全平台 | `aruhan-tui-installer-*` | TUI 交互式安装器 |
+| VS Code | `aruhan-vscode.vsix` | 内置 CLI 引擎的 IDE 插件 |
 
-- **技能与记忆**：`/skill` 使用技能，`/remember` 写入记忆，`/memories` 查看记忆。
+| 平台 | 架构 | 最低要求 |
+|---|---|---|
+| Windows | x86_64 / ARM64 | Windows 10 / 11 |
+| Linux | x86_64 / ARM64 | 主流 glibc/musl 发行版 |
+| macOS | Intel / Apple Silicon | macOS 11+ |
+| VS Code | 三平台 | 1.85+ |
 
-- **退出**：`/quit`（非TUI）；TUI 内连按两次 `Ctrl+C` 或 `Ctrl+D`。
+> 本仓库仅分发**编译产物**，不含源代码。
+> 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
+> Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-#### 5. TUI 快捷键
+### 2.1.15 更新内容
 
-| 按键            | 功能       |
-| ------------- | -------- |
-| `F1` / `?`    | 开关帮助面板   |
-| `Ctrl+R`      | 历史反向搜索   |
-| `Ctrl+G`      | 推理过程显示开关 |
-| `Ctrl+E`      | 多行粘贴模式   |
-| `Ctrl+Insert` | 复制选中内容   |
-| `Ctrl+C ×2`   | 退出 TUI   |
-| `Ctrl+D`      | 强制退出     |
+- **桌面端与 VS Code 的媒体模型设置**：查看用户权威的媒体目录、设置图片/视频默认
+  模型、启用/停用模型、合并新内置条目、恢复内置默认。
+- **桌面端 Factory 控制台**：设置本机控制台，在打开深链前测试连接，并给出明确的
+  成功/失败反馈。
+- **模型目录**：各端支持供应商/模型完整增删改查；用户文件始终是权威，已删除的内置
+  条目不会被升级静默复活。
+- **文档**：按客户端拆分的双语文档（英文在上、中文在下），并包含完整的安全与法律章节。
+- **可靠性**：新增媒体目录 RPC 与 Factory 控制台连接探测的回归测试；媒体路由测试与
+  用户真实数据隔离。
 
-***
+完整列表见 [发布说明](https://gitee.com/guleng2005/Aruhan-AI/releases)。
 
-### 二、桌面版
+### 快速开始
 
-桌面版提供完整的图形化体验，默认进入**聊天界面**。
+#### Windows
+
+1. 从发布页下载安装包。
+2. 运行安装包。默认安装目录：`%LOCALAPPDATA%\Aruhan`。
+3. 打开 **Aruhan Desktop**，或在新终端运行 `aruhan setup`。
+4. 添加供应商和 API Key，选择默认模型。
+5. 打开一个文件夹/工作区，开始对话。
+
+ZIP 便携版不安装服务、不修改 `PATH`，解压后直接运行可执行文件。Windows ARM64 用户
+建议使用 ZIP 包。
+
+#### Linux / macOS
+
+```bash
+# CLI + 桌面端
+tar -xzf aruhan-linux-amd64-<版本>.tar.gz
+cd aruhan-linux-amd64
+./install.sh --user          # 安装到 ~/.local/share/aruhan
+# 或：sudo ./install.sh      # 安装到 /usr/local/aruhan
 
-#### 1. 安装与启动
+# Factory
+tar -xzf factory-linux-amd64-<版本>.tar.gz
+cd factory-linux-amd64
+./install.sh --autostart     # 可选：注册用户登录自启
+```
 
-Windows 双击 `Aruhan-Desktop-Setup-*.exe` 完成安装后启动；Linux / macOS 解压 `tar.gz` 后运行桌面程序或 `install.sh`。
+验证安装：
 
-#### 2. 界面导航（左侧边栏）
+```bash
+aruhan --version
+aruhan doctor
+```
+
+#### VS Code
+
+通过 **扩展 → … → 从 VSIX 安装…** 安装 `aruhan-vscode.vsix`，然后打开 Aruhan 面板。
+插件内置 CLI 引擎，并使用同一套共享配置。
 
-| 入口 | 功能                                                    |
-| -- | ----------------------------------------------------- |
-| 聊天 | 默认主页，与 AI 对话、发起任务、查看工具卡片与流式输出                         |
-| 任务 | 任务列表与进度管理                                             |
-| 技能 | 技能市场与已安装技能                                            |
-| 会话 | 历史会话浏览 / 恢复                                           |
-| 记忆 | 长期记忆查看与编辑                                             |
-| 终端 | 内置终端面板（快捷键 \`Ctrl+\`\`），支持分屏 / 切换 / 全屏，聊天窗口常驻不关闭      |
-| 设置 | 供应商 / 模型 / API Key / 思考档位 / 生成参数 / 媒体生成 Key / 主题 / 语言 |
+### 首次配置
 
-#### 3. 聊天与工作流
+交互式：
 
-- 输入框上方提供**权限模式**与**文件访问范围**选择器（只读 / 工作区 / 全电脑），随任务独立保存，切换即时生效。
-
-- 聊天界面支持三方辩论过程实时展示、工具调用卡片、任务审批弹窗。
-
-- 任务完成 / 出错 / 需审批时触发**声音提醒**（可在设置中开关）。
-
-#### 4. 文件与终端
-
-- 内置文件资源管理器：浏览工作区文件、预览与编辑（CodeMirror 多语言高亮）、查看变更 Diff。
-
-- 终端面板与聊天分屏协作：左侧对话、右侧执行命令，\`Ctrl+\`\` 一键开关，支持全屏切换。
-
-#### 5. 常用快捷键
-
-| 快捷键            | 功能            |
-| -------------- | ------------- |
-| \`Ctrl+\`\`    | 开关终端面板        |
-| `Ctrl+B`       | 开关侧边栏         |
-| `Ctrl+Shift+B` | 开关浏览器视图       |
-| `Ctrl+Shift+T` | 循环切换主题（亮 / 暗） |
-| `Ctrl+Shift+L` | 切换界面语言（中 / 英） |
-
-***
-
-### 三、VSCode 插件
-
-在编辑器内直接使用 Aruhan，无需切换窗口。
-
-#### 1. 安装
-
-1. 下载 `aruhan-vscode.vsix`；
-2. VSCode 扩展视图 → `...` → **从 VSIX 安装…** 选择该文件；
-3. 重启 VSCode，侧边栏出现 Aruhan 图标（插件内置 CLI 引擎，无需单独安装 Aruhan）。
-
-#### 2. 使用
-
-- 点击侧边栏 Aruhan 图标打开对话面板，即可与 AI 对话、创建任务。
-
-- **工作区联动**：插件工作区由 IDE 管理——用 VSCode 打开文件夹即自动绑定 Aruhan 工作区，AI 可直接读写当前项目文件。
-
-- 输入框提供**文件访问范围**选择器（只读 / 工作区 / 全电脑），控制 AI 工具可访问的目录边界；越界访问将被拒绝。
-
-- 支持全部斜杠指令、`@文件` 引用、代码 Diff 查看、会话与技能管理，与终端 / 桌面共用同一配置与会话。
-
-#### 3. 常用操作
-
-- 选中代码后在对话中引用，或让 AI 直接基于工作区文件回答 / 修改。
-
-- 权限审批：AI 请求执行写操作 / 高危命令时，在面板内确认或拒绝。
-
-- 定时任务、模型切换、媒体生成等能力与终端 / 桌面一致。
-
-***
-
-## ⌨️ 指令速查
-
-### CLI / TUI 斜杠指令
-
-| 指令                                      | 说明                                  | <br /> | <br />                |
-| --------------------------------------- | ----------------------------------- | :----- | :-------------------- |
-| `/provider`                             | 切换 AI 供应商，配置 API Key                | <br /> | <br />                |
-| `/model`                                | 切换当前模型                              | <br /> | <br />                |
-| `/effort`                               | 设置推理思考档位（auto/none/low/medium/high） | <br /> | <br />                |
-| \`/debate \[on N                        | off                                 | 0]\`   | 开关三方辩论（N 为轮次，0 表示无限轮） |
-| `/compact`                              | 手动压缩当前会话上下文                         | <br /> | <br />                |
-| `/rewind`                               | 回退到之前的对话节点                          | <br /> | <br />                |
-| `/task-create <名> [描述]`                 | 创建任务                                | <br /> | <br />                |
-| `/task-show [id]`                       | 查看任务                                | <br /> | <br />                |
-| `/task-done <id>` / `/task-cancel <id>` | 完成任务 / 取消任务                         | <br /> | <br />                |
-| `/session`                              | 会话管理（列表 / 切换 / 恢复）                  | <br /> | <br />                |
-| `/workspace`                            | 工作区管理（创建 / 切换）                      | <br /> | <br />                |
-| `/perm`                                 | 权限模式切换（自动/询问/只读/绕过）                 | <br /> | <br />                |
-| `/media`                                | 媒体能力查询（图像/视频生成）                     | <br /> | <br />                |
-| `/skill` / `/skills`                    | 技能管理与使用                             | <br /> | <br />                |
-| `/memories` / `/remember`               | 记忆查看 / 写入                           | <br /> | <br />                |
-| \`/theme \[dark                         | light                               | …]\`   | 切换主题                  |
-| `/diff`                                 | 查看变更                                | <br /> | <br />                |
-| `/stats`                                | 会话统计                                | <br /> | <br />                |
-| `/help`                                 | 帮助（TUI 内按 `F1` 或 `?`）               | <br /> | <br />                |
-| `/quit`                                 | 退出                                  | <br /> | <br />                |
-
-### 输入补全
-
-- 输入 `@文件路径` 引用本地文件（自动读入上下文）；
-
-- 输入 `#任务` 引用任务内容；
-
-- 指令输入时自动弹出斜杠命令联想，`Tab` 补全。
-
-### Bot（IM）指令
-
-在飞书 / 企业微信 / 钉钉 / Telegram / Slack 私聊或群聊中@机器人：
-
-| 指令                   | 说明        |
-| -------------------- | --------- |
-| `/projects [关键词]`    | 列出已索引工作区  |
-| `/use project <id>`  | 切换当前会话工作区 |
-| `/approve` / `/deny` | 审批工具执行请求  |
-| `/answer`            | 触发回复      |
-
-***
-
-## ❓ 常见问题
-
-**Q：API Key 存在哪里？安全吗？**
-API Key 仅保存在本地配置文件（`aruhan.json` / 各端配置文件），不上传任何服务器。
-
-**Q：如何接入本地模型？**
-选择 Ollama 供应商并填写本地地址（如 `http://localhost:11434`），无需联网。
-
-**Q：长对话会报错吗？**
-不会。系统内置 auto-compact 上下文压缩 + Vault 恢复，超窗前自动压缩。
-
-**Q：三端配置会同步吗？**
-会。终端 / 桌面 / IDE 共用同一套配置与 daemon 会话，一处配置全端生效。
-
-**Q：TUI 和 REPL 有什么区别？**
-两者功能一致，仅界面形态不同：REPL 轻量逐行交互，TUI 为全屏专业界面（状态栏、工具卡片、分屏）。随时用另一模式进入，会话不断。
-
-**Q：ARUHAN\_BINARY 环境变量是什么？**
-它记录最近一次安装的 Aruhan 二进制完整路径，供 VS Code 插件 / dsh 等客户端定位引擎。多版本共存时指向最后安装的版本；卸载时仅当该值仍指向本次安装目录才清理，不会误删你自定义的值。终端 CLI 优先通过 PATH 查找，不受其影响。
-
-***
-
-## 📮 联系方式
-
-如有问题、建议或合作意向，欢迎通过以下方式联系：
-
-- 📧 邮箱：**<37735973@qq.com>**
-
-***
-
-## 📄 许可证与开源声明
-
-- 本仓库仅分发**编译产物**（二进制安装包），不包含源代码。
-
-- 使用即表示同意：本软件按「现状」提供，作者不对因使用本软件造成的任何损失负责。
-
-- 请确保你有权使用所选 AI 供应商的服务，并遵守其服务条款。
-
-- 本软件不要求、也不强制任何 AI 供应商的服务条款，使用者须自行保证合规。
-
-***
-
-## 🔐 商业授权
-
-| 使用场景        | 授权                            |
-| ----------- | ----------------------------- |
-| 个人非商业用途     | **免费试用**，无需另行授权               |
-| 企业 / 团队商业使用 | 须取得商业授权后方可使用                  |
-| 私有化部署       | 须取得商业授权，并按授权范围部署              |
-| 二次定制改造      | 须取得商业授权后方可进行定制改造              |
-| 转售 / 再分发    | **禁止**任何形式的转售、再分发或作为商品销售      |
-| 逆向工程        | **禁止**对编译产物进行反编译、反汇编或其它逆向工程行为 |
-| 移除版权信息      | **禁止**移除或篡改软件内版权、商标与身份标识      |
-
-如需商业授权、私有化部署或定制开发，请联系 **<37735973@qq.com>**。
-
-***
-
-## ⚠️ 免责声明
-
-- 本软件（含安装包、文档及一切相关材料）按「现状」提供，**不提供任何明示或暗示的担保**，包括但不限于对**适销性、特定用途适用性、不侵权**的担保。
-
-- 使用者**自行承担**使用本软件的全部风险；作者不对因使用或无法使用本软件造成的**任何直接或间接损失**（含数据丢失、业务中断、利润损失等）负责。
-
-- **不得用于高危生产环境**：包括但不限于医疗、航空、核设施、自动驾驶、金融交易核心系统、工业控制系统等可能对人身安全或重大财产造成重大影响的场景；如需在此类环境使用，须取得书面授权并另行签订责任界定协议。
-
-- AI 生成内容可能存在错误、偏见或不当信息，使用者应自行核实并承担使用后果；不得将 AI 输出直接用于法律、医疗、投资等高风险决策。
-
-- 使用者须遵守所在国家 / 地区法律法规，不得将本软件用于任何违法用途。
-
-***
-
-## ⭐ Star 支持
-
-如果本项目对你有帮助，欢迎在 GitHub / Gitee 仓库右上角点一个 **Star ⭐** —— 你的支持是项目持续迭代、修复缺陷、完善功能的最大动力。
-
-- GitHub：[xizhihao1/Aruhan-AI](https://github.com/xizhihao1/Aruhan-AI)
-
-- 欢迎提交 Issue 反馈问题、提交建议或参与讨论。
-
-***
-
-## 🙏 致谢
+```bash
+aruhan setup
+```
+
+非交互式（明文密钥来自供应商控制台，Aruhan 无法找回）：
+
+```bash
+export MY_API_KEY="..."
+aruhan setup --provider <目录中的供应商 key> --model <模型 ID> --api-key-env MY_API_KEY --yes
+```
+
+也可以在桌面端 **设置 / 模型**、VS Code 聊天设置面板，或 Factory 控制台的
+**系统设置 → 执行模型** 中完成同样的配置。
+
+媒体模型（图片/视频）单独保存在 `media.json`，支持默认项、启停、合并与恢复。
+
+### 共享文件
+
+| 文件 | 用途 |
+|---|---|
+| `models.json` | 文本模型目录：供应商、Base URL、协议、模型、上下文上限 |
+| `media.json` | 媒体目录：图片/视频模型、默认项、启停状态 |
+| `aruhan.json` | 共享密钥与当前选择；密钥加密保存 |
+| `terminal.json`、`desktop.json`、`vscode.json` | 各端偏好（主题、权限模式、工作模式、沙箱） |
+| `sessions/`、`memory/`、`logs/`、`history.json` | 本地运行数据 |
+
+默认位置：
+
+- Windows：`%APPDATA%\Aruhan`
+- Linux：`${XDG_CONFIG_HOME:-~/.config}/Aruhan`
+- macOS：`~/Library/Application Support/Aruhan`
+
+可用 `ARUHAN_HOME`（最高优先级）或 `ARUHAN_DATA_DIR` 覆盖。
+
+### 主要能力
+
+- **一套共享模型目录**：CLI、TUI、桌面端、VS Code、Factory 完全共用。
+- **供应商/模型完整增删改查**：内置条目也可删除；删除会写入墓碑，升级不会静默复活。
+- **独立媒体模型目录**（`media.json`）：文生图/文生视频的默认、启停、合并、恢复。
+- **加密凭据**：密钥保存在 `aruhan.json`，不保存明文供应商 Key。
+- **本地优先**：文件、会话、记忆和凭据留在本机；模型请求只发往你配置的供应商。
+- **权限与沙箱分层**：权限模式、工作模式、文件访问范围是三个独立控制项。
+- **Code Agent**：读写/搜索工作区、执行命令、调试修复、多文件重构、Git 操作。
+- **长任务能力**：自治目标（`aruhan goal`）与 Factory 流水线，支持暂停、恢复、回滚。
+- **运维工具**：诊断（`aruhan doctor`）、审计哈希链、SBOM、许可证清单、备份与校验和。
+- **Bot 与集成**：飞书、企业微信、钉钉、Telegram、Slack 网关。
+- **内容处理**：Office/PDF/Markdown/CSV，以及图片/视频分析与生成（已实现；图片/视频
+  功能尚未充分测试）。
+
+### 文档
+
+每个版本都会随 Release 提供双语文档 `Aruhan-Manuals-<版本>.zip`，按客户端组织，
+英文在上、中文在下：
+
+- 安装与安装包选择
+- CLI / REPL
+- TUI
+- 桌面端
+- VS Code 插件
+- Factory
+- 模型与凭据
+- 故障排查
+- 安全与法律
+
+### 校验与安全
+
+- 下载后请用发布页的 `SHA256SUMS` 核对完整性。
+- Windows 构建目前未签名，未签名程序出现 SmartScreen 提示属正常现象。
+- Aruhan 会执行模型请求的工具。开启 `auto` 或 `yolo` 前请确认权限模式与沙箱范围。
+- 不要提交 `aruhan.json`、含密钥的 `models.json`、会话数据库或日志。
+- 禁止逆向工程、反编译、反汇编，禁止绕过授权、租户隔离或凭据保护；这可能违反法律
+  或第三方条款。
+
+### 联系方式
+
+如有问题、建议、缺陷反馈或合作意向，欢迎联系：
+
+- **邮箱：** <37735973@qq.com>
+
+### 许可证与商业授权
+
+本仓库仅分发编译产物。使用本软件即表示同意以下条款：
+
+| 使用场景 | 授权 |
+|---|---|
+| 个人非商业用途 | 免费试用，无需另行授权 |
+| 企业 / 团队商业使用 | 须取得商业授权 |
+| 私有化部署 | 须取得商业授权 |
+| 二次定制改造 | 须取得商业授权 |
+| 转售 / 再分发 | **禁止** |
+| 逆向工程 | **禁止**（不得反编译、反汇编或以其他方式逆向） |
+| 移除版权信息 | **禁止** |
+
+如需商业授权、私有化部署或定制开发，请联系 <37735973@qq.com>。
+
+### 免责声明
+
+- 本软件（含安装包、文档及一切相关材料）按**“现状”**提供，不提供任何明示或暗示的
+  担保，包括但不限于对适销性、特定用途适用性、不侵权的担保。
+- 使用者**自行承担**使用本软件的全部风险；作者不对因使用或无法使用本软件造成的
+  **任何直接或间接损失**（含数据丢失、业务中断、利润损失等）负责。
+- **不得用于高危生产环境**：包括但不限于医疗、航空、核设施、自动驾驶、金融交易
+  核心系统、工业控制系统等；如需在此类环境使用，须取得书面授权并另行签订责任
+  界定协议。
+- AI 生成内容可能存在错误、偏见或不当信息，使用者应自行核实；不得将 AI 输出直接
+  用于法律、医疗、投资等高风险决策。
+- 使用者须遵守所在国家/地区法律法规，不得将本软件用于任何违法用途。
+- 使用者须自行确保所选 AI 供应商的服务条款得到遵守。
+
+### 致谢
 
 - 感谢所有开源依赖项目的贡献者（完整依赖列表见各安装包内置声明）。
-
-- 感谢 DeepSeek / Anthropic / OpenAI / 通义 / 智谱 / Ollama 等 AI 服务商提供的模型能力。
-
+- 感谢为支持的工作流提供模型能力的各 AI 服务商。
