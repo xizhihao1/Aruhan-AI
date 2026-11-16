@@ -14,7 +14,6 @@
 # 说明:
 #   - 非交互, 无需 sudo (默认装到用户目录 ~/.local/bin)
 #   - 下载用 curl (回退 wget), 解压 tar.gz, 复制二进制为 aruhan
-#   - 下载后通过 SHA256SUMS 校验完整性 (与安装包同 Release 提供)
 #   - 自动配置 PATH 与 ARUHAN_BINARY 环境变量 (写入 shell profile)
 #   - 幂等: 重复执行会覆盖旧版本
 # ---------------------------------------------------------------------------
@@ -23,7 +22,7 @@ set -euo pipefail
 # --- 可配置常量 ---
 OWNER="guleng2005"
 REPO="Aruhan-AI"
-DEFAULT_VERSION="v2.1.18"
+DEFAULT_VERSION="v1.1.0"
 # Gitee release 下载基础 URL (若 Gitee 实际 URL 格式不同, 改这里)
 BASE_URL="https://gitee.com/${OWNER}/${REPO}/releases/download"
 
@@ -57,9 +56,7 @@ done
 
 # --- 确定版本号 (未显式指定时自动取最新) ---
 if [[ -z "$VERSION" ]]; then
-    # get_latest_tag 内部管道失败 (API 限流/无匹配) 会因 pipefail 返回非零,
-    # 必须吞掉非零退出码, 否则 set -e 会终止脚本, 跳过 DEFAULT_VERSION 回退
-    VERSION="$(get_latest_tag || true)"
+    VERSION="$(get_latest_tag)"
     if [[ -z "$VERSION" ]]; then
         VERSION="$DEFAULT_VERSION"
         warn "无法获取最新版本，回退到 $VERSION"
@@ -108,48 +105,16 @@ else
     error "Neither curl nor wget found. Install one of them first."
 fi
 
-# --- 校验 SHA256 (下载同 Release 的 SHA256SUMS 比对) ---
-SUMS_URL="${BASE_URL}/${VERSION}/SHA256SUMS"
-if command -v curl >/dev/null 2>&1; then
-    curl -fsSL "$SUMS_URL" -o "$TMP/SHA256SUMS" || error "Download failed: $SUMS_URL"
-elif command -v wget >/dev/null 2>&1; then
-    wget -q "$SUMS_URL" -O "$TMP/SHA256SUMS" || error "Download failed: $SUMS_URL"
-fi
-# 精确匹配文件名字段 (容忍 CI sha256sum 输出的 "./" 前缀, 避免后缀误匹配)
-EXPECTED="$(awk -v t="$TARBALL" '{ f=$NF; sub(/^\.\//, "", f); if (f == t) { print $1; exit } }' "$TMP/SHA256SUMS" 2>/dev/null || true)"
-[[ -n "$EXPECTED" ]] || error "SHA256SUMS has no entry for ${TARBALL}"
-if command -v sha256sum >/dev/null 2>&1; then
-    ACTUAL="$(sha256sum "$TMP/$TARBALL" | awk '{print $1}')"
-elif command -v shasum >/dev/null 2>&1; then
-    ACTUAL="$(shasum -a 256 "$TMP/$TARBALL" | awk '{print $1}')"
-else
-    error "No sha256sum/shasum found to verify the download."
-fi
-if [[ "$ACTUAL" != "$EXPECTED" ]]; then
-    error "SHA256 mismatch for ${TARBALL}: expected ${EXPECTED}, got ${ACTUAL}"
-fi
-info "SHA256 verified: ${ACTUAL}"
-
 # --- 解压 ---
 info "Extracting ..."
 tar xzf "$TMP/$TARBALL" -C "$TMP"
-# 布局 A: 顶层扁平 (release.yml CI 产物: tar czf x.tar.gz aruhan VERSION)
-SRC_BIN=""
-if [[ -f "$TMP/aruhan-${OS}-${ARCH}" ]]; then
-    SRC_BIN="$TMP/aruhan-${OS}-${ARCH}"
-elif [[ -f "$TMP/aruhan" ]]; then
-    SRC_BIN="$TMP/aruhan"
+PKG_DIR="$TMP/aruhan-${OS}-${ARCH}"
+SRC_BIN="${PKG_DIR}/aruhan-${OS}-${ARCH}"
+if [[ ! -f "$SRC_BIN" ]]; then
+    # 兜底: 包内二进制名可能是 aruhan
+    SRC_BIN="${PKG_DIR}/aruhan"
 fi
-# 布局 B: 子目录 (build-all.ps1 产物: aruhan-<os>-<arch>/aruhan[-<os>-<arch>])
-if [[ -z "$SRC_BIN" ]]; then
-    PKG_DIR="$TMP/aruhan-${OS}-${ARCH}"
-    if [[ -f "${PKG_DIR}/aruhan-${OS}-${ARCH}" ]]; then
-        SRC_BIN="${PKG_DIR}/aruhan-${OS}-${ARCH}"
-    elif [[ -f "${PKG_DIR}/aruhan" ]]; then
-        SRC_BIN="${PKG_DIR}/aruhan"
-    fi
-fi
-[[ -n "$SRC_BIN" ]] || error "Binary not found in archive (expected aruhan[-<os>-<arch>] in root or aruhan-${OS}-${ARCH}/)"
+[[ -f "$SRC_BIN" ]] || error "Binary not found in archive (expected ${SRC_BIN})"
 
 # --- 安装 ---
 info "Installing to ${INSTALL_DIR} ..."
@@ -159,29 +124,21 @@ pkill -x aruhan 2>/dev/null || true
 cp "$SRC_BIN" "${INSTALL_DIR}/${BIN_NAME}"
 chmod +x "${INSTALL_DIR}/${BIN_NAME}"
 
-# 复制 VERSION 文件 (供 aruhan 运行时版本回退) — 跟随二进制所在目录, 兼容扁平布局
-SRC_DIR="$(dirname "$SRC_BIN")"
-if [[ -f "${SRC_DIR}/VERSION" ]]; then
-    cp "${SRC_DIR}/VERSION" "${INSTALL_DIR}/VERSION" 2>/dev/null || true
-elif [[ -f "$TMP/VERSION" ]]; then
-    cp "$TMP/VERSION" "${INSTALL_DIR}/VERSION" 2>/dev/null || true
+# 复制 VERSION 文件 (供 aruhan 运行时版本回退)
+if [[ -f "${PKG_DIR}/VERSION" ]]; then
+    cp "${PKG_DIR}/VERSION" "${INSTALL_DIR}/VERSION" 2>/dev/null || true
 fi
 
 # --- 配置 PATH 与 ARUHAN_BINARY ---
 configure_shell() {
     local rc="$1"
     [[ -f "$rc" ]] || return 0
-    # PATH — 按完整条目匹配。原实现用 grep -q "${INSTALL_DIR}" 子串判定，
-    # 会把 .../bin-extra 这类同前缀目录（或注释里的路径）误判为"已配置"，
-    # 结果是装完 aruhan 根本没有进 PATH。
-    if ! grep -qF "export PATH=\"${INSTALL_DIR}:" "$rc" 2>/dev/null \
-       && ! grep -qF ":${INSTALL_DIR}:" "$rc" 2>/dev/null; then
+    # PATH
+    if ! grep -q "${INSTALL_DIR}" "$rc" 2>/dev/null; then
         printf '\n# Aruhan (added by install-online.sh)\nexport PATH="%s:$PATH"\n' "$INSTALL_DIR" >> "$rc"
     fi
-    # ARUHAN_BINARY — 供 VSCode 插件 / dsh 等客户端定位引擎。
-    # 只认真正的 export 行（原实现匹配任意 "ARUHAN_BINARY" 字样，注释也会命中），
-    # 且已存在时不覆盖，避免冲掉用户自定义值。
-    if ! grep -q '^export ARUHAN_BINARY=' "$rc" 2>/dev/null; then
+    # ARUHAN_BINARY — 供 VSCode 插件 / dsh 等客户端定位引擎
+    if ! grep -q "ARUHAN_BINARY" "$rc" 2>/dev/null; then
         printf 'export ARUHAN_BINARY="%s/%s"\n' "$INSTALL_DIR" "$BIN_NAME" >> "$rc"
     fi
 }
