@@ -1,204 +1,157 @@
-# Aruhan v1.1.0
+# Aruhan v2.1.18
 
-**中文** | [English](#english)
-
-Aruhan AI 智能助手最新版本，覆盖三端：终端 CLI · 桌面版 · IDE 插件。
-
-## ✨ 核心能力
-- 🗣️ 三方辩论引擎 V5：五维评分 + 置信度复核 + 多轮对抗评审
-- 💻 Code Agent：代码生成 / 解释 / 审查 / 调试修复 / 重构 / 测试 / Git / 命令执行
-- 🤖 Bot 网关：飞书 / 企业微信 / 钉钉 / Telegram / Slack，OAuth 扫码登录
-- 📝 CodeMirror 多语言编辑器（桌面版文件预览编辑）
-- 📄 文档处理：Office / PDF / Markdown / CSV 读写、总结、翻译、转换
-- 🖼️ 图像处理：AI 图像生成与理解、图像分析（已实现，未充分测试）
-- 🎬 视频处理：AI 视频生成与理解、视频内容分析（已实现，未充分测试）
-- 🧠 上下文智能压缩（auto-compact + Vault 精确恢复）
-- 🛡️ 权限模式管控 + 沙箱执行 + 文件访问围栏
-- 🖥️ 三端一体：配置与会话互通（终端 / 桌面 / IDE）
-
-## 🧪 测试状态
-- **重点测试**：编程功能为主，已使用 **DeepSeek** 完成端到端测试；
-- **已实现未充分测试**：图像处理、视频处理功能已实现但尚未充分测试；
-- **可自主测试**：其他模型（OpenAI / Claude / 通义 / 智谱 / Ollama 等）及非编程功能，欢迎自主测试反馈。
-- 完整能力清单见仓库 README.md「🧩 能力总览（编程 & 非编程）」章节。
-
-## 📦 安装包
-- Windows：`Aruhan-Desktop-Setup`（NSIS 图形安装）/ `Aruhan-CLI-Setup` / TUI 安装器 / 在线一键安装（见下方命令）
-- Windows 通用 zip（与 CI 对齐）：`aruhan-windows-{amd64,arm64}-1.1.0.zip`（CLI）/ `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip`（桌面版），解压即用，无需安装。**ARM64 用户请使用 zip 包**（NSIS 不支持 arm64 安装包）。
-- Linux / macOS：`aruhan-*-*.tar.gz` 通用安装包 / TUI 安装器
-- VSCode：`aruhan-vscode.vsix`（内置 CLI 引擎，三平台通用）
-
-### ⚡ Windows 一键安装（PowerShell，推荐）
-
-```powershell
-irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
-```
-
-自动检测架构（amd64/arm64），从本 Release 下载对应 zip 并安装 `aruhan.exe`，配置用户级 PATH 与 `ARUHAN_BINARY`（无需管理员权限，默认装到 `%LOCALAPPDATA%\Aruhan\bin`）。也可下载本 Release 附件 `install-online.ps1` 后直接执行。
-
-### ⚡ Linux / macOS 一键安装（推荐）
-
-```bash
-curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
-```
-
-自动检测平台/架构，从 Release 下载对应二进制并配置 PATH 与 `ARUHAN_BINARY`（无需 sudo，默认装到 `~/.local/bin`）。也可下载本 Release 附件 `install-online.sh` 后执行 `bash install-online.sh`。
-
-## 🖥️ 支持系统
-| 平台 | 架构 | 安装包 |
-| --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-windows-amd64-1.1.0.zip` / `aruhan-desktop-windows-amd64-1.1.0.zip` / `aruhan-tui-installer-windows-amd64.exe` |
-| Windows 10/11 | ARM64 | `aruhan-windows-arm64-1.1.0.zip` / `aruhan-desktop-windows-arm64-1.1.0.zip` / `aruhan-tui-installer-windows-arm64.exe` |
-| Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
-| Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
-| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
-| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
-| VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
-
-## ✅ 安装包校验（v1.1.0）
-全部 17 个安装包已通过基础校验：PE / ELF / Mach-O 格式与架构正确、tar.gz / zip 与 VSIX 压缩包完整。SHA256 校验和如下：
-
-> 📅 **编译批次说明**：NSIS 安装包（`Aruhan-*-Setup-*.exe`）与 TUI 安装器为 2026-08-30 编译；Windows 通用 zip 包（`aruhan-windows-*.zip` / `aruhan-desktop-windows-*.zip`）为 2026-09-05 编译，与 CI `release.yml` 打包行为一致。两者版本号均为 v1.1.0，二进制内容可能略有差异，请按需选择。
-
-| 文件 | 格式/架构 | SHA256 |
-| --- | --- | --- |
-| Aruhan-Desktop-Setup-1.1.0.exe | PE x86 | FBA5DF88D8B2CA3742B66057198FDA6B5767161DFB309120020F6A99D1728046 |
-| Aruhan-CLI-Setup-1.1.0.exe | PE x86 | 8030C370109069D561FF3454764FB8F65385B848C240BB11D09BB55ED2014D14 |
-| aruhan-tui-installer-windows-amd64.exe | PE x86_64 | B1B497647A119A8DBFCC8D0DB9613217BFE7D447F3A01F4D4BF619C4186089FE |
-| aruhan-tui-installer-windows-arm64.exe | PE ARM64 | F840DBE29D9794322B3188E95730F83CB394D8336E059AD9488EDC2F58ECFCEC |
-| aruhan-linux-amd64-1.1.0.tar.gz | tar.gz | 7EF6750C7FCB3A60CE4C0CEFE05E4B86C66DD7381EFBF32A4CDC5A473E19F663 |
-| aruhan-linux-arm64-1.1.0.tar.gz | tar.gz | D630B10D9D835990D2F204D39E4A782A22B14F19E48FB5BD5F96E23475CF3102 |
-| aruhan-darwin-amd64-1.1.0.tar.gz | tar.gz | 6D6A25A9AD0632DCA5AD07E751D08B95654B170D4A54E4D27E147643DE8400C3 |
-| aruhan-darwin-arm64-1.1.0.tar.gz | tar.gz | 36CD489DE0DF2041A1C846F5A50CBABC5CD9667B2B73096B226CF260A0D30342 |
-| aruhan-tui-installer-linux-amd64 | ELF x86_64 | 2D389E99A45FFAC175436C074349672156DE8015EF18B888924EB7D03F029A02 |
-| aruhan-tui-installer-linux-arm64 | ELF ARM64 | 8EA3E66B03B3F4C66DCEF90AC01D567A030A81EE55E89860A2009B66CCDD8385 |
-| aruhan-tui-installer-darwin-amd64 | Mach-O x86_64 | 39F64A61EF83FE84B829629C7BE600A01797F124CF642902D0A8C6915072BA22 |
-| aruhan-tui-installer-darwin-arm64 | Mach-O ARM64 | A3DBB6F88C1D8C878860F8B262471A92FEA78F29A3BBACAD91E03384759D3A86 |
-| aruhan-windows-amd64-1.1.0.zip | ZIP PE x86_64 (CLI, 2026-09-05) | C0ADEC098E363F2FF3490CDE763D794A1D9F365B934F005A4B3C61F58D358D6C |
-| aruhan-windows-arm64-1.1.0.zip | ZIP PE ARM64 (CLI, 2026-09-05) | E1462F3EA4708FEF9043706816B3468C1568ABCE7CBADE0EE30041563E66FB73 |
-| aruhan-desktop-windows-amd64-1.1.0.zip | ZIP PE x86_64 (Desktop, 2026-09-05) | B57B54BDDF8C01929C3D0B8838DC44A3B45E3EF29BCA342C3B8E4A9A9504F025 |
-| aruhan-desktop-windows-arm64-1.1.0.zip | ZIP PE ARM64 (Desktop, 2026-09-05) | 97A4F733B922A14CB69571E25B9273C42E4CC2676B80644332D3A6ED14D1C1CB |
-| aruhan-vscode.vsix | ZIP (VSIX) | 7526AAD24E29F28BAA9A312AD4E839C9AE2E854416829B3A58487A009C8B8A97 |
-
-校验方法：Windows PowerShell 执行 `Get-FileHash <文件> -Algorithm SHA256`；Linux/macOS 执行 `sha256sum <文件>`。
-
-## 🧪 版本状态（体验 / 测试版）
-- 当前 v1.1.0 为公开**体验 / 测试版本**：可能存在尚未发现的缺陷，界面与功能可能随版本迭代调整，不保证与未来正式版完全兼容。
-- **Windows 首次运行说明**：本版本安装包暂未进行代码签名（Authenticode）。在全新电脑上首次运行下载的安装包时，Windows SmartScreen 可能提示「Windows 已保护你的电脑」，或要求点击「更多信息 → 仍要运行」。请先确认下载来源为官方 Releases 页并核对上方 SHA256 校验和一致后，再放行运行。
-- 若被杀毒软件误报：请先核对 SHA256 校验和；确认一致后可将文件加入信任区，或将样本上报给杀毒厂商（Windows Defender 的「从以下位置下载的文件」提示属正常现象）。
-
-## ⚠️ 风险提示
-- 请仅从官方 Releases 页面下载安装包；第三方渠道转发的安装包无法保证完整性，请务必使用上方 SHA256 校验和核对。
-- Windows 安装包当前未做代码签名（Authenticode），SmartScreen / 杀毒软件可能出现警告或误报；请先确认 SHA256 一致后再信任放行。
-- Aruhan 具备 AI 自主工具执行能力（文件读写 / 命令执行 / 网络访问），请善用权限模式与文件访问围栏（只读 / 工作区 / 全电脑），避免在敏感环境盲目放行高危操作。
-- 本软件按「现状」提供，作者不对因使用本软件造成的任何直接或间接损失承担责任；使用 AI 服务前请确认你已获得相应供应商的授权并遵守其服务条款。
-
-## 🚀 终端启动（TUI / 非TUI）
-- `aruhan` — 非 TUI（REPL）：轻量 ANSI 界面，支持 `@文件` / `#任务` 补全
-- `aruhan -t` 或 `aruhan --tui` — TUI：Bubble Tea 全屏专业界面
-- `aruhan --accessible` — 无障碍纯文本模式
-
-## 🔐 商业授权
-- **个人非商业用途**：免费试用，无需另行授权。
-- **企业 / 团队商业使用 / 私有化部署 / 二次定制改造**：须取得商业授权后方可进行。
-- **禁止**：任何形式的转售、再分发、商品化销售，以及对编译产物的反编译、反汇编等逆向工程行为；禁止移除或篡改软件内版权与身份标识。
-- 商业授权 / 私有化部署 / 定制开发联系：**37735973@qq.com**。
-- 完整授权条款见仓库 README.md「🔐 商业授权」章节。
-
-## ⭐ Star 支持
-如果本项目对你有帮助，欢迎在 GitHub / Gitee 仓库右上角点一个 Star ⭐ —— 你的支持是项目持续迭代的动力。
-
-完整使用说明见仓库 README.md（中文）/ README.en.md（English）。
+**Release date / 发布日期：2026-11-16** · [Checksums / 校验和](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.18/v2.1.18-SHA256SUMS.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.18) · [GitHub](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.18) · [English](#english) · [中文](#中文)
 
 ---
 
-## 📮 联系方式
+## English
 
-如有问题、建议或合作意向，欢迎通过以下方式联系：
+v2.1.18 turns Factory deployment and project lifecycle into operations the local
+console can verify instead of guesswork. It also fixes the TUI/CLI startup and
+feedback problems found in real sessions.
 
-- 📧 邮箱：**37735973@qq.com**
+### First-run setup and deployment
+
+- The overview shows a **First-run setup** card for the projects directory and
+  the execution model.
+- The model wizard saves a deployment default and verifies the API key with a
+  read-only `GET <base_url>/models` request. An invalid key stays in the dialog
+  and is not saved as the default.
+- **Runtime & deployment → Deployment settings** lets a local single-tenant
+  console change the **projects root**, create or select a directory, migrate
+  existing projects (same-volume rename or per-project merge), and **move back
+  to the previous root** with the same confirmed migration flow.
+- **Deployment check** runs a read-only nine-item self-check: projects root,
+  writability, database directory, station pack, default pipeline, pack/pipeline
+  alignment, planning templates, console assets and execution model (including
+  whether its key is configured). A pipeline that references stations absent
+  from the pack is reported before dispatch; a Unix install that copied only the
+  binary without `web/` is also reported.
+- The directory picker accepts a pasted absolute path and Enter, in addition to
+  browsing.
+
+### Projects, regression and logs
+
+- **Archive bin** lists archived projects and restores one by name. Restoring
+  never overwrites an existing project and is rejected while runs are active.
+- The regression page can select a local regression suite, run it, optionally
+  update the baseline, and follow the subprocess status.
+- **Run logs** lists the latest local `api-*.log` / `resume-*.log` worker logs
+  and shows the last 64 KB. It is local-admin only, does not expose absolute
+  paths, and rejects non-worker files and traversal.
+- Migration responses include `migrated_projects` and `migration_ms`, shown in
+  the success toast.
+
+### New-run and TUI fixes
+
+- The model field is a provider-grouped picker with an explicit “use the
+  deployment/project default” choice and a “custom model” entry for endpoints
+  outside the catalog.
+- Settings has jump buttons for Deployment, Deployment check, Run logs,
+  Execution models, Media models and Tenant policy.
+- Toast notifications have a close button.
+- TUI startup no longer blocks on CodeMapper `Ping` behind the indexing write
+  lock; measured `initCodeMapper` dropped from 3–8 s to about 0.9 s.
+- The TUI keeps run controls visible, adds `F2` to cycle read-only →
+  workspace-write → full-access, shows the scope in the banner, and displays
+  `Bash running · Ns · command · Esc to interrupt` during long tool calls.
+- Quote-aware command checks no longer reject regex carets inside quotes;
+  `$?` and `$$` are allowed in the sandbox while dynamic expansion stays
+  fail-closed.
+- CodeMapper closes SQLite with `wal_checkpoint(TRUNCATE)` and a 64 MiB journal
+  limit. A stale home-directory cache of 64 MiB or more is removed when Aruhan
+  starts with the home directory as its root; project indexes are untouched.
+
+### Verification
+
+- `scripts/ci.sh --full`: all checks passed (Go tests, plan-check 105/105, i18n,
+  govulncheck, npm audit, web 169 tests, VS Code extension, desktop Go and 298
+  frontend tests).
+- Windows Edge real-click audit, Linux WSL native deployment, and macOS
+  cross-compilation were verified.
+- `build-all.ps1 -Clean -Expires 2027-02-28` produced 57 artifacts;
+  `sha256sum -c` passed for all 57, and the checksums are recorded in
+  `v2.1.18-SHA256SUMS.txt`.
+- Official builds carry `ExpiresAt=2027-02-28`: usable through that day; from
+  2027-03-01 the CLI/TUI/daemon print the localized trial-expired message and
+  exit. Local builds without `-Expires` are not gated.
+
+### Known limitations
+
+- Permanent project delete and project-ID rename are not exposed in the web
+  console. Archive + restore is the safe default; delete/rename need a separate
+  history/alias design.
+- The console does not restart its own service; use `factory service restart`
+  from an external shell or the service manager.
+- Large-directory merges report a result summary, not live per-project progress.
+- Worker log filenames do not yet carry the run ID, so a run cannot deep-link to
+  its exact log.
+- Windows binaries are unsigned.
 
 ---
 
-# English
+## 中文
 
-Aruhan AI Assistant v1.1.0 — latest release (Terminal · Desktop · IDE).
+v2.1.18 把 Factory 的部署与项目生命周期从“猜”变成控制台可验证的操作，并修复
+真实会话中发现的 TUI/CLI 启动与反馈问题。
 
-## ✨ Highlights
-- 🗣️ Debate Engine V5: 5-dim scoring + confidence check + multi-round review
-- 💻 Code Agent: code generation / explanation / review / debug & fix / refactor / tests / Git / command execution
-- 🤖 Bot Gateway: Feishu / WeCom / DingTalk / Telegram / Slack with OAuth login
-- 📝 CodeMirror multi-language editor
-- 📄 Document Processing: Office / PDF / Markdown / CSV read & write, summary, translation, conversion
-- 🖼️ Image Processing: AI image generation & understanding, image analysis (implemented, not fully tested)
-- 🎬 Video Processing: AI video generation & understanding, video content analysis (implemented, not fully tested)
-- 🧠 Context auto-compaction (auto-compact + Vault restore)
-- 🛡️ Permission modes + sandbox + file access fence
-- 🖥️ One config, three frontends
+### 首次运行与部署
 
-## 🧪 Testing Status
-- **Primary testing**: coding capabilities, end-to-end tested with **DeepSeek**;
-- **Implemented, not fully tested**: image and video processing;
-- **Self-test welcome**: other models (OpenAI / Claude / Qwen / Zhipu / Ollama, etc.) and non-coding capabilities.
-- Full capability list: see "🧩 Capability Overview (Coding & Non-coding)" in README.md.
+- 总览页显示**首次运行设置**卡片，检查项目空间目录与执行模型。
+- 模型向导保存部署级默认模型，并用只读 `GET <base_url>/models` 验证 Key；
+  无效 Key 留在弹窗中，不会写成默认模型。
+- **运行环境与部署 → 部署配置**支持本机单租户修改**项目空间根目录**：创建或
+  选择目录、迁移现有项目（同盘 rename 或逐项目合并），并用同一套确认/迁移
+  流程**迁回上一目录**。
+- **部署自检**只读检查 9 项：项目空间根目录、可写性、数据库目录、工位包、
+  默认流水线、工位包与流水线匹配、规划模板、控制台资产、执行模型（含 Key
+  是否配置）。流水线引用了包里不存在的工位会在派发前指出；Linux/macOS 只
+  复制二进制、缺少 `web/` 也会暴露。
+- 目录选择器支持直接粘贴绝对路径并回车，同时保留逐级浏览。
 
-## 📦 Packages
-- Windows: NSIS installers (Desktop / CLI) / TUI installer / one-line install (see commands below)
-- Windows portable zip (CI-aligned): `aruhan-windows-{amd64,arm64}-1.1.0.zip` (CLI) / `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip` (Desktop), extract and run, no install needed. **ARM64 users should use the zip packages** (NSIS does not support arm64 installers).
-- Linux / macOS: tar.gz universal packages / TUI installer
-- VSCode: aruhan-vscode.vsix (bundled CLI, cross-platform)
+### 项目、回归与日志
 
-### ⚡ Windows one-line install (PowerShell, recommended)
+- **归档箱**列出归档项目，可按名称恢复；恢复不会覆盖同名项目，有运行中任务
+  时拒绝。
+- 回归页可选择本机回归集并运行，可勾选更新基线，轮询子进程状态。
+- **运行日志**列出本机最近的 `api-*.log` / `resume-*.log`，可查看最后 64 KB；
+  仅本机管理员可用，不暴露绝对路径，拒绝非 worker 文件和路径穿越。
+- 迁移响应返回 `migrated_projects` 与 `migration_ms`，成功提示显示项目数与耗时。
 
-```powershell
-irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
-```
+### 新建运行与 TUI 修复
 
-Auto-detects the architecture (amd64/arm64), downloads the matching zip from this Release, installs `aruhan.exe`, and configures user-level PATH and `ARUHAN_BINARY` (no admin rights needed; installs to `%LOCALAPPDATA%\Aruhan\bin` by default). You can also download the `install-online.ps1` attachment from this Release and run it directly.
+- 模型字段改为按供应商分组的选择器，明确提供“使用部署/项目默认模型”和
+  “自定义模型（目录外）”两种入口。
+- 设置页提供“部署与目录 / 部署自检 / 运行日志 / 执行模型 / 媒体模型 /
+  租户策略”跳转。
+- Toast 增加关闭按钮。
+- TUI 启动不再阻塞在 CodeMapper 后台索引写锁后的 `Ping`；实测
+  `initCodeMapper` 从 3–8 秒降到约 0.9 秒。
+- TUI 运行中常驻快捷键提示；新增 `F2` 循环只读→工作区→全电脑；横幅显示
+  文件范围；长工具调用显示 `Bash 运行中 · Ns · 命令 · Esc 中断`。
+- 命令安全检查只在引号外拒绝 `^`，正则里的 `"^(ok|---)"` 不再误杀；沙箱允许
+  `$?`/`$$`，动态展开仍然 fail-closed。
+- CodeMapper 退出时 `Close` + `wal_checkpoint(TRUNCATE)`，并设置 64 MiB WAL
+  上限；以主目录为根启动时会删除旧版本遗留的 ≥64 MiB 生成缓存，项目索引
+  不受影响。
 
-### ⚡ Linux / macOS one-line install (recommended)
+### 验证
 
-```bash
-curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
-```
+- `scripts/ci.sh --full` 全部通过：Go 全量、plan-check 105/105、i18n、
+  govulncheck、npm audit、web 169 项、VS Code 扩展、桌面 Go 与前端 298 项。
+- Windows Edge 真实点击、Linux WSL 原生部署、macOS 交叉编译均已验证。
+- `build-all.ps1 -Clean -Expires 2027-02-28` 生成 57 项工件；`sha256sum -c` 全部
+  57 项通过；校验和记录在 `v2.1.18-SHA256SUMS.txt`。
+- 官方构建注入 `ExpiresAt=2027-02-28`：当天仍可用，2027-03-01 起
+  CLI/TUI/daemon 输出本地化“试用期已到”并退出；未传 `-Expires` 的本地构建
+  不受限制。
 
-Auto-detects platform/arch, downloads the binary from Release, and configures PATH and `ARUHAN_BINARY` (no sudo required, installs to `~/.local/bin` by default). You can also download the `install-online.sh` attachment from this Release and run `bash install-online.sh`.
+### 已知限制
 
-## 🖥️ Supported Systems
-| Platform | Arch | Packages |
-| --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-windows-amd64-1.1.0.zip` / `aruhan-desktop-windows-amd64-1.1.0.zip` / `aruhan-tui-installer-windows-amd64.exe` |
-| Windows 10/11 | ARM64 | `aruhan-windows-arm64-1.1.0.zip` / `aruhan-desktop-windows-arm64-1.1.0.zip` / `aruhan-tui-installer-windows-arm64.exe` |
-| Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
-| Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
-| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
-| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
-| VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
-
-## 🧪 Release Status (Experience / Beta)
-- v1.1.0 is a public **experience / beta release**: defects may exist, and UI/features may change between releases without full backward-compatibility guarantees.
-- **First run on Windows**: these installers are not code-signed (Authenticode) yet. On a clean machine, Windows SmartScreen may show "Windows protected your PC" or ask you to click "More info → Run anyway". Confirm the download source is the official Releases page and the SHA256 checksum matches, then allow it.
-- If flagged by antivirus: verify the SHA256 checksum first; if it matches, allow/trust the file or submit the sample to your AV vendor.
-
-## ⚠️ Risk Notice
-- Only download installers from the official Releases page. Third-party copies cannot be trusted — verify integrity with the SHA256 checksums above.
-- Windows binaries are not code-signed yet; SmartScreen/antivirus may warn. Cross-check the SHA256 checksum before allowing.
-- Aruhan can autonomously execute tools (file I/O, shell, network). Use permission modes and the file-access fence (read-only / workspace / full access) wisely.
-- Provided "as is" without warranty. Ensure you are entitled to use the AI services you select and comply with their terms.
-
-## 🚀 Terminal Launch (TUI / Non-TUI)
-- `aruhan` — Non-TUI (REPL): lightweight ANSI with `@file` / `#task` completion
-- `aruhan -t` or `aruhan --tui` — TUI: Bubble Tea full-screen interface
-- `aruhan --accessible` — plain-text accessibility mode
-
-## 🔐 Commercial License
-- **Personal non-commercial use**: free trial, no separate authorization required.
-- **Enterprise / team commercial use / private deployment / secondary customization**: commercial license required prior to use.
-- **Prohibited**: any form of resale, redistribution, or sale as a product; decompilation, disassembly, or other reverse engineering of compiled artifacts; removing or altering any copyright or identity notices in the software.
-- For commercial licensing / private deployment / custom development: **37735973@qq.com**.
-- Full license terms: see the "🔐 Commercial License" section in README.md.
-
-## ⭐ Star Support
-If this project helps you, please tap Star ⭐ at the top right of the GitHub / Gitee repository — your support keeps the project iterating.
-
-Docs: README.md / README.en.md in this repo.
+- Web 控制台不提供永久删除项目或修改项目 ID；归档 + 恢复是安全默认，
+  删除/改名需要单独的历史/别名设计。
+- 控制台不自行重启服务；请在外部终端或服务管理器中执行
+  `factory service restart`。
+- 大目录合并只给结果摘要，没有逐项目实时进度。
+- worker 日志文件名暂不含运行 ID，运行详情还不能精确跳到对应日志。
+- Windows 二进制未签名。
