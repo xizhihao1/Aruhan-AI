@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.15 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.18 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,19 +61,20 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.15
+### What's new in 2.1.18
 
-- **Media-model settings in Desktop and VS Code:** list the user-authoritative media
-  catalog, set image/video defaults, enable/disable models, merge new built-in entries,
-  and reset built-in defaults.
-- **Desktop Factory console:** set a local console, test the connection before opening
-  deep links, and get clear success/failure feedback.
-- **Model catalog:** full CRUD for providers and models in all clients; user files remain
-  authoritative and deleted built-in entries stay deleted.
-- **Documentation:** bilingual manuals (English first, Chinese below) for every client,
-  plus a comprehensive security and legal chapter.
-- **Reliability:** regression tests for the media catalog RPC and the Factory console
-  connection probe; media route tests are isolated from user data.
+- **Factory deployment made verifiable:** first-run setup, deployment default model
+  with read-only key verification, editable projects root with migration/undo, and a
+  nine-item read-only deployment self-check (paths, pack/pipeline alignment, console
+  assets and model/key).
+- **Project lifecycle:** archive bin with restore, local regression runs, migration
+  result summary, and worker log tails for diagnosing failed dispatches.
+- **New-run and settings:** provider-grouped model picker with a custom-model escape
+  hatch, settings jump navigation, and dismissible toasts.
+- **TUI/CLI:** faster startup, always-visible run controls, `F2` scope switching, tool
+  progress lines, and fewer false permission blocks.
+- **Code index hygiene:** CodeMapper now closes/checkpoints SQLite and cleans stale
+  home-directory caches without touching project indexes.
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
 
@@ -254,7 +255,7 @@ For commercial licensing, private deployment, or custom development, contact
 
 > 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
 
-**版本：** 2.1.15 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+**版本：** 2.1.18 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
 
 [English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
 
@@ -309,17 +310,19 @@ Aruhan 是一套共享同一套本地运行时的多端产品：
 > 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
 > Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-### 2.1.15 更新内容
+### 2.1.18 更新内容
 
-- **桌面端与 VS Code 的媒体模型设置**：查看用户权威的媒体目录、设置图片/视频默认
-  模型、启用/停用模型、合并新内置条目、恢复内置默认。
-- **桌面端 Factory 控制台**：设置本机控制台，在打开深链前测试连接，并给出明确的
-  成功/失败反馈。
-- **模型目录**：各端支持供应商/模型完整增删改查；用户文件始终是权威，已删除的内置
-  条目不会被升级静默复活。
-- **文档**：按客户端拆分的双语文档（英文在上、中文在下），并包含完整的安全与法律章节。
-- **可靠性**：新增媒体目录 RPC 与 Factory 控制台连接探测的回归测试；媒体路由测试与
-  用户真实数据隔离。
+- **Factory 部署可验证**：首次运行设置、部署级默认模型与只读 Key 验证、可修改/迁移/
+  迁回的项目空间根目录，以及 9 项只读部署自检（路径、工位包与流水线匹配、控制台
+  资产、执行模型与 Key）。
+- **项目生命周期**：归档箱恢复、本机回归运行、迁移结果摘要，以及用于排查派发失败的
+  worker 日志末尾查看。
+- **新建运行与设置**：按供应商分组的模型选择器 + 自定义模型入口、设置页分区跳转、
+  可关闭的 Toast。
+- **TUI/CLI**：启动更快、运行快捷键常驻、`F2` 切换文件范围、工具执行进度，以及更少的
+  权限误拦。
+- **代码索引清理**：CodeMapper 退出时关闭并 checkpoint SQLite，清理失效的主目录缓存，
+  不影响项目索引。
 
 完整列表见 [发布说明](https://gitee.com/guleng2005/Aruhan-AI/releases)。
 
