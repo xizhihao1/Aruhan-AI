@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.15 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.19 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,22 +61,23 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.15
+### What's new in 2.1.19
 
-- **Media-model settings in Desktop and VS Code:** list the user-authoritative media
-  catalog, set image/video defaults, enable/disable models, merge new built-in entries,
-  and reset built-in defaults.
-- **Desktop Factory console:** set a local console, test the connection before opening
-  deep links, and get clear success/failure feedback.
-- **Model catalog:** full CRUD for providers and models in all clients; user files remain
-  authoritative and deleted built-in entries stay deleted.
-- **Documentation:** bilingual manuals (English first, Chinese below) for every client,
-  plus a comprehensive security and legal chapter.
-- **Reliability:** regression tests for the media catalog RPC and the Factory console
-  connection probe; media route tests are isolated from user data.
+- **TUI input:** classic conhost now uses console input so Chinese IME composition
+  is not rendered twice; ConPTY terminals keep VT input for UTF-8 and bracketed paste.
+- **Selection and copy:** drag to select while output streams, column-accurate
+  highlight, copy on release, native Windows clipboard, and hovering after release
+  no longer moves the selection.
+- **Running state:** one progress line instead of duplicates; classic conhost uses a
+  fixed full-screen redraw so the status bar no longer picks up stale rows.
+- **Scope and banner:** F2 shows all three file scopes and refreshes the banner's
+  model/permission/scope line in place.
+- **CLI:** F2 cycles the file scope; engine INFO logs no longer cut through streamed
+  answers.
+- **Startup:** no longer waits on the background code index (TUI banner ~1.5 s on a
+  real data directory).
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
-
 ### Quick start
 
 #### Windows
@@ -254,7 +255,7 @@ For commercial licensing, private deployment, or custom development, contact
 
 > 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
 
-**版本：** 2.1.15 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+**版本：** 2.1.19 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
 
 [English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
 
@@ -309,20 +310,17 @@ Aruhan 是一套共享同一套本地运行时的多端产品：
 > 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
 > Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-### 2.1.15 更新内容
+### 2.1.19 更新内容
 
-- **桌面端与 VS Code 的媒体模型设置**：查看用户权威的媒体目录、设置图片/视频默认
-  模型、启用/停用模型、合并新内置条目、恢复内置默认。
-- **桌面端 Factory 控制台**：设置本机控制台，在打开深链前测试连接，并给出明确的
-  成功/失败反馈。
-- **模型目录**：各端支持供应商/模型完整增删改查；用户文件始终是权威，已删除的内置
-  条目不会被升级静默复活。
-- **文档**：按客户端拆分的双语文档（英文在上、中文在下），并包含完整的安全与法律章节。
-- **可靠性**：新增媒体目录 RPC 与 Factory 控制台连接探测的回归测试；媒体路由测试与
-  用户真实数据隔离。
-
-完整列表见 [发布说明](https://gitee.com/guleng2005/Aruhan-AI/releases)。
-
+- **TUI 输入**：经典 conhost 改用控制台输入，中文输入法组字不再出现两份；ConPTY
+  终端保留 VT 输入，UTF-8 与括号粘贴正常。
+- **选择与复制**：流式输出中拖拽选择、按列高亮、松开复制、原生 Windows 剪贴板；
+  松开后悬停不再改变选区。
+- **运行态**：只保留一条进度行；经典 conhost 采用固定整屏重绘，状态栏不再出现
+  残影。
+- **范围与横幅**：F2 三档范围常驻显示，顶部 banner 的模型/权限/范围即时刷新。
+- **CLI**：F2 切换文件范围；回合流式输出期间不再插入引擎 INFO 日志。
+- **启动**：不再等待后台代码索引（真实数据目录下 TUI 首屏约 1.5 秒）。
 ### 快速开始
 
 #### Windows
