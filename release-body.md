@@ -1,204 +1,188 @@
-# Aruhan v1.1.0
+# Aruhan v2.1.19
 
-**中文** | [English](#english)
-
-Aruhan AI 智能助手最新版本，覆盖三端：终端 CLI · 桌面版 · IDE 插件。
-
-## ✨ 核心能力
-- 🗣️ 三方辩论引擎 V5：五维评分 + 置信度复核 + 多轮对抗评审
-- 💻 Code Agent：代码生成 / 解释 / 审查 / 调试修复 / 重构 / 测试 / Git / 命令执行
-- 🤖 Bot 网关：飞书 / 企业微信 / 钉钉 / Telegram / Slack，OAuth 扫码登录
-- 📝 CodeMirror 多语言编辑器（桌面版文件预览编辑）
-- 📄 文档处理：Office / PDF / Markdown / CSV 读写、总结、翻译、转换
-- 🖼️ 图像处理：AI 图像生成与理解、图像分析（已实现，未充分测试）
-- 🎬 视频处理：AI 视频生成与理解、视频内容分析（已实现，未充分测试）
-- 🧠 上下文智能压缩（auto-compact + Vault 精确恢复）
-- 🛡️ 权限模式管控 + 沙箱执行 + 文件访问围栏
-- 🖥️ 三端一体：配置与会话互通（终端 / 桌面 / IDE）
-
-## 🧪 测试状态
-- **重点测试**：编程功能为主，已使用 **DeepSeek** 完成端到端测试；
-- **已实现未充分测试**：图像处理、视频处理功能已实现但尚未充分测试；
-- **可自主测试**：其他模型（OpenAI / Claude / 通义 / 智谱 / Ollama 等）及非编程功能，欢迎自主测试反馈。
-- 完整能力清单见仓库 README.md「🧩 能力总览（编程 & 非编程）」章节。
-
-## 📦 安装包
-- Windows：`Aruhan-Desktop-Setup`（NSIS 图形安装）/ `Aruhan-CLI-Setup` / TUI 安装器 / 在线一键安装（见下方命令）
-- Windows 通用 zip（与 CI 对齐）：`aruhan-windows-{amd64,arm64}-1.1.0.zip`（CLI）/ `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip`（桌面版），解压即用，无需安装。**ARM64 用户请使用 zip 包**（NSIS 不支持 arm64 安装包）。
-- Linux / macOS：`aruhan-*-*.tar.gz` 通用安装包 / TUI 安装器
-- VSCode：`aruhan-vscode.vsix`（内置 CLI 引擎，三平台通用）
-
-### ⚡ Windows 一键安装（PowerShell，推荐）
-
-```powershell
-irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
-```
-
-自动检测架构（amd64/arm64），从本 Release 下载对应 zip 并安装 `aruhan.exe`，配置用户级 PATH 与 `ARUHAN_BINARY`（无需管理员权限，默认装到 `%LOCALAPPDATA%\Aruhan\bin`）。也可下载本 Release 附件 `install-online.ps1` 后直接执行。
-
-### ⚡ Linux / macOS 一键安装（推荐）
-
-```bash
-curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
-```
-
-自动检测平台/架构，从 Release 下载对应二进制并配置 PATH 与 `ARUHAN_BINARY`（无需 sudo，默认装到 `~/.local/bin`）。也可下载本 Release 附件 `install-online.sh` 后执行 `bash install-online.sh`。
-
-## 🖥️ 支持系统
-| 平台 | 架构 | 安装包 |
-| --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-windows-amd64-1.1.0.zip` / `aruhan-desktop-windows-amd64-1.1.0.zip` / `aruhan-tui-installer-windows-amd64.exe` |
-| Windows 10/11 | ARM64 | `aruhan-windows-arm64-1.1.0.zip` / `aruhan-desktop-windows-arm64-1.1.0.zip` / `aruhan-tui-installer-windows-arm64.exe` |
-| Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
-| Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
-| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
-| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
-| VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
-
-## ✅ 安装包校验（v1.1.0）
-全部 17 个安装包已通过基础校验：PE / ELF / Mach-O 格式与架构正确、tar.gz / zip 与 VSIX 压缩包完整。SHA256 校验和如下：
-
-> 📅 **编译批次说明**：NSIS 安装包（`Aruhan-*-Setup-*.exe`）与 TUI 安装器为 2026-08-30 编译；Windows 通用 zip 包（`aruhan-windows-*.zip` / `aruhan-desktop-windows-*.zip`）为 2026-09-05 编译，与 CI `release.yml` 打包行为一致。两者版本号均为 v1.1.0，二进制内容可能略有差异，请按需选择。
-
-| 文件 | 格式/架构 | SHA256 |
-| --- | --- | --- |
-| Aruhan-Desktop-Setup-1.1.0.exe | PE x86 | FBA5DF88D8B2CA3742B66057198FDA6B5767161DFB309120020F6A99D1728046 |
-| Aruhan-CLI-Setup-1.1.0.exe | PE x86 | 8030C370109069D561FF3454764FB8F65385B848C240BB11D09BB55ED2014D14 |
-| aruhan-tui-installer-windows-amd64.exe | PE x86_64 | B1B497647A119A8DBFCC8D0DB9613217BFE7D447F3A01F4D4BF619C4186089FE |
-| aruhan-tui-installer-windows-arm64.exe | PE ARM64 | F840DBE29D9794322B3188E95730F83CB394D8336E059AD9488EDC2F58ECFCEC |
-| aruhan-linux-amd64-1.1.0.tar.gz | tar.gz | 7EF6750C7FCB3A60CE4C0CEFE05E4B86C66DD7381EFBF32A4CDC5A473E19F663 |
-| aruhan-linux-arm64-1.1.0.tar.gz | tar.gz | D630B10D9D835990D2F204D39E4A782A22B14F19E48FB5BD5F96E23475CF3102 |
-| aruhan-darwin-amd64-1.1.0.tar.gz | tar.gz | 6D6A25A9AD0632DCA5AD07E751D08B95654B170D4A54E4D27E147643DE8400C3 |
-| aruhan-darwin-arm64-1.1.0.tar.gz | tar.gz | 36CD489DE0DF2041A1C846F5A50CBABC5CD9667B2B73096B226CF260A0D30342 |
-| aruhan-tui-installer-linux-amd64 | ELF x86_64 | 2D389E99A45FFAC175436C074349672156DE8015EF18B888924EB7D03F029A02 |
-| aruhan-tui-installer-linux-arm64 | ELF ARM64 | 8EA3E66B03B3F4C66DCEF90AC01D567A030A81EE55E89860A2009B66CCDD8385 |
-| aruhan-tui-installer-darwin-amd64 | Mach-O x86_64 | 39F64A61EF83FE84B829629C7BE600A01797F124CF642902D0A8C6915072BA22 |
-| aruhan-tui-installer-darwin-arm64 | Mach-O ARM64 | A3DBB6F88C1D8C878860F8B262471A92FEA78F29A3BBACAD91E03384759D3A86 |
-| aruhan-windows-amd64-1.1.0.zip | ZIP PE x86_64 (CLI, 2026-09-05) | C0ADEC098E363F2FF3490CDE763D794A1D9F365B934F005A4B3C61F58D358D6C |
-| aruhan-windows-arm64-1.1.0.zip | ZIP PE ARM64 (CLI, 2026-09-05) | E1462F3EA4708FEF9043706816B3468C1568ABCE7CBADE0EE30041563E66FB73 |
-| aruhan-desktop-windows-amd64-1.1.0.zip | ZIP PE x86_64 (Desktop, 2026-09-05) | B57B54BDDF8C01929C3D0B8838DC44A3B45E3EF29BCA342C3B8E4A9A9504F025 |
-| aruhan-desktop-windows-arm64-1.1.0.zip | ZIP PE ARM64 (Desktop, 2026-09-05) | 97A4F733B922A14CB69571E25B9273C42E4CC2676B80644332D3A6ED14D1C1CB |
-| aruhan-vscode.vsix | ZIP (VSIX) | 7526AAD24E29F28BAA9A312AD4E839C9AE2E854416829B3A58487A009C8B8A97 |
-
-校验方法：Windows PowerShell 执行 `Get-FileHash <文件> -Algorithm SHA256`；Linux/macOS 执行 `sha256sum <文件>`。
-
-## 🧪 版本状态（体验 / 测试版）
-- 当前 v1.1.0 为公开**体验 / 测试版本**：可能存在尚未发现的缺陷，界面与功能可能随版本迭代调整，不保证与未来正式版完全兼容。
-- **Windows 首次运行说明**：本版本安装包暂未进行代码签名（Authenticode）。在全新电脑上首次运行下载的安装包时，Windows SmartScreen 可能提示「Windows 已保护你的电脑」，或要求点击「更多信息 → 仍要运行」。请先确认下载来源为官方 Releases 页并核对上方 SHA256 校验和一致后，再放行运行。
-- 若被杀毒软件误报：请先核对 SHA256 校验和；确认一致后可将文件加入信任区，或将样本上报给杀毒厂商（Windows Defender 的「从以下位置下载的文件」提示属正常现象）。
-
-## ⚠️ 风险提示
-- 请仅从官方 Releases 页面下载安装包；第三方渠道转发的安装包无法保证完整性，请务必使用上方 SHA256 校验和核对。
-- Windows 安装包当前未做代码签名（Authenticode），SmartScreen / 杀毒软件可能出现警告或误报；请先确认 SHA256 一致后再信任放行。
-- Aruhan 具备 AI 自主工具执行能力（文件读写 / 命令执行 / 网络访问），请善用权限模式与文件访问围栏（只读 / 工作区 / 全电脑），避免在敏感环境盲目放行高危操作。
-- 本软件按「现状」提供，作者不对因使用本软件造成的任何直接或间接损失承担责任；使用 AI 服务前请确认你已获得相应供应商的授权并遵守其服务条款。
-
-## 🚀 终端启动（TUI / 非TUI）
-- `aruhan` — 非 TUI（REPL）：轻量 ANSI 界面，支持 `@文件` / `#任务` 补全
-- `aruhan -t` 或 `aruhan --tui` — TUI：Bubble Tea 全屏专业界面
-- `aruhan --accessible` — 无障碍纯文本模式
-
-## 🔐 商业授权
-- **个人非商业用途**：免费试用，无需另行授权。
-- **企业 / 团队商业使用 / 私有化部署 / 二次定制改造**：须取得商业授权后方可进行。
-- **禁止**：任何形式的转售、再分发、商品化销售，以及对编译产物的反编译、反汇编等逆向工程行为；禁止移除或篡改软件内版权与身份标识。
-- 商业授权 / 私有化部署 / 定制开发联系：**37735973@qq.com**。
-- 完整授权条款见仓库 README.md「🔐 商业授权」章节。
-
-## ⭐ Star 支持
-如果本项目对你有帮助，欢迎在 GitHub / Gitee 仓库右上角点一个 Star ⭐ —— 你的支持是项目持续迭代的动力。
-
-完整使用说明见仓库 README.md（中文）/ README.en.md（English）。
+**Release date / 发布日期：2026-11-17** · [Checksums / 校验和](v2.1.19-SHA256SUMS.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.19) · [GitHub](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.19) · [English](#english) · [中文](#中文)
 
 ---
 
-## 📮 联系方式
+## English
 
-如有问题、建议或合作意向，欢迎通过以下方式联系：
+v2.1.19 is a TUI/CLI reliability release. It fixes the input, selection and
+running-state rendering problems reproduced in real streaming turns, and keeps
+the same configuration and data formats.
 
-- 📧 邮箱：**37735973@qq.com**
+### TUI input
+
+- Windows input is split by console type. Classic conhost uses Bubble Tea
+  `coninput`, so the console owns Chinese IME composition and the input line is
+  no longer rendered twice (composition ghosting). ConPTY terminals (Windows
+  Terminal, IDE terminals) keep the CONIN$ + VT input path, which handles UTF-8
+  and bracketed paste correctly and does not hit the coninput broken-pipe error
+  on resize.
+- `Ctrl+J` remains available on classic conhost with
+  `ARUHAN_TUI_VT_INPUT=1`; the default newline key is `Alt+Enter`.
+
+### Mouse selection and copy
+
+- A left click no longer activates a selection or changes the bottom band;
+  only a real drag does.
+- Selection is anchored to transcript lines, so streaming output does not move
+  it, and the highlight covers only the selected columns while keeping colors.
+- Releasing the mouse copies the selection and keeps the highlight. Hovering
+  after release no longer changes the selection (reported in 2.1.18 testing).
+- Copy feedback is shown in status line 2 instead of appending a transcript
+  line, so the output area does not scroll after a copy.
+- Windows clipboard reads/writes use the Win32 API directly. This removes the
+  PowerShell child process that blocked the event loop for 0.5–2 seconds per
+  copy.
+
+### Running-state rendering
+
+- The status bar renders a single running indicator; the old static
+  `ToolStatus`/`CurrentToolName` copy is gone.
+- Classic conhost now uses a full-screen painter (fixed-height frame written
+  from `\x1b[H` on every update, coalesced in a writer goroutine) instead of
+  the standard line-diff renderer. This fixes the duplicate “thinking” line and
+  the overwritten status row seen while a turn was streaming. ConPTY keeps the
+  standard renderer; the console type is detected by the console window class
+  (`PseudoConsoleWindow` vs `ConsoleWindowClass`).
+- The frame is normalized to a fixed number of rows and leaves two columns, so
+  line-diff residues and terminal auto-wrap are avoided.
+- Multi-paragraph streamed replies no longer repeat or drop paragraphs: a
+  paragraph flush replaces its placeholder, and the next paragraph starts a new
+  one. The turn summary uses the first physical line only.
+
+### Status bar and banner
+
+- F2 now always shows the file-access pill for all three scopes (read-only,
+  workspace, full disk) instead of hiding full access.
+- The banner line “version | model | permission | scope” is refreshed in place
+  after F2, `Ctrl+Y`, `Shift+Tab` or a model switch, so the top of the screen
+  matches the current state.
+
+### CLI (plain REPL)
+
+- F2 cycles the file-access scope like the TUI and prints the new scope.
+  Previously the F2 escape sequence was partially consumed and the trailing
+  byte was inserted into the input line.
+- Engine INFO logs are suppressed while a turn is streaming, so
+  `stream route`, `initializing agent engine` and `cache warmup` no longer cut
+  through answers. The configured level is restored afterwards;
+  `ARUHAN_REPL_LOG_INFO=1` keeps INFO for troubleshooting.
+
+### Startup
+
+- Startup no longer waits on the CodeMapper background index: `IsAvailable` is
+  lock-free and crew integration no longer calls `NodeCount` synchronously.
+  Measured with a copy of a real 175 MB data directory: TUI banner in ~1.5 s,
+  `--plain` banner in ~0.2 s.
+
+### Verification
+
+- Real turns with streaming and a Bash tool call, including click/drag/copy
+  while output was live: `docs/testing/assets/tui-running-2026-11-16`.
+- Selection/copy evidence: `docs/testing/assets/tui-selection-2026-11-16`;
+  F2 scope evidence: `docs/testing/assets/tui-f2-2026-11-17` and
+  `docs/testing/assets/cli-f2-2026-11-17`.
+- New regression tests cover click-without-selection, release-copy, hover after
+  release, column-accurate CJK copy, multi-paragraph streaming, frame
+  normalization, painter protocol, renderer choice, scope pills and F2
+  decoding.
+- Brand gate, gofmt, plan-check (105/105) and the i18n guard pass.
+- PTY baseline tests pass except `TestPTYCtrlCShowsTwoStageExit`, which is
+  flaky on this machine in the 2.1.18 baseline as well (1 of 5 runs).
+- Full build: `build-all.ps1 -Clean -Expires 2027-02-28` produced
+  57 artifacts; `sha256sum -c` passed; the
+  embedded version is 2.1.19 (commit e99ce045). Windows binaries are unsigned.
+
+### Known limitations
+
+- ConPTY terminals keep the standard renderer. If running-state residue is
+  observed there, the full-screen painter can be forced with
+  `ARUHAN_TUI_FULL_REDRAW=1`, but ConPTY resize can then terminate the process;
+  classic conhost is the supported target for that mode.
+- Windows binaries remain unsigned.
+- In the plain CLI, the line editor is suspended while a turn streams, so the
+  prompt is not redrawn until the turn ends; typed input is still queued. ESC
+  does not interrupt a CLI turn (use `Ctrl+C`).
+- The trial expiry injected into official builds is 2027-02-28.
 
 ---
 
-# English
+## 中文
 
-Aruhan AI Assistant v1.1.0 — latest release (Terminal · Desktop · IDE).
+v2.1.19 是一次 TUI/CLI 可靠性版本，修复真实流式回合中复现的输入、选择与运行态
+渲染问题，配置与数据格式保持不变。
 
-## ✨ Highlights
-- 🗣️ Debate Engine V5: 5-dim scoring + confidence check + multi-round review
-- 💻 Code Agent: code generation / explanation / review / debug & fix / refactor / tests / Git / command execution
-- 🤖 Bot Gateway: Feishu / WeCom / DingTalk / Telegram / Slack with OAuth login
-- 📝 CodeMirror multi-language editor
-- 📄 Document Processing: Office / PDF / Markdown / CSV read & write, summary, translation, conversion
-- 🖼️ Image Processing: AI image generation & understanding, image analysis (implemented, not fully tested)
-- 🎬 Video Processing: AI video generation & understanding, video content analysis (implemented, not fully tested)
-- 🧠 Context auto-compaction (auto-compact + Vault restore)
-- 🛡️ Permission modes + sandbox + file access fence
-- 🖥️ One config, three frontends
+### TUI 输入
 
-## 🧪 Testing Status
-- **Primary testing**: coding capabilities, end-to-end tested with **DeepSeek**;
-- **Implemented, not fully tested**: image and video processing;
-- **Self-test welcome**: other models (OpenAI / Claude / Qwen / Zhipu / Ollama, etc.) and non-coding capabilities.
-- Full capability list: see "🧩 Capability Overview (Coding & Non-coding)" in README.md.
+- Windows 输入按终端类型分流：经典 conhost 使用 Bubble Tea `coninput`，由
+  控制台负责中文输入法组字，输入行不再出现"组字 + textarea"两份的重影；
+  ConPTY（Windows Terminal、IDE 终端）保留 CONIN$ + VT 输入，UTF-8 与括号
+  粘贴正常，也不会在缩放时触发 coninput 的 broken pipe。
+- 经典 conhost 需要 `Ctrl+J` 换行时设置 `ARUHAN_TUI_VT_INPUT=1`；默认换行键
+  为 `Alt+Enter`。
 
-## 📦 Packages
-- Windows: NSIS installers (Desktop / CLI) / TUI installer / one-line install (see commands below)
-- Windows portable zip (CI-aligned): `aruhan-windows-{amd64,arm64}-1.1.0.zip` (CLI) / `aruhan-desktop-windows-{amd64,arm64}-1.1.0.zip` (Desktop), extract and run, no install needed. **ARM64 users should use the zip packages** (NSIS does not support arm64 installers).
-- Linux / macOS: tar.gz universal packages / TUI installer
-- VSCode: aruhan-vscode.vsix (bundled CLI, cross-platform)
+### 鼠标选择与复制
 
-### ⚡ Windows one-line install (PowerShell, recommended)
+- 单击不再激活选区或改变底部固定带，只有真正拖动才选择。
+- 选区锚定在 transcript 行上，流式输出不会让选区漂移；反色只覆盖选中列，
+  并保留原有颜色。
+- 松开鼠标即复制并保留高亮；松开后悬停/滑动不再改变选区（2.1.18 测试中发现）。
+- 复制结果改为状态栏第二行提示，不再追加 transcript 行，复制后输出区不滚动。
+- Windows 剪贴板读写改为原生 Win32 API，去掉每次复制启动 PowerShell 子进程
+  导致的 0.5–2 秒事件循环阻塞。
 
-```powershell
-irm https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.ps1 | iex
-```
+### 运行态渲染
 
-Auto-detects the architecture (amd64/arm64), downloads the matching zip from this Release, installs `aruhan.exe`, and configures user-level PATH and `ARUHAN_BINARY` (no admin rights needed; installs to `%LOCALAPPDATA%\Aruhan\bin` by default). You can also download the `install-online.ps1` attachment from this Release and run it directly.
+- 状态栏只保留一条运行指示；删除旧的 `ToolStatus`/`CurrentToolName` 静态重复行。
+- 经典 conhost 改用整屏重绘（每帧从 `\x1b[H` 写入固定行数，独立 goroutine
+  合并高频更新），修复流式回合中"思考中"重复、状态栏第二行被盖的问题。
+  ConPTY 沿用标准渲染器；终端类型通过控制台窗口类名判别
+  （`PseudoConsoleWindow` / `ConsoleWindowClass`）。
+- 帧规整为固定行数并保留两列余量，避免行级 diff 残影与终端自动换行。
+- 多段流式回答不再重复或丢失段落：段落 flush 替换自身占位行，下一段新建
+  占位行；回合摘要只取第一行。
 
-### ⚡ Linux / macOS one-line install (recommended)
+### 状态栏与横幅
 
-```bash
-curl -fsSL https://gitee.com/guleng2005/Aruhan-AI/raw/master/install-online.sh | bash
-```
+- F2 三档文件范围（只读/工作区/全电脑）在状态栏都常驻显示，不再隐藏全电脑。
+- 顶部 banner 的"版本 | 模型 | 权限 | 文件范围"行在 F2、`Ctrl+Y`、
+  `Shift+Tab`、切换模型后原地刷新，顶部与当前状态一致。
 
-Auto-detects platform/arch, downloads the binary from Release, and configures PATH and `ARUHAN_BINARY` (no sudo required, installs to `~/.local/bin` by default). You can also download the `install-online.sh` attachment from this Release and run `bash install-online.sh`.
+### CLI（行式 REPL）
 
-## 🖥️ Supported Systems
-| Platform | Arch | Packages |
-| --- | --- | --- |
-| Windows 10/11 | x86_64 | `Aruhan-Desktop-Setup-1.1.0.exe` / `Aruhan-CLI-Setup-1.1.0.exe` / `aruhan-windows-amd64-1.1.0.zip` / `aruhan-desktop-windows-amd64-1.1.0.zip` / `aruhan-tui-installer-windows-amd64.exe` |
-| Windows 10/11 | ARM64 | `aruhan-windows-arm64-1.1.0.zip` / `aruhan-desktop-windows-arm64-1.1.0.zip` / `aruhan-tui-installer-windows-arm64.exe` |
-| Linux | x86_64 | `aruhan-linux-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-amd64` |
-| Linux | ARM64 | `aruhan-linux-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-linux-arm64` |
-| macOS 11+ | Intel (x86_64) | `aruhan-darwin-amd64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-amd64` |
-| macOS 11+ | Apple Silicon | `aruhan-darwin-arm64-1.1.0.tar.gz` / `aruhan-tui-installer-darwin-arm64` |
-| VS Code 1.85+ | Win / macOS / Linux | `aruhan-vscode.vsix` |
+- F2 与 TUI 一样循环切换文件访问范围并打印当前档位；此前 F2 转义序列被部分
+  消费，尾字节被插入输入行。
+- 回合流式输出期间压制引擎 INFO 日志，`stream route`、`initializing agent
+  engine`、`cache warmup` 不再切断回答；回合结束恢复配置级别，
+  `ARUHAN_REPL_LOG_INFO=1` 可保留 INFO 用于排障。
 
-## 🧪 Release Status (Experience / Beta)
-- v1.1.0 is a public **experience / beta release**: defects may exist, and UI/features may change between releases without full backward-compatibility guarantees.
-- **First run on Windows**: these installers are not code-signed (Authenticode) yet. On a clean machine, Windows SmartScreen may show "Windows protected your PC" or ask you to click "More info → Run anyway". Confirm the download source is the official Releases page and the SHA256 checksum matches, then allow it.
-- If flagged by antivirus: verify the SHA256 checksum first; if it matches, allow/trust the file or submit the sample to your AV vendor.
+### 启动
 
-## ⚠️ Risk Notice
-- Only download installers from the official Releases page. Third-party copies cannot be trusted — verify integrity with the SHA256 checksums above.
-- Windows binaries are not code-signed yet; SmartScreen/antivirus may warn. Cross-check the SHA256 checksum before allowing.
-- Aruhan can autonomously execute tools (file I/O, shell, network). Use permission modes and the file-access fence (read-only / workspace / full access) wisely.
-- Provided "as is" without warranty. Ensure you are entitled to use the AI services you select and comply with their terms.
+- 启动不再等待 CodeMapper 后台索引：`IsAvailable` 无锁，crew 集成不再同步
+  调用 `NodeCount`。用真实 175MB 数据目录副本实测：TUI 首屏约 1.5 秒，
+  `--plain` 约 0.2 秒。
 
-## 🚀 Terminal Launch (TUI / Non-TUI)
-- `aruhan` — Non-TUI (REPL): lightweight ANSI with `@file` / `#task` completion
-- `aruhan -t` or `aruhan --tui` — TUI: Bubble Tea full-screen interface
-- `aruhan --accessible` — plain-text accessibility mode
+### 验证
 
-## 🔐 Commercial License
-- **Personal non-commercial use**: free trial, no separate authorization required.
-- **Enterprise / team commercial use / private deployment / secondary customization**: commercial license required prior to use.
-- **Prohibited**: any form of resale, redistribution, or sale as a product; decompilation, disassembly, or other reverse engineering of compiled artifacts; removing or altering any copyright or identity notices in the software.
-- For commercial licensing / private deployment / custom development: **37735973@qq.com**.
-- Full license terms: see the "🔐 Commercial License" section in README.md.
+- 真实流式回合 + Bash 工具调用，运行中点击/拖拽/复制：
+  `docs/testing/assets/tui-running-2026-11-16`。
+- 选择/复制证据：`docs/testing/assets/tui-selection-2026-11-16`；F2 范围证据：
+  `docs/testing/assets/tui-f2-2026-11-17`、`docs/testing/assets/cli-f2-2026-11-17`。
+- 新增回归用例覆盖：单击不选择、松开复制、松开后悬停、中文按列复制、多段
+  流式、帧规整、整屏重绘协议、渲染器分流、范围 pill、F2 解码。
+- 品牌门禁、gofmt、plan-check（105/105）、i18n 门禁通过。
+- PTY 基线用例除 `TestPTYCtrlCShowsTwoStageExit` 外通过；该用例在本机 2.1.18
+  基线上同样偶发失败（5 次中 1 次）。
+- 全量构建：`build-all.ps1 -Clean -Expires 2027-02-28` 生成
+  57 项工件；`sha256sum -c` 全部通过；内嵌版本
+  2.1.19（commit e99ce045）。Windows 二进制未签名。
 
-## ⭐ Star Support
-If this project helps you, please tap Star ⭐ at the top right of the GitHub / Gitee repository — your support keeps the project iterating.
+### 已知限制
 
-Docs: README.md / README.en.md in this repo.
+- ConPTY 终端沿用标准渲染器。若那里仍出现运行态残影，可用
+  `ARUHAN_TUI_FULL_REDRAW=1` 强制整屏重绘，但 ConPTY 缩放可能导致进程退出；
+  该模式的支持目标是经典 conhost。
+- 行式 CLI 在回合流式输出期间挂起行编辑器，提示符在回合结束后恢复；输入仍会
+  入队。CLI 回合中 ESC 不中断（请用 `Ctrl+C`）。
+- 官方构建注入的试用到期日为 2027-02-28。
