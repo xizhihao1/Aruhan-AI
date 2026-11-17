@@ -20,7 +20,7 @@
 
 .EXAMPLE
     # 指定版本
-    .\install-online.ps1 -Version v1.1.0
+    .\install-online.ps1 -Version v2.1.19
 
 .EXAMPLE
     # 指定安装目录
@@ -35,7 +35,7 @@ param(
 # --- 可配置常量 ---
 $Owner   = "guleng2005"
 $Repo    = "Aruhan-AI"
-$DefaultVersion = "v1.1.0"
+$DefaultVersion = "v2.1.19"
 $BaseUrl = "https://gitee.com/$Owner/$Repo/releases/download"
 
 # --- 颜色输出辅助 ---
