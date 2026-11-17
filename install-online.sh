@@ -6,10 +6,10 @@
 #       从 Gitee release 下载对应 tar.gz 并安装 aruhan 到 PATH。
 #
 # 用法:
-#   curl -sSL https://gitee.com/guleng2005/Aruhan-AI/releases/download/v1.1.0/install-online.sh | bash
+#   curl -sSL https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.19/install-online.sh | bash
 #   bash install-online.sh                          # 默认安装到 ~/.local/bin
 #   bash install-online.sh --prefix=/usr/local      # 指定安装目录
-#   bash install-online.sh --version=v1.2.0         # 指定版本 (默认 v1.1.0)
+#   bash install-online.sh --version=v1.2.0         # 指定版本 (默认 v2.1.19)
 #
 # 说明:
 #   - 非交互, 无需 sudo (默认装到用户目录 ~/.local/bin)
@@ -22,7 +22,7 @@ set -euo pipefail
 # --- 可配置常量 ---
 OWNER="guleng2005"
 REPO="Aruhan-AI"
-DEFAULT_VERSION="v1.1.0"
+DEFAULT_VERSION="v2.1.19"
 # Gitee release 下载基础 URL (若 Gitee 实际 URL 格式不同, 改这里)
 BASE_URL="https://gitee.com/${OWNER}/${REPO}/releases/download"
 
