@@ -63,6 +63,8 @@ Download the latest packages from the official Releases pages:
 
 ### What's new in 2.1.20
 
+- **TUI selection:** drag-select covers the whole visible screen and copies on release; `F8` hands the mouse to the terminal and back; pasted blocks are batched.
+- **Code index:** unresolved references are retried and corrupt indexes rebuild in place.
 - **Inline diff:** Desktop and IDE tool cards render the same hunks as the TUI —
   three context lines, a 15-row inline cap and expand-to-full. Diff cards stay
   visible even in long tool chains.
