@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.19 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.20 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,7 +61,7 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.19
+### What's new in 2.1.20
 
 - **TUI input:** classic conhost now uses console input so Chinese IME composition
   is not rendered twice; ConPTY terminals keep VT input for UTF-8 and bracketed paste.
@@ -255,7 +255,7 @@ For commercial licensing, private deployment, or custom development, contact
 
 > 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
 
-**版本：** 2.1.19 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+**版本：** 2.1.20 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
 
 [English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
 
@@ -310,17 +310,22 @@ Aruhan 是一套共享同一套本地运行时的多端产品：
 > 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
 > Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-### 2.1.19 更新内容
+### 2.1.20 更新内容
 
-- **TUI 输入**：经典 conhost 改用控制台输入，中文输入法组字不再出现两份；ConPTY
-  终端保留 VT 输入，UTF-8 与括号粘贴正常。
-- **选择与复制**：流式输出中拖拽选择、按列高亮、松开复制、原生 Windows 剪贴板；
-  松开后悬停不再改变选区。
-- **运行态**：只保留一条进度行；经典 conhost 采用固定整屏重绘，状态栏不再出现
-  残影。
-- **范围与横幅**：F2 三档范围常驻显示，顶部 banner 的模型/权限/范围即时刷新。
-- **CLI**：F2 切换文件范围；回合流式输出期间不再插入引擎 INFO 日志。
-- **启动**：不再等待后台代码索引（真实数据目录下 TUI 首屏约 1.5 秒）。
+- **内联 diff**：Desktop 与 IDE 工具卡渲染与 TUI 相同的 hunk——上下各 3 行上下文、
+  内联最多 15 行、可展开完整 diff；长工具链中带 diff 的卡片也不会被折叠掉。
+- **思考展示**：思考块在流式期间展开、回答完成后折叠；后续推理组使用同一规则。
+- **回复语言**：默认跟随用户最新一条消息，显式 zh/en 设置仍可覆盖；代码、路径、
+  命令和报错原文保持原样。
+- **运行时**：YOLO/BYPASS 不再对高风险工具弹审批（硬拒绝仍生效）；长回答达到输出
+  上限后继续生成；`aruhan query` 只打印一次答案。
+- **引擎选择**：Desktop 选择本地最新引擎，IDE 优先使用自带引擎而不是 PATH 上的
+  旧 CLI。旧版本启动的 daemon 需要重启一次。
+- **完成契约**：TaskLedger 与 DeliverableImpact 成为核心工具，修复因工具隐藏导致
+  的 Auto-continuing 循环。
+- **Factory**：统一开始输入区、模型推断项目规模、心跳存活状态、执行策略展示，
+  流水线与工位包使用同一配置根。
+
 ### 快速开始
 
 #### Windows
