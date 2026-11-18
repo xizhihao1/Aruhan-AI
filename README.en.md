@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.19 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.20 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,23 +61,29 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.19
+### What's new in 2.1.20
 
-- **TUI input:** classic conhost now uses console input so Chinese IME composition
-  is not rendered twice; ConPTY terminals keep VT input for UTF-8 and bracketed paste.
-- **Selection and copy:** drag to select while output streams, column-accurate
-  highlight, copy on release, native Windows clipboard, and hovering after release
-  no longer moves the selection.
-- **Running state:** one progress line instead of duplicates; classic conhost uses a
-  fixed full-screen redraw so the status bar no longer picks up stale rows.
-- **Scope and banner:** F2 shows all three file scopes and refreshes the banner's
-  model/permission/scope line in place.
-- **CLI:** F2 cycles the file scope; engine INFO logs no longer cut through streamed
-  answers.
-- **Startup:** no longer waits on the background code index (TUI banner ~1.5 s on a
-  real data directory).
+- **Inline diff:** Desktop and IDE tool cards render the same hunks as the TUI —
+  three context lines, a 15-row inline cap and expand-to-full. Diff cards stay
+  visible even in long tool chains.
+- **Reasoning:** thinking blocks expand while streaming and collapse when the
+  answer finishes; later reasoning groups follow the same rule.
+- **Language:** replies follow the language of the latest user message unless
+  an explicit zh/en preference is set. Code, paths, commands and errors keep
+  their original form.
+- **Runtime:** YOLO/BYPASS no longer prompts for high-risk tools unless a hard
+  denial applies; long completions recover after max-output stops;
+  `aruhan query` prints the answer once.
+- **Engine selection:** Desktop picks the newest local engine and the IDE uses
+  its bundled engine instead of an older CLI on PATH. Restart a daemon started
+  by an older build before using the new one.
+- **Completion contract:** TaskLedger and DeliverableImpact are core tools,
+  fixing repeated Auto-continuing turns caused by hidden completion tools.
+- **Factory:** unified start composer, model-inferred project scale, heartbeat
+  liveness, execution-policy display and one config root for pipelines/packs.
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
+
 ### Quick start
 
 #### Windows
