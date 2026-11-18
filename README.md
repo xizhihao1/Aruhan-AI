@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.20 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.21 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,21 +61,25 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.20
+### What's new in 2.1.21
 
-- **TUI input:** classic conhost now uses console input so Chinese IME composition
-  is not rendered twice; ConPTY terminals keep VT input for UTF-8 and bracketed paste.
-- **Selection and copy:** drag to select while output streams, column-accurate
-  highlight, copy on release, native Windows clipboard, and hovering after release
-  no longer moves the selection.
-- **Running state:** one progress line instead of duplicates; classic conhost uses a
-  fixed full-screen redraw so the status bar no longer picks up stale rows.
-- **Scope and banner:** F2 shows all three file scopes and refreshes the banner's
-  model/permission/scope line in place.
-- **CLI:** F2 cycles the file scope; engine INFO logs no longer cut through streamed
-  answers.
-- **Startup:** no longer waits on the background code index (TUI banner ~1.5 s on a
-  real data directory).
+- **Approvals:** YOLO/BYPASS really skips per-tool prompts; hard-risk denials
+  still block. The IDE uses the composer's mode for the turn even when the
+  mode is selected and the message is sent immediately.
+- **Stop:** cancelling closes pending approvals, marks in-flight tools stopped
+  and no longer shows an `aborted` error; no extra reflection request runs
+  after cancellation.
+- **Language:** replies follow the latest user message unless an explicit
+  zh/en preference is set; code, paths, commands and errors keep their form.
+- **IDE:** destructive mode switches use an in-page confirmation because
+  sandboxed webviews ignore `window.confirm`.
+- **Engine selection:** clients reject wrong-architecture engines and pick
+  the newest matching build.
+- **Factory installer:** bundles both factory and aruhan; login autostart is
+  optional and unchecked by default.
+
+This is a corrective rebuild from source; the v2.1.20 attachments predate
+these fixes.
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
 ### Quick start
@@ -241,13 +245,7 @@ For commercial licensing, private deployment, or custom development, contact
   do not use it as the sole basis for legal, medical, or investment decisions.
 - You must comply with the laws and regulations of your jurisdiction and may not use the
   software for unlawful purposes.
-- You are responsible for complying with the terms of any AI provider you configure.
-
-### Acknowledgements
-
-- Thanks to the contributors of all open-source dependencies (the full list is included in
-  each package's license inventory).
-- Thanks to the model providers that make the supported workflows possible.
+- You are responsible for complying with the terms of any model service you configure.
 
 ---
 
@@ -255,7 +253,7 @@ For commercial licensing, private deployment, or custom development, contact
 
 > 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
 
-**版本：** 2.1.20 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+**版本：** 2.1.21 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
 
 [English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
 
@@ -310,23 +308,16 @@ Aruhan 是一套共享同一套本地运行时的多端产品：
 > 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
 > Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-### 2.1.20 更新内容
+### 2.1.21 更新内容
 
-- **TUI 选择**：拖拽选择覆盖整个可见屏幕，松开自动复制；`F8` 交还/恢复鼠标；粘贴整段内容合并提交。
-- **代码索引**：未解析引用会重试，损坏索引就地重建。
-- **内联 diff**：Desktop 与 IDE 工具卡渲染与 TUI 相同的 hunk——上下各 3 行上下文、
-  内联最多 15 行、可展开完整 diff；长工具链中带 diff 的卡片也不会被折叠掉。
-- **思考展示**：思考块在流式期间展开、回答完成后折叠；后续推理组使用同一规则。
-- **回复语言**：默认跟随用户最新一条消息，显式 zh/en 设置仍可覆盖；代码、路径、
-  命令和报错原文保持原样。
-- **运行时**：YOLO/BYPASS 不再对高风险工具弹审批（硬拒绝仍生效）；长回答达到输出
-  上限后继续生成；`aruhan query` 只打印一次答案。
-- **引擎选择**：Desktop 选择本地最新引擎，IDE 优先使用自带引擎而不是 PATH 上的
-  旧 CLI。旧版本启动的 daemon 需要重启一次。
-- **完成契约**：TaskLedger 与 DeliverableImpact 成为核心工具，修复因工具隐藏导致
-  的 Auto-continuing 循环。
-- **Factory**：统一开始输入区、模型推断项目规模、心跳存活状态、执行策略展示，
-  流水线与工位包使用同一配置根。
+- **审批档位**：YOLO/BYPASS 真正跳过逐工具审批，硬性风险仍会拒绝；IDE 选完档位立即发送也按输入区当前档位执行。
+- **停止**：取消会关闭待审批、把在飞工具标为已停止，不再显示 `aborted` 错误；取消后不再触发额外反思请求。
+- **回复语言**：默认跟随用户最新一条消息，显式 zh/en 设置仍可覆盖；代码、路径、命令和报错原文保持原样。
+- **IDE**：沙箱 webview 不支持 `window.confirm`，危险档位切换改在页面内确认。
+- **引擎选择**：客户端拒绝架构不匹配的引擎，选择最新的匹配构建。
+- **Factory 安装包**：同时包含 factory 与 aruhan；登录自启为可选组件，默认不勾选。
+
+本版为源码全量重构建；v2.1.20 的发布附件早于上述修复。
 
 ### 快速开始
 
@@ -479,9 +470,4 @@ aruhan setup --provider <目录中的供应商 key> --model <模型 ID> --api-ke
 - AI 生成内容可能存在错误、偏见或不当信息，使用者应自行核实；不得将 AI 输出直接
   用于法律、医疗、投资等高风险决策。
 - 使用者须遵守所在国家/地区法律法规，不得将本软件用于任何违法用途。
-- 使用者须自行确保所选 AI 供应商的服务条款得到遵守。
-
-### 致谢
-
-- 感谢所有开源依赖项目的贡献者（完整依赖列表见各安装包内置声明）。
-- 感谢为支持的工作流提供模型能力的各 AI 服务商。
+- 使用者须自行确保所选模型服务的服务条款得到遵守。

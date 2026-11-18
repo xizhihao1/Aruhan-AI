@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.20 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.21 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,28 +61,25 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.20
+### What's new in 2.1.21
 
-- **TUI selection:** drag-select covers the whole visible screen and copies on release; `F8` hands the mouse to the terminal and back; pasted blocks are batched.
-- **Code index:** unresolved references are retried and corrupt indexes rebuild in place.
-- **Inline diff:** Desktop and IDE tool cards render the same hunks as the TUI —
-  three context lines, a 15-row inline cap and expand-to-full. Diff cards stay
-  visible even in long tool chains.
-- **Reasoning:** thinking blocks expand while streaming and collapse when the
-  answer finishes; later reasoning groups follow the same rule.
-- **Language:** replies follow the language of the latest user message unless
-  an explicit zh/en preference is set. Code, paths, commands and errors keep
-  their original form.
-- **Runtime:** YOLO/BYPASS no longer prompts for high-risk tools unless a hard
-  denial applies; long completions recover after max-output stops;
-  `aruhan query` prints the answer once.
-- **Engine selection:** Desktop picks the newest local engine and the IDE uses
-  its bundled engine instead of an older CLI on PATH. Restart a daemon started
-  by an older build before using the new one.
-- **Completion contract:** TaskLedger and DeliverableImpact are core tools,
-  fixing repeated Auto-continuing turns caused by hidden completion tools.
-- **Factory:** unified start composer, model-inferred project scale, heartbeat
-  liveness, execution-policy display and one config root for pipelines/packs.
+- **Approvals:** YOLO/BYPASS really skips per-tool prompts; hard-risk denials
+  still block. The IDE uses the composer's mode for the turn even when the
+  mode is selected and the message is sent immediately.
+- **Stop:** cancelling closes pending approvals, marks in-flight tools stopped
+  and no longer shows an `aborted` error; no extra reflection request runs
+  after cancellation.
+- **Language:** replies follow the latest user message unless an explicit
+  zh/en preference is set; code, paths, commands and errors keep their form.
+- **IDE:** destructive mode switches use an in-page confirmation because
+  sandboxed webviews ignore `window.confirm`.
+- **Engine selection:** clients reject wrong-architecture engines and pick
+  the newest matching build.
+- **Factory installer:** bundles both factory and aruhan; login autostart is
+  optional and unchecked by default.
+
+This is a corrective rebuild from source; the v2.1.20 attachments predate
+these fixes.
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
 
@@ -249,13 +246,7 @@ For commercial licensing, private deployment, or custom development, contact
   do not use it as the sole basis for legal, medical, or investment decisions.
 - You must comply with the laws and regulations of your jurisdiction and may not use the
   software for unlawful purposes.
-- You are responsible for complying with the terms of any AI provider you configure.
-
-### Acknowledgements
-
-- Thanks to the contributors of all open-source dependencies (the full list is included in
-  each package's license inventory).
-- Thanks to the model providers that make the supported workflows possible.
+- You are responsible for complying with the terms of any model service you configure.
 
 ---
 
