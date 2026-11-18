@@ -23,6 +23,26 @@ work started after v2.1.19. Configuration and data formats are unchanged.
   response finishes. Later reasoning groups use the same rule; the collapsed
   row keeps only line and token counts.
 
+### TUI input and selection
+
+- Drag selection covers the whole visible screen: transcript, tool cards,
+  status/progress lines, approval banners and the input box. Releasing the
+  mouse copies automatically; the selection survives streaming output.
+- `F8` hands the mouse back to the terminal for native selection/QuickEdit
+  and restores in-app capture when pressed again. The status bar keeps the
+  restore hint visible while capture is off.
+- Burst-typed or pasted text is batched, so a pasted block is no longer
+  submitted line by line.
+- The input box uses a closed square border on all themes; frame height stays
+  stable during resize.
+
+### Code index
+
+- Unresolved references are retried when their owning package changes instead
+  of staying unresolved forever.
+- Corrupt SQLite indexes are detected and rebuilt in place without touching
+  user configuration.
+
 ### Language and runtime
 
 - Assistant reply language defaults to the language of the user's latest
@@ -114,6 +134,20 @@ v2.1.20 让 Desktop 与 IDE 插件的对话记录与 TUI 对齐，修复旧引�
   修改行一眼可见。
 - 思考块在模型思考时展开、回答完成后折叠；后续推理组使用同一规则，折叠行只保留
   行数与 token 估算。
+
+### TUI 输入与选择
+
+- 拖拽选择覆盖整个可见屏幕：对话记录、工具卡、状态/进度行、审批横幅和输入框。
+  松开鼠标自动复制，流式输出不会移动选区。
+- `F8` 把鼠标交还终端做原生选择/QuickEdit，再按一次恢复应用内捕获；交还期间状态栏
+  常驻恢复提示。
+- 连续键入/粘贴的文本会合并处理，粘贴整段内容不再逐行提交。
+- 所有主题的输入框改为闭合直角边框；窗口缩放时帧高度保持稳定。
+
+### 代码索引
+
+- 所属包变化时会重试未解析引用，不再永久停留在未解析状态。
+- 检测到损坏的 SQLite 索引时就地重建，不改动用户配置。
 
 ### 语言与运行时
 
