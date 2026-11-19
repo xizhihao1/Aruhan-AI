@@ -23,7 +23,7 @@ set -euo pipefail
 # --- 可配置常量 ---
 OWNER="guleng2005"
 REPO="Aruhan-AI"
-DEFAULT_VERSION="v2.1.24"
+DEFAULT_VERSION="v2.1.25"
 # Gitee release 下载基础 URL (若 Gitee 实际 URL 格式不同, 改这里)
 BASE_URL="https://gitee.com/${OWNER}/${REPO}/releases/download"
 

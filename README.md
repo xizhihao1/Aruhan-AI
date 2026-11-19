@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.24 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.25 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,7 +61,7 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.24
+### What's new in 2.1.25
 
 - **Turn result:** every work turn now ends with a model-written conclusion. A new WrapUp tool records the summary, changes, verification, remaining work and next actions; Desktop, VS Code, CLI and TUI render it as one result block. Machine-checked status and remaining items are the fallback.
 - **Stop/timeout:** cancelled or timed-out turns also carry a result, so the UI tells you where it stopped and what remains instead of only saying “cancelled”.
@@ -240,7 +240,7 @@ For commercial licensing, private deployment, or custom development, contact
 
 > 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
 
-**版本：** 2.1.24 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+**版本：** 2.1.25 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
 
 [English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
 
@@ -295,11 +295,10 @@ Aruhan 是一套共享同一套本地运行时的多端产品：
 > 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
 > Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-### 2.1.24 更新内容
+### 2.1.25 更新内容
 
-- **辩论开关**：关闭后不再“卡在开启”。发送时记录的显示快照会让任务继续按辩论结构渲染，失效的活跃任务 id 又会让任务级更新变成空操作；现在切换会同步更新两者，无有效任务时写全局默认并持久化。
-- **已删任务不再复活**：3.4MB 的本地 WAL 占满 5MB localStorage，任务列表、回收站快照和删除标记都写不进去，归档于是在每次启动时重建已删任务。现在超限本地 WAL 会被丢弃（Go journal 仍是权威恢复源），软删除同时持久化删除 id 与归档空墓碑，恢复逻辑跳过它们。
-- 任务行按钮文案由“删除工作”改为“删除任务”。
+- **供应商编辑**：Base URL → 默认模型 → API Key 每一步都有独立输入框。此前默认模型这一步仍显示刚输入的 URL，确认后会把 URL 存成模型 id。
+- **弹窗**：鼠标拖选文字并在弹窗外释放时不再关闭弹窗；遮罩关闭要求按下和点击都发生在遮罩上。
 - 无需迁移配置或数据。
 
 ### 快速开始
