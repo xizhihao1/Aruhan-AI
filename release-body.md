@@ -1,77 +1,55 @@
-# Aruhan v2.1.22
+# Aruhan v2.1.23
 
-**Release date / 发布日期：2026-11-19** · [Checksums / 校验和](v2.1.22-SHA256SUMS.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.22) · [GitHub](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.22) · [English](#english) · [中文](#中文)
+**Release date / 发布日期：2026-11-19** · [Checksums / 校验和](v2.1.23-SHA256SUMS.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.23) · [GitHub](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.23) · [English](#english) · [中文](#中文)
 
 ---
 
 ## English
 
-v2.1.22 makes the end of a turn explicit. Until now the UI showed whatever
-sentence the model happened to write last; on tool-heavy turns that sentence
-was often a progress line written before the final tool ran, or no sentence at
-all. Users could not tell whether the task was complete, partially complete,
-stopped, or waiting for them. This release adds a model-written turn
-conclusion, carries it through the shared protocol, and renders it consistently
-in Desktop, the VS Code extension, the CLI and the TUI. Configuration and data
-formats are unchanged.
+v2.1.23 is a Desktop patch release. It fixes two user-visible defects found in
+real use: long tool chains flickered between all-expanded and collapsed, and
+the completion sound kept ringing. Neither affected the VS Code extension.
+Configuration and data formats are unchanged.
 
-### Turn result: a conclusion the model actually writes
+### Tool cards no longer flicker
 
-- New `WrapUp` tool. On any turn where the model changed files, ran commands,
-  completed multi-step work, or stopped because it needs a decision, it records
-  `status`, a substantive summary, `changes`, `verification`, `remaining` and
-  `next_actions` before writing its closing message.
-- The engine captures that record and attaches it to the turn as `outcome`,
-  together with machine-checkable facts: status, open work, stop reason,
-  duration and tool count. If the model does not call `WrapUp`, the engine
-  nudges it once (bounded); if it still does not, clients fall back to the
-  machine facts, so no turn ends without a result block.
-- The closing instruction no longer conflicts with the stop gate. “Do not stop
-  to summarize” applies only while work remains; once the work is closed, a
-  conclusion is required.
-- `message_done`, `cancelled` and `error` now all carry `outcome`. A user stop
-  or a timeout reports where the turn stopped and what remains instead of only
-  saying “cancelled”.
-- Desktop, VS Code, CLI and TUI render the same block: status, model summary,
-  remaining work, stop reason and next step. Changes and verification are
-  available under “Details” so the conclusion stays readable.
+- Long-chain grouping was evaluated on every streaming render and collapsed
+  whenever no tool was running. Sequential tools leave such a gap between every
+  pair, so the list alternated between “many cards” and “one summary card”.
+- Grouping is now deferred until the turn really ends. While the turn is live
+  every tool card stays expanded; after completion the chain folds once into a
+  labelled “N tool calls” summary. The summary now uses the translated label
+  instead of a bare number.
+- The VS Code extension already grouped only at reply end and is unchanged.
 
-### Desktop
+### Completion sound rings once
 
-- The turn-result card is compact: model summary, up to three remaining items
-  and the next step stay visible; changes, verification and extra remaining
-  items fold into Details.
-- When the model's WrapUp summary substantially repeats the closing message,
-  it is shown only once.
-- Tool-result diffs are read-only. Per-hunk Accept/Reject and “apply selected”
-  were removed: the tool already wrote the file, so those buttons were a second
-  partial write, not an approval. Use checkpoint/undo to revert a change.
-  The dedicated file-preview diff keeps its review actions.
-
-### VS Code extension
-
-- The extension host used to drop the new `outcome` field while normalizing
-  stream events, so the IDE never received the result block. It is now
-  forwarded and typed in the shared protocol.
-- Assistant turns are flat: no nested cards. Completed tool calls collapse into
-  one “N tool calls” process row; failures stay visible. The transcript uses
-  VS Code surface colors, 4–8px radii and one accent instead of gradients,
-  blur and per-tool theme colors.
-- The composer textarea had no `min-width` in its flex row, so it shrank to one
-  character wide and Chinese input rendered vertically. It now takes the
-  remaining width; narrow panels hide the history button and resize grip.
+- Root cause: interrupted-task recovery (WAL replay) appended duplicate task
+  entries with the same id and name “Recovered task” on successive starts. The
+  global task-status listener walked the array, so the same id changed between
+  `completed` and `cancelled` repeatedly and played the completion sound each
+  time — reproduced as 24 sounds in 200 seconds.
+- The task list is now deduplicated by id at startup (and cleaned on disk);
+  WAL recovery no longer creates a placeholder for an id that already exists.
+  The sound listener also ignores duplicate ids.
+- A five-second startup mute prevents task-list and approval recovery from
+  playing any sound while the application is starting. Normal completion and
+  approval alerts resume immediately afterwards.
+- Approval sounds are deduplicated by request id, so reconnecting and re-reading
+  pending approvals cannot replay the same alert.
 
 ### Verification
 
-- `go test` for engine, query, tools, permission and i18n; desktop `tsc` and
-  ChatView tests; VS Code build, event-routing and debate-render tests; i18n
-  gate.
-- Real-input runs: a Windows Desktop build created and read back a file and
-  displayed the model-written result card; a VS Code window with the packaged
-  VSIX did the same, including Chinese composer input and the result block
-  after the host-forwarding fix.
+- Real Desktop run with a diagnostic build: before the fix, 24 `task_done`
+  sounds in 200 seconds; after the fix, one status transition and no repeated
+  sound. Startup with the fix produced zero sound events in 12 seconds, and the
+  stored task list went from 9 entries (four duplicates) to 5 unique tasks.
+- A real model turn with six read-only tool calls: cards stayed expanded while
+  streaming and folded once at completion.
+- Desktop `tsc --noEmit`; desktop tool-group tests 5/5; shared render tests
+  31/31; version consistency and brand gates.
 - Checksums for every artifact are in
-  [v2.1.22-SHA256SUMS.txt](v2.1.22-SHA256SUMS.txt). Windows binaries remain
+  [v2.1.23-SHA256SUMS.txt](v2.1.23-SHA256SUMS.txt). Windows binaries remain
   unsigned; SmartScreen may warn.
 
 ### Upgrade notes
@@ -79,54 +57,49 @@ formats are unchanged.
 - Replace the CLI/TUI/Desktop binaries and reinstall the VSIX.
 - Restart any daemon started by an older build; a running process cannot be
   replaced in place.
-- No configuration or data migration is required.
+- No configuration or data migration is required. Existing duplicate task
+  entries are cleaned automatically on first start.
 
 ---
 
 ## 中文
 
-v2.1.22 解决的是“一轮结束时到底发生了什么”说不清的问题。此前界面只显示模型最后碰巧写下的那句话；工具密集的回合里，那句话常常是最后一次工具执行前的进度描述，甚至整轮没有正文。用户无法判断任务是完成了、部分完成、被停止，还是在等自己。这个版本增加由模型撰写的回合结论，通过共享协议传到各端，并在 Desktop、VS Code 插件、CLI 和 TUI 中一致呈现。配置与数据格式不变。
+v2.1.23 是 Desktop 的修补版本，修复真实使用中发现的两个可见问题：长工具链在“全部展开”和“折叠成一条”之间来回跳变，以及完成提示音持续响。两者都不影响 VS Code 插件。配置与数据格式不变。
 
-### 回合结果：由模型真正写出的结论
+### 工具卡片不再跳变
 
-- 新增 `WrapUp` 工具。凡是改过文件、跑过命令、完成多步工作，或因需要用户决策而停止的回合，模型在写收尾消息前记录 `status`、实质性总结、`changes`、`verification`、`remaining` 和 `next_actions`。
-- 引擎捕获这份记录，作为 `outcome` 随回合返回，同时附带机器可核对的事实：状态、未完成项、停止原因、耗时和工具调用数。模型没有调用 `WrapUp` 时，引擎会有界地提醒一次；仍未调用时，客户端退回机器事实，保证没有回合缺少结果区。
-- 收尾指令不再与收尾闸门冲突。“不许停下来总结”只在还有未完成工作时生效；工作清空后必须给出结论。
-- `message_done`、`cancelled`、`error` 都携带 `outcome`。用户停止或超时不再只显示“已取消”，而是说明停在哪、还剩什么。
-- Desktop、VS Code、CLI、TUI 使用同一套内容：状态、模型总结、剩余工作、停止原因、下一步。改动和验证收进“详情”，避免结论区变成第二篇长文。
+- 长链聚合此前在每次流式渲染时都判断，只要“当前没有 running 工具”就折叠。工具是串行执行的，每两个工具之间都会出现这种空档，于是卡片在“很多张”和“一张摘要”之间反复切换。
+- 现在聚合推迟到整轮真正结束之后：运行中所有工具卡保持展开；结束后一次性折叠为带文字的“N 步工具调用”摘要，摘要也由纯数字改为本地化文案。
+- VS Code 插件本来只在回复结束时聚合一次，本次未改动。
 
-### Desktop
+### 完成提示音只响一次
 
-- 结果卡更紧凑：模型总结、最多 3 条剩余工作和下一步常驻；改动、验证和更多剩余项折叠进“详情”。
-- 模型 `WrapUp` 总结与收尾正文高度重复时，只显示一次。
-- 工具结果 diff 改为只读。移除逐 hunk 的接受/拒绝和“应用所选”：工具已经写完文件，这些按钮实质是第二次部分回写，不是审批。需要撤销时使用检查点/回退。独立文件预览面板保留审查操作。
-
-### VS Code 插件
-
-- 扩展宿主在归一化流事件时丢掉了新的 `outcome` 字段，导致 IDE 一直收不到结果卡；现已透传并纳入共享协议类型。
-- 助手回合改为扁平结构，不再层层套卡片。已完成的工具调用收成一行“N 步工具调用”，失败项保持可见。界面使用 VS Code 原生表面色、4–8px 圆角和单一强调色，去掉渐变、毛玻璃和每种工具一套主题色。
-- 输入框此前没有 `min-width`，被两侧按钮挤成一个字符宽，中文输入呈竖排；现已占满剩余宽度，窄面板隐藏历史按钮和拖拽手柄。
+- 根因：中断任务恢复（WAL 重放）在多次启动后不断追加同一 id、名为“已恢复的任务”的重复条目。全局任务状态监听按数组遍历，同一 id 在 `completed` 与 `cancelled` 之间被重复覆盖，每次都播放完成音——实测 200 秒内响 24 次。
+- 现在启动时按 id 去重任务列表并回写磁盘；WAL 恢复不再为已存在的 id 创建占位任务；提示音监听也跳过重复 id。
+- 新增 5 秒启动静音：应用启动阶段的任务列表恢复与审批补拉不播放任何提示音，之后立即恢复正常提醒。
+- 审批音按 request_id 去重，重连补拉或事件重放都不会重复播放同一条审批提示。
 
 ### 验证
 
-- 引擎、query、工具、权限与 i18n 的 Go 测试；Desktop `tsc` 与 ChatView 测试；VS Code 构建、事件路由与辩论渲染测试；i18n 门禁。
-- 真实输入验证：Windows Desktop 构建创建并读回文件，显示模型撰写的结果卡；带打包 VSIX 的 VS Code 窗口完成同样操作，中文输入与结果卡均正常。
-- 所有产物的校验和见 [v2.1.22-SHA256SUMS.txt](v2.1.22-SHA256SUMS.txt)。Windows 二进制仍未签名，SmartScreen 可能提示。
+- 带诊断日志的真实 Desktop 运行：修复前 200 秒内 24 次 `task_done`；修复后只有一次状态跃迁、没有重复提示音。修复版启动后 12 秒内提示音事件为 0，任务列表由 9 条（含 4 条重复）收敛为 5 条唯一任务。
+- 一次真实模型回合包含 6 个只读工具：运行中卡片保持展开，结束后只折叠一次。
+- Desktop `tsc --noEmit`；Desktop 工具聚合测试 5/5；共享渲染测试 31/31；版本一致性与品牌门禁通过。
+- 所有产物的校验和见 [v2.1.23-SHA256SUMS.txt](v2.1.23-SHA256SUMS.txt)。Windows 二进制仍未签名，SmartScreen 可能提示。
 
 ### 升级说明
 
 - 替换 CLI/TUI/Desktop 二进制并重新安装 VSIX。
 - 使用旧版本启动的 daemon 需要重启；运行中的进程无法原地替换。
-- 无需迁移配置或数据。
+- 无需迁移配置或数据。历史重复任务条目会在首次启动时自动清理。
 
 ### Artifacts
 
 - Windows: Aruhan-Setup, Aruhan-CLI-Setup, Aruhan-Desktop-Setup and Factory-Setup installers; portable CLI/Desktop ZIPs; TUI installer.
 - Linux/macOS: aruhan-* and factory-* tarballs with standalone binaries.
 - VS Code: aruhan-vscode.vsix.
-- Evidence: sbom.cdx.json, licenses.json, Aruhan-Manuals-2.1.22.zip, v2.1.22-SHA256SUMS.txt.
+- Evidence: sbom.cdx.json, licenses.json, Aruhan-Manuals-2.1.23.zip, v2.1.23-SHA256SUMS.txt.
 
-All Windows binaries are unsigned; SmartScreen may warn. Verify every download against v2.1.22-SHA256SUMS.txt.
+All Windows binaries are unsigned; SmartScreen may warn. Verify every download against v2.1.23-SHA256SUMS.txt.
 
 ---
 
@@ -135,6 +108,6 @@ All Windows binaries are unsigned; SmartScreen may warn. Verify every download a
 - Windows：Aruhan-Setup、Aruhan-CLI-Setup、Aruhan-Desktop-Setup、Factory-Setup 安装包；CLI/Desktop 便携 ZIP；TUI 安装器。
 - Linux/macOS：aruhan-* 与 factory-* tar 包及独立二进制。
 - VS Code：aruhan-vscode.vsix。
-- 佐证：sbom.cdx.json、licenses.json、Aruhan-Manuals-2.1.22.zip、v2.1.22-SHA256SUMS.txt。
+- 佐证：sbom.cdx.json、licenses.json、Aruhan-Manuals-2.1.23.zip、v2.1.23-SHA256SUMS.txt。
 
-Windows 二进制均未签名，SmartScreen 可能提示。下载后请用 v2.1.22-SHA256SUMS.txt 校验。
+Windows 二进制均未签名，SmartScreen 可能提示。下载后请用 v2.1.23-SHA256SUMS.txt 校验。

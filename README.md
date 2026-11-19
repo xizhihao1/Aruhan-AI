@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.22 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.23 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,7 +61,7 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.22
+### What's new in 2.1.23
 
 - **Turn result:** every work turn now ends with a model-written conclusion. A new WrapUp tool records the summary, changes, verification, remaining work and next actions; Desktop, VS Code, CLI and TUI render it as one result block. Machine-checked status and remaining items are the fallback.
 - **Stop/timeout:** cancelled or timed-out turns also carry a result, so the UI tells you where it stopped and what remains instead of only saying “cancelled”.
@@ -240,7 +240,7 @@ For commercial licensing, private deployment, or custom development, contact
 
 > 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
 
-**版本：** 2.1.22 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+**版本：** 2.1.23 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
 
 [English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
 
@@ -295,12 +295,12 @@ Aruhan 是一套共享同一套本地运行时的多端产品：
 > 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
 > Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-### 2.1.22 更新内容
+### 2.1.23 更新内容
 
-- **回合结果**：每个有产出的回合都以模型撰写的结论收尾。新增 WrapUp 工具记录总结、改动、验证、剩余工作和下一步；Desktop、VS Code、CLI、TUI 统一显示为一个结果区。机器可核对的状态与剩余项作为兜底。
-- **停止/超时**：取消或超时的回合同样带结果，界面会说明停在哪、还剩什么，而不是只说“已取消”。
-- **Desktop**：结果卡更紧凑（详情折叠）；工具结果 diff 改为只读——逐 hunk 接受/拒绝实质是第二次部分回写，不是审批。需要撤销时使用检查点/回退。
-- **IDE**：扩展宿主现在会把结果透传给 webview，因此同样显示结果卡；时间线改为扁平紧凑，已完成工具收成一行，输入框不再把中文挤成竖排。
+- **工具卡片**：长工具链不再在“全部展开”和“折叠成一条”之间来回跳变；聚合只在整轮结束时做一次，摘要显示为“N 步工具调用”。
+- **完成提示音**：重复的“已恢复的任务”条目会让完成音每隔几秒重播。任务列表现按 id 去重，恢复时跳过已存在的 id，一个任务只响一次。
+- **启动静音**：启动后前 5 秒不播放提示音，任务列表恢复与审批补拉不会在启动时提醒；审批音也按 request_id 去重。
+- VS Code 插件不受这两个问题影响。
 - 无需迁移配置或数据。
 
 ### 快速开始

@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.22 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.23 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,12 +61,12 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.22
+### What's new in 2.1.23
 
-- **Turn result:** every work turn ends with a model-written conclusion. A new WrapUp tool records the summary, changes, verification, remaining work and next actions; Desktop, VS Code, CLI and TUI render it as one result block. Machine-checked status and remaining items are the fallback.
-- **Stop/timeout:** cancelled or timed-out turns also carry a result, so the UI explains where it stopped and what remains.
-- **Desktop:** compact result card with folded details; tool-result diffs are read-only (use checkpoint/undo to revert).
-- **IDE:** the result now reaches the webview, the transcript is flat and compact, and the composer no longer renders Chinese input vertically.
+- **Tool cards:** long tool chains no longer alternate between expanded and folded. Grouping now happens once, when the turn ends; the summary reads "N tool calls".
+- **Completion sound:** duplicate "recovered task" entries made the completion alert replay every few seconds. Task lists are deduplicated by id, task recovery skips existing ids, and one task rings once.
+- **Startup:** the first five seconds after launch are silent, so task-list and approval recovery never alert on startup. Approval alerts are also deduplicated by request id.
+- The VS Code extension was not affected by either defect.
 - No configuration or data migration is required.
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
