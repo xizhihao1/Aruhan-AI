@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.21 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.22 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,25 +61,13 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.21
+### What's new in 2.1.22
 
-- **Approvals:** YOLO/BYPASS really skips per-tool prompts; hard-risk denials
-  still block. The IDE uses the composer's mode for the turn even when the
-  mode is selected and the message is sent immediately.
-- **Stop:** cancelling closes pending approvals, marks in-flight tools stopped
-  and no longer shows an `aborted` error; no extra reflection request runs
-  after cancellation.
-- **Language:** replies follow the latest user message unless an explicit
-  zh/en preference is set; code, paths, commands and errors keep their form.
-- **IDE:** destructive mode switches use an in-page confirmation because
-  sandboxed webviews ignore `window.confirm`.
-- **Engine selection:** clients reject wrong-architecture engines and pick
-  the newest matching build.
-- **Factory installer:** bundles both factory and aruhan; login autostart is
-  optional and unchecked by default.
-
-This is a corrective rebuild from source; the v2.1.20 attachments predate
-these fixes.
+- **Turn result:** every work turn ends with a model-written conclusion. A new WrapUp tool records the summary, changes, verification, remaining work and next actions; Desktop, VS Code, CLI and TUI render it as one result block. Machine-checked status and remaining items are the fallback.
+- **Stop/timeout:** cancelled or timed-out turns also carry a result, so the UI explains where it stopped and what remains.
+- **Desktop:** compact result card with folded details; tool-result diffs are read-only (use checkpoint/undo to revert).
+- **IDE:** the result now reaches the webview, the transcript is flat and compact, and the composer no longer renders Chinese input vertically.
+- No configuration or data migration is required.
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
 

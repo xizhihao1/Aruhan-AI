@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.21 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.22 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,27 +61,14 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.21
+### What's new in 2.1.22
 
-- **Approvals:** YOLO/BYPASS really skips per-tool prompts; hard-risk denials
-  still block. The IDE uses the composer's mode for the turn even when the
-  mode is selected and the message is sent immediately.
-- **Stop:** cancelling closes pending approvals, marks in-flight tools stopped
-  and no longer shows an `aborted` error; no extra reflection request runs
-  after cancellation.
-- **Language:** replies follow the latest user message unless an explicit
-  zh/en preference is set; code, paths, commands and errors keep their form.
-- **IDE:** destructive mode switches use an in-page confirmation because
-  sandboxed webviews ignore `window.confirm`.
-- **Engine selection:** clients reject wrong-architecture engines and pick
-  the newest matching build.
-- **Factory installer:** bundles both factory and aruhan; login autostart is
-  optional and unchecked by default.
+- **Turn result:** every work turn now ends with a model-written conclusion. A new WrapUp tool records the summary, changes, verification, remaining work and next actions; Desktop, VS Code, CLI and TUI render it as one result block. Machine-checked status and remaining items are the fallback.
+- **Stop/timeout:** cancelled or timed-out turns also carry a result, so the UI tells you where it stopped and what remains instead of only saying “cancelled”.
+- **Desktop:** the result card is compact (details fold away), and tool-result diffs are read-only — per-hunk Accept/Reject was a second partial write, not an approval. Use checkpoint/undo to revert.
+- **IDE:** the extension host now forwards the result to the webview, so the same result block appears. The transcript is flat and compact, completed tools collapse into one process row, and the composer no longer shrinks Chinese input to one character per line.
+- No configuration or data migration is required.
 
-This is a corrective rebuild from source; the v2.1.20 attachments predate
-these fixes.
-
-See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
 ### Quick start
 
 #### Windows
@@ -253,7 +240,7 @@ For commercial licensing, private deployment, or custom development, contact
 
 > 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
 
-**版本：** 2.1.21 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+**版本：** 2.1.22 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
 
 [English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
 
@@ -308,16 +295,13 @@ Aruhan 是一套共享同一套本地运行时的多端产品：
 > 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
 > Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
 
-### 2.1.21 更新内容
+### 2.1.22 更新内容
 
-- **审批档位**：YOLO/BYPASS 真正跳过逐工具审批，硬性风险仍会拒绝；IDE 选完档位立即发送也按输入区当前档位执行。
-- **停止**：取消会关闭待审批、把在飞工具标为已停止，不再显示 `aborted` 错误；取消后不再触发额外反思请求。
-- **回复语言**：默认跟随用户最新一条消息，显式 zh/en 设置仍可覆盖；代码、路径、命令和报错原文保持原样。
-- **IDE**：沙箱 webview 不支持 `window.confirm`，危险档位切换改在页面内确认。
-- **引擎选择**：客户端拒绝架构不匹配的引擎，选择最新的匹配构建。
-- **Factory 安装包**：同时包含 factory 与 aruhan；登录自启为可选组件，默认不勾选。
-
-本版为源码全量重构建；v2.1.20 的发布附件早于上述修复。
+- **回合结果**：每个有产出的回合都以模型撰写的结论收尾。新增 WrapUp 工具记录总结、改动、验证、剩余工作和下一步；Desktop、VS Code、CLI、TUI 统一显示为一个结果区。机器可核对的状态与剩余项作为兜底。
+- **停止/超时**：取消或超时的回合同样带结果，界面会说明停在哪、还剩什么，而不是只说“已取消”。
+- **Desktop**：结果卡更紧凑（详情折叠）；工具结果 diff 改为只读——逐 hunk 接受/拒绝实质是第二次部分回写，不是审批。需要撤销时使用检查点/回退。
+- **IDE**：扩展宿主现在会把结果透传给 webview，因此同样显示结果卡；时间线改为扁平紧凑，已完成工具收成一行，输入框不再把中文挤成竖排。
+- 无需迁移配置或数据。
 
 ### 快速开始
 

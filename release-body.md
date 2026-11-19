@@ -1,223 +1,140 @@
-# Aruhan v2.1.21
+# Aruhan v2.1.22
 
-**Release date / 发布日期：2026-11-19** · [Checksums / 校验和](v2.1.21-SHA256SUMS.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.21) · [GitHub](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.21) · [English](#english) · [中文](#中文)
+**Release date / 发布日期：2026-11-19** · [Checksums / 校验和](v2.1.22-SHA256SUMS.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.22) · [GitHub](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.22) · [English](#english) · [中文](#中文)
 
 ---
 
 ## English
 
-v2.1.21 is a corrective release built cleanly from source. The v2.1.20
-release attachments were produced before the approval, stop, language and
-engine-selection fixes landed, so this release rebuilds every artifact with
-those fixes included. Configuration and data formats are unchanged.
+v2.1.22 makes the end of a turn explicit. Until now the UI showed whatever
+sentence the model happened to write last; on tool-heavy turns that sentence
+was often a progress line written before the final tool ran, or no sentence at
+all. Users could not tell whether the task was complete, partially complete,
+stopped, or waiting for them. This release adds a model-written turn
+conclusion, carries it through the shared protocol, and renders it consistently
+in Desktop, the VS Code extension, the CLI and the TUI. Configuration and data
+formats are unchanged.
 
-### YOLO and approval modes
+### Turn result: a conclusion the model actually writes
 
-- Selecting YOLO (or BYPASS) now really disables per-tool approval prompts.
-  The evaluator's high-risk branch previously returned “ask” unconditionally,
-  even for YOLO, which is why every command, file read and directory listing
-  kept opening an approval dialog.
-- The IDE sends the composer's current mode with each message. Selecting YOLO
-  and sending immediately used to race the asynchronous settings save and run
-  the first turn with the old default mode; the turn now always uses the
-  mode shown in the composer, and the host echoes that mode back so the
-  executed turn and the composer agree.
-- High-risk operations are allowed in YOLO/BYPASS while hard-risk denials
-  still apply: catastrophic deletes, credential exfiltration patterns and
-  protected-path writes cannot be auto-approved.
-- Non-interactive callers still fail closed: an approval that cannot be
-  answered is denied instead of silently allowed.
-- Deny/ask reasons are preserved, so a blocked action explains why.
+- New `WrapUp` tool. On any turn where the model changed files, ran commands,
+  completed multi-step work, or stopped because it needs a decision, it records
+  `status`, a substantive summary, `changes`, `verification`, `remaining` and
+  `next_actions` before writing its closing message.
+- The engine captures that record and attaches it to the turn as `outcome`,
+  together with machine-checkable facts: status, open work, stop reason,
+  duration and tool count. If the model does not call `WrapUp`, the engine
+  nudges it once (bounded); if it still does not, clients fall back to the
+  machine facts, so no turn ends without a result block.
+- The closing instruction no longer conflicts with the stop gate. “Do not stop
+  to summarize” applies only while work remains; once the work is closed, a
+  conclusion is required.
+- `message_done`, `cancelled` and `error` now all carry `outcome`. A user stop
+  or a timeout reports where the turn stopped and what remains instead of only
+  saying “cancelled”.
+- Desktop, VS Code, CLI and TUI render the same block: status, model summary,
+  remaining work, stop reason and next step. Changes and verification are
+  available under “Details” so the conclusion stays readable.
 
-### Stop now cancels the whole turn
+### Desktop
 
-- Desktop stop falls back to task-level cancellation when the stream ids are
-  no longer tracked, and cancels every pending approval belonging to that
-  stream. The daemon emits `permission_cancelled`.
-- The IDE sends `abort` with `stream_id`; the daemon cancels the stream and
-  its pending approvals, and the webview closes any open approval dialog.
-- Desktop and IDE clear the approval state on `permission_cancelled`; a
-  stopped run no longer keeps popping dialogs after the stop button.
-- A user stop is no longer rendered as an error. The engine used to emit an
-  `error` event with message `aborted` while the cancelled tool unwound,
-  which clients displayed as “⚠ aborted / 错误: aborted”. Both clients now
-  swallow post-stop error events, keep the stop notice localized, mark
-  in-flight tools as cancelled instead of done, and skip online reflection
-  after cancellation so no extra model request is made.
-- Verified with `ping -n 60`: stop ended the turn with “任务已被取消”, the
-  tool card showed a stopped mark, no “aborted” error appeared, and no dialog
-  appeared during 20 seconds of observation.
+- The turn-result card is compact: model summary, up to three remaining items
+  and the next step stay visible; changes, verification and extra remaining
+  items fold into Details.
+- When the model's WrapUp summary substantially repeats the closing message,
+  it is shown only once.
+- Tool-result diffs are read-only. Per-hunk Accept/Reject and “apply selected”
+  were removed: the tool already wrote the file, so those buttons were a second
+  partial write, not an approval. Use checkpoint/undo to revert a change.
+  The dedicated file-preview diff keeps its review actions.
 
-### Reply language
+### VS Code extension
 
-- The engine appends a transient, per-turn reminder to the latest user
-  message: answer in the language of that message unless an explicit
-  preference is configured. This is the same persistent-preference-with-
-  default behavior used by mature coding assistants.
-- The reminder fixes the drift where a Chinese request received an English
-  answer because the system language directive was buried among tool
-  instructions.
-- Code, identifiers, paths, commands and quoted errors keep their original
-  form. An explicit `zh`/`en` preference still wins.
-
-### IDE danger-mode confirmation
-
-- VS Code webviews are sandboxed iframes: `window.confirm()` is ignored and
-  returns `false`. The YOLO and full-access toolbar buttons therefore did
-  nothing in the IDE, and the catalog/media reset confirmations always
-  cancelled.
-- Destructive mode changes now use an in-page dialog with Cancel and
-  “I understand, enable”. The toolbar and the settings-defaults handlers
-  await the answer, then refresh the status bar so the active mode is visible.
-- Regression coverage was added to CI.
-
-### Engine selection
-
-- Desktop and IDE rejects bundled engines whose `arm64`/`amd64`/`386`
-  suffix does not match the host architecture and picks the newest matching
-  engine instead of an older CLI from `PATH`.
-- Restart any daemon started by an older build before using this one; a
-  running process cannot be replaced in place.
-
-### Factory installer
-
-- `Factory-Setup-2.1.21.exe` bundles both `factory.exe` and `aruhan.exe`,
-  the station-pack/pipeline/planner templates, and the web console. Factory
-  drives Aruhan as its executor, so both binaries are required for a working
-  install.
-- Login autostart is an optional section and is **unchecked by default**.
-  The installer does not start the service silently; the Start Menu/desktop
-  shortcut runs `factory service start -open`, and selecting the optional
-  section installs and starts the service at the end of setup.
-- Linux/macOS tarballs contain both binaries, templates, the web console and
-  `install.sh`.
+- The extension host used to drop the new `outcome` field while normalizing
+  stream events, so the IDE never received the result block. It is now
+  forwarded and typed in the shared protocol.
+- Assistant turns are flat: no nested cards. Completed tool calls collapse into
+  one “N tool calls” process row; failures stay visible. The transcript uses
+  VS Code surface colors, 4–8px radii and one accent instead of gradients,
+  blur and per-tool theme colors.
+- The composer textarea had no `min-width` in its flex row, so it shrank to one
+  character wide and Chinese input rendered vertically. It now takes the
+  remaining width; narrow panels hide the history button and resize grip.
 
 ### Verification
 
-- IDE, real mouse and keyboard on VS Code 1.145.2: YOLO selected through the
-  toolbar, danger dialog confirmed, status bar showed `yolo`; a Chinese prompt
-  requiring Bash returned a Chinese answer with 117 CJK characters and zero
-  approval dialogs; the Bash tool executed and returned the expected marker.
-- IDE select-and-send race: switching to YOLO and sending within 150 ms still
-  ran Bash with zero approval dialogs and returned the expected marker.
-- IDE stop: `ping -n 60 127.0.0.1` was stopped after the stop button appeared;
-  the UI showed “任务已被取消” with a stopped tool mark, no `aborted` error
-  event reached the webview, zero approval dialogs appeared, and the
-  transcript length stayed constant for 20 seconds.
-- Desktop, real mouse and keyboard: YOLO high-risk file read, glob and Bash
-  ran without dialogs; stop on `ping -n 60` reported
-  `handleQueryStop matched=1 cancelled=1`; a fresh Chinese request returned
-  Chinese prose.
-- Regression suites: Go tests for the changed engine/permission/daemon
-  packages, IDE `danger-confirm-webview`, inline diff/reasoning and
-  `yolo-permissions-confirm` tests, extension lint and webview syntax check.
-- Full artifact hashes: see `v2.1.21-SHA256SUMS.txt`.
+- `go test` for engine, query, tools, permission and i18n; desktop `tsc` and
+  ChatView tests; VS Code build, event-routing and debate-render tests; i18n
+  gate.
+- Real-input runs: a Windows Desktop build created and read back a file and
+  displayed the model-written result card; a VS Code window with the packaged
+  VSIX did the same, including Chinese composer input and the result block
+  after the host-forwarding fix.
+- Checksums for every artifact are in
+  [v2.1.22-SHA256SUMS.txt](v2.1.22-SHA256SUMS.txt). Windows binaries remain
+  unsigned; SmartScreen may warn.
 
 ### Upgrade notes
 
-- Official v2.1.21 builds inject `ExpiresAt=2027-02-28`; local builds without
-  `-Expires` are not time-limited.
-- Windows binaries are unsigned; SmartScreen may warn. Signing instructions:
-  [RELEASE-SIGNING](../operations/RELEASE-SIGNING.md).
-- Close Desktop, a running daemon and any `factory serve` before replacing
-  installed binaries. Reinstall the VSIX to pick up the new webview.
+- Replace the CLI/TUI/Desktop binaries and reinstall the VSIX.
+- Restart any daemon started by an older build; a running process cannot be
+  replaced in place.
+- No configuration or data migration is required.
 
 ---
 
 ## 中文
 
-v2.1.21 是基于源码重新全量构建的修正版。v2.1.20 的发布附件是在审批、
-停止、回复语言和引擎选择修复之前构建的；本版把全部修复重新打进所有
-安装包。配置与数据格式不变。
+v2.1.22 解决的是“一轮结束时到底发生了什么”说不清的问题。此前界面只显示模型最后碰巧写下的那句话；工具密集的回合里，那句话常常是最后一次工具执行前的进度描述，甚至整轮没有正文。用户无法判断任务是完成了、部分完成、被停止，还是在等自己。这个版本增加由模型撰写的回合结论，通过共享协议传到各端，并在 Desktop、VS Code 插件、CLI 和 TUI 中一致呈现。配置与数据格式不变。
 
-### YOLO 与审批档位
+### 回合结果：由模型真正写出的结论
 
-- 选择 YOLO（或 BYPASS）后不再逐工具弹出审批。此前权限评估器的
-  高危分支无条件返回“询问”，即使处于 YOLO 模式，导致每条命令、每次
-  读文件和列目录都弹窗。
-- IDE 发送消息时会带上输入区当前档位。此前选完 YOLO 立即发送会与
-  异步保存竞争，首个回合仍按旧的 default 档位执行；现在本回合一定使用
-  界面显示的档位，宿主还会回发权威档位，保证执行档位与输入区一致。
-- YOLO/BYPASS 下高危操作直接放行，但硬性风险仍然拒绝：灾难性删除、
-  凭据外泄模式、受保护路径写入不能自动批准。
-- 非交互调用仍然 fail-closed：无法获得答复的审批按拒绝处理，绝不静默放行。
-- 拒绝/询问的原因会保留，被阻止的操作能说明原因。
+- 新增 `WrapUp` 工具。凡是改过文件、跑过命令、完成多步工作，或因需要用户决策而停止的回合，模型在写收尾消息前记录 `status`、实质性总结、`changes`、`verification`、`remaining` 和 `next_actions`。
+- 引擎捕获这份记录，作为 `outcome` 随回合返回，同时附带机器可核对的事实：状态、未完成项、停止原因、耗时和工具调用数。模型没有调用 `WrapUp` 时，引擎会有界地提醒一次；仍未调用时，客户端退回机器事实，保证没有回合缺少结果区。
+- 收尾指令不再与收尾闸门冲突。“不许停下来总结”只在还有未完成工作时生效；工作清空后必须给出结论。
+- `message_done`、`cancelled`、`error` 都携带 `outcome`。用户停止或超时不再只显示“已取消”，而是说明停在哪、还剩什么。
+- Desktop、VS Code、CLI、TUI 使用同一套内容：状态、模型总结、剩余工作、停止原因、下一步。改动和验证收进“详情”，避免结论区变成第二篇长文。
 
-### 停止会取消整个回合
+### Desktop
 
-- 桌面端停止在流 ID 已失配时回退到按任务取消，并取消该流下所有待审批
-  请求；daemon 发出 `permission_cancelled`。
-- IDE 停止携带 `stream_id` 调用 `abort`；daemon 取消该流及其待审批请求，
-  webview 关闭已打开的审批弹窗。
-- 桌面端与 IDE 在收到 `permission_cancelled` 后清理审批状态；点击停止后
-  不会再持续弹窗。
-- 用户主动停止不再被渲染成错误。引擎在取消工具收尾时会发出
-  `error message="aborted"`，客户端此前显示为“⚠ aborted / 错误: aborted”。
-  现在两端都会吞掉停止后的 error 事件，停止提示使用本地化文案，
-  在飞工具标记为已取消而不是打勾，并且取消后不再触发在线反思，
-  不会再多发一次模型请求。
-- 用 `ping -n 60` 实测：停止后显示“任务已被取消”，工具卡显示停止标记，
-  不再出现 aborted 错误，持续观察 20 秒没有审批弹窗，输出长度保持不变。
+- 结果卡更紧凑：模型总结、最多 3 条剩余工作和下一步常驻；改动、验证和更多剩余项折叠进“详情”。
+- 模型 `WrapUp` 总结与收尾正文高度重复时，只显示一次。
+- 工具结果 diff 改为只读。移除逐 hunk 的接受/拒绝和“应用所选”：工具已经写完文件，这些按钮实质是第二次部分回写，不是审批。需要撤销时使用检查点/回退。独立文件预览面板保留审查操作。
 
-### 回复语言
+### VS Code 插件
 
-- 引擎在每轮请求中向“最新一条用户消息”追加一次性的语言提醒：除非用户
-  显式配置了语言，否则按这条消息的语言回答。这与成熟编程助手的“持久
-  偏好 + 未设置时跟随用户”行为一致。
-- 该提醒修复了中文需求返回英文的问题——原先语言指令被埋在大量工具说明中，
-  模型容易忽略。
-- 代码、标识符、路径、命令和引用的错误文本保持原样；显式 `zh`/`en`
-  偏好仍然优先。
-
-### IDE 危险档位确认
-
-- VS Code webview 是 sandbox iframe，`window.confirm()` 会被忽略并直接
-  返回 `false`。因此 IDE 中的 YOLO / 全电脑访问按钮此前点击无效，
-  目录重置、媒体清理等确认也总是取消。
-- 现在危险档位切换使用页面内对话框（取消 / 我已了解，仍要启用），
-  工具栏与“新会话默认值”都会等待用户答复，并在切换后刷新状态栏，
-  当前档位一眼可见。
-- 已加入 CI 回归测试。
-
-### 引擎选择
-
-- 桌面端与 IDE 会拒绝架构后缀（`arm64`/`amd64`/`386`）与本机不一致的
-  内置引擎，并选择最新的匹配引擎，而不是 PATH 中较旧的 CLI。
-- 使用新版前请重启旧版本启动的 daemon；运行中的进程无法原地替换。
-
-### Factory 安装包
-
-- `Factory-Setup-2.1.21.exe` 同时包含 `factory.exe` 与 `aruhan.exe`、
-  工位包/流水线/规划模板和 Web 控制台。Factory 通过 Aruhan 执行工位，
-  两者缺一不可。
-- 登录自启是可选组件，**默认不勾选**；安装程序不会静默启动服务。
-  开始菜单/桌面快捷方式执行 `factory service start -open`；勾选可选组件时
-  才会在安装结束时注册并启动服务。
-- Linux/macOS tar.gz 同样包含两个二进制、模板、Web 控制台和 `install.sh`。
+- 扩展宿主在归一化流事件时丢掉了新的 `outcome` 字段，导致 IDE 一直收不到结果卡；现已透传并纳入共享协议类型。
+- 助手回合改为扁平结构，不再层层套卡片。已完成的工具调用收成一行“N 步工具调用”，失败项保持可见。界面使用 VS Code 原生表面色、4–8px 圆角和单一强调色，去掉渐变、毛玻璃和每种工具一套主题色。
+- 输入框此前没有 `min-width`，被两侧按钮挤成一个字符宽，中文输入呈竖排；现已占满剩余宽度，窄面板隐藏历史按钮和拖拽手柄。
 
 ### 验证
 
-- IDE（VS Code 1.145.2，真实鼠标/键盘）：通过工具栏开启 YOLO 并确认
-  危险对话框，状态栏显示 `yolo`；中文需求实际调用 Bash，回答为中文
-  （117 个汉字），审批弹窗 0 次，命令输出包含预期标记。
-- IDE“选完立即发送”：切到 YOLO 后 150 毫秒内发送，Bash 仍然零审批执行，
-  返回预期标记。
-- IDE 停止：`ping -n 60 127.0.0.1` 运行中点击停止，界面显示“任务已被取消”
-  与工具停止标记，webview 不再收到 `aborted` 错误，审批弹窗 0 次，
-  随后 20 秒 transcript 长度保持不变。
-- 桌面端（真实鼠标/键盘）：YOLO 下高危读文件、Glob、Bash 均无弹窗；
-  停止 `ping -n 60` 记录 `handleQueryStop matched=1 cancelled=1`；
-  新中文需求返回中文。
-- 回归：相关 Go 引擎/权限/daemon 包测试、IDE `danger-confirm-webview`、
-  inline diff/思考与 `yolo-permissions-confirm` 测试、扩展 lint 与
-  webview 语法检查全部通过。
-- 全量产物校验和见 `v2.1.21-SHA256SUMS.txt`。
+- 引擎、query、工具、权限与 i18n 的 Go 测试；Desktop `tsc` 与 ChatView 测试；VS Code 构建、事件路由与辩论渲染测试；i18n 门禁。
+- 真实输入验证：Windows Desktop 构建创建并读回文件，显示模型撰写的结果卡；带打包 VSIX 的 VS Code 窗口完成同样操作，中文输入与结果卡均正常。
+- 所有产物的校验和见 [v2.1.22-SHA256SUMS.txt](v2.1.22-SHA256SUMS.txt)。Windows 二进制仍未签名，SmartScreen 可能提示。
 
 ### 升级说明
 
-- 官方 v2.1.21 构建注入 `ExpiresAt=2027-02-28`；未传 `-Expires` 的本地构建
-  不受时间限制。
-- Windows 二进制未签名，SmartScreen 可能提示；签名流程见
-  [RELEASE-SIGNING](../operations/RELEASE-SIGNING.md)。
-- 替换已安装二进制前请关闭桌面端、daemon 与 `factory serve`；IDE 需重新
-  安装 VSIX 以加载新的 webview。
+- 替换 CLI/TUI/Desktop 二进制并重新安装 VSIX。
+- 使用旧版本启动的 daemon 需要重启；运行中的进程无法原地替换。
+- 无需迁移配置或数据。
+
+### Artifacts
+
+- Windows: Aruhan-Setup, Aruhan-CLI-Setup, Aruhan-Desktop-Setup and Factory-Setup installers; portable CLI/Desktop ZIPs; TUI installer.
+- Linux/macOS: aruhan-* and factory-* tarballs with standalone binaries.
+- VS Code: aruhan-vscode.vsix.
+- Evidence: sbom.cdx.json, licenses.json, Aruhan-Manuals-2.1.22.zip, v2.1.22-SHA256SUMS.txt.
+
+All Windows binaries are unsigned; SmartScreen may warn. Verify every download against v2.1.22-SHA256SUMS.txt.
+
+---
+
+### 产物
+
+- Windows：Aruhan-Setup、Aruhan-CLI-Setup、Aruhan-Desktop-Setup、Factory-Setup 安装包；CLI/Desktop 便携 ZIP；TUI 安装器。
+- Linux/macOS：aruhan-* 与 factory-* tar 包及独立二进制。
+- VS Code：aruhan-vscode.vsix。
+- 佐证：sbom.cdx.json、licenses.json、Aruhan-Manuals-2.1.22.zip、v2.1.22-SHA256SUMS.txt。
+
+Windows 二进制均未签名，SmartScreen 可能提示。下载后请用 v2.1.22-SHA256SUMS.txt 校验。
