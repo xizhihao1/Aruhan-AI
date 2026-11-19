@@ -2,7 +2,7 @@
 
 > A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
 
-**Version:** 2.1.23 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+**Version:** 2.1.24 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
 [English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
 
@@ -61,12 +61,11 @@ Download the latest packages from the official Releases pages:
 > Always download from the official Releases pages and verify `SHA256SUMS` before running.
 > Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
 
-### What's new in 2.1.23
+### What's new in 2.1.24
 
-- **Tool cards:** long tool chains no longer alternate between expanded and folded. Grouping now happens once, when the turn ends; the summary reads "N tool calls".
-- **Completion sound:** duplicate "recovered task" entries made the completion alert replay every few seconds. Task lists are deduplicated by id, task recovery skips existing ids, and one task rings once.
-- **Startup:** the first five seconds after launch are silent, so task-list and approval recovery never alert on startup. Approval alerts are also deduplicated by request id.
-- The VS Code extension was not affected by either defect.
+- **Debate switch:** turning it off now sticks. The display snapshot captured at send time kept rendering the task as a debate, and a stale active task id made the per-task update a no-op; the toggle now updates both and persists the global default when no live task owns the switch.
+- **Deleted tasks stay deleted:** a 3.4MB local WAL filled the 5MB localStorage, so the task list, trash snapshot and deletion marker could not be written and the archive rebuilt deleted tasks on restart. Oversized local WAL copies are now dropped (the Go journal remains authoritative), soft deletion persists both a deletion id and an archive tombstone, and recovery skips them.
+- The task-row action is labelled "Delete task".
 - No configuration or data migration is required.
 
 See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
