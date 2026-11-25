@@ -1,0 +1,34 @@
+Aruhan Third-Party Notices
+==========================
+
+Aruhan is proprietary software. The components below are third-party works
+distributed under their own licenses; they are not relicensed by Aruhan.
+
+The authoritative, build-specific inventory is produced offline by:
+
+    aruhan licenses -out licenses.json
+    aruhan sbom -out sbom.cdx.json
+
+Selected direct dependencies (see go.mod / package.json for the full set):
+
+- github.com/pdfcpu/pdfcpu — Apache License 2.0
+- gorm.io/gorm — MIT License
+- github.com/glebarez/sqlite — MIT License
+- github.com/chromedp/chromedp — MIT License
+- github.com/xuri/excelize/v2 — BSD 3-Clause
+- github.com/go-telegram/bot — MIT License
+- github.com/charmbracelet/bubbletea — MIT License
+- github.com/charmbracelet/lipgloss — MIT License
+- github.com/charmbracelet/bubbles — MIT License
+- github.com/fsnotify/fsnotify — BSD 3-Clause
+- github.com/ledongthuc/pdf — BSD 3-Clause
+- github.com/mattn/go-runewidth — MIT License
+- github.com/muesli/termenv — MIT License
+- golang.org/x/image — BSD 3-Clause
+- golang.org/x/term — BSD 3-Clause
+- gopkg.in/yaml.v3 — MIT License
+
+Fonts and system components are covered in NOTICE.
+
+If a release includes a dependency not listed here, its license text is part of
+the generated licenses.json/SBOM and governs that component.
