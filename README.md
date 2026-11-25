@@ -1,6 +1,6 @@
 # Aruhan China mainland edition / 国内版
 
-Version: **v2.1.28**
+Version: **v2.1.29**
 
 Aruhan is a local-first AI engineering workspace: CLI, terminal UI, desktop
 app, VS Code extension, and the Factory control plane share one runtime and
@@ -64,31 +64,31 @@ Updates are checked against Gitee Releases only.
 
 ## Assets in this release
 
-- `darwin/aruhan-darwin-amd64-2.1.28-cn.tar.gz`
-- `darwin/aruhan-darwin-arm64-2.1.28-cn.tar.gz`
-- `darwin/factory-darwin-amd64-2.1.28-cn.tar.gz`
-- `darwin/factory-darwin-arm64-2.1.28-cn.tar.gz`
-- `linux/aruhan-linux-amd64-2.1.28-cn.tar.gz`
-- `linux/aruhan-linux-arm64-2.1.28-cn.tar.gz`
-- `linux/factory-linux-amd64-2.1.28-cn.tar.gz`
-- `linux/factory-linux-arm64-2.1.28-cn.tar.gz`
+- `darwin/aruhan-darwin-amd64-2.1.29-cn.tar.gz`
+- `darwin/aruhan-darwin-arm64-2.1.29-cn.tar.gz`
+- `darwin/factory-darwin-amd64-2.1.29-cn.tar.gz`
+- `darwin/factory-darwin-arm64-2.1.29-cn.tar.gz`
+- `linux/aruhan-linux-amd64-2.1.29-cn.tar.gz`
+- `linux/aruhan-linux-arm64-2.1.29-cn.tar.gz`
+- `linux/factory-linux-amd64-2.1.29-cn.tar.gz`
+- `linux/factory-linux-arm64-2.1.29-cn.tar.gz`
 - `vscode/aruhan-vscode-cn.vsix`
-- `windows/Aruhan-CLI-Setup-2.1.28-cn.exe`
+- `windows/Aruhan-CLI-Setup-2.1.29-cn.exe`
 - `windows/aruhan-cn.exe`
 - `windows/aruhan-desktop-arm64-cn.exe`
 - `windows/aruhan-desktop-cn.exe`
-- `windows/Aruhan-Desktop-Setup-2.1.28-cn.exe`
-- `windows/aruhan-desktop-windows-amd64-2.1.28-cn.zip`
-- `windows/aruhan-desktop-windows-arm64-2.1.28-cn.zip`
-- `windows/Aruhan-Setup-2.1.28-cn.exe`
+- `windows/Aruhan-Desktop-Setup-2.1.29-cn.exe`
+- `windows/aruhan-desktop-windows-amd64-2.1.29-cn.zip`
+- `windows/aruhan-desktop-windows-arm64-2.1.29-cn.zip`
+- `windows/Aruhan-Setup-2.1.29-cn.exe`
 - `windows/aruhan-tui-installer-windows-amd64-cn.exe`
 - `windows/aruhan-tui-installer-windows-arm64-cn.exe`
-- `windows/aruhan-windows-amd64-2.1.28-cn.zip`
+- `windows/aruhan-windows-amd64-2.1.29-cn.zip`
 - `windows/aruhan-windows-amd64-cn.exe`
-- `windows/aruhan-windows-arm64-2.1.28-cn.zip`
+- `windows/aruhan-windows-arm64-2.1.29-cn.zip`
 - `windows/aruhan-windows-arm64-cn.exe`
 - `windows/factory-cn.exe`
-- `windows/Factory-Setup-2.1.28-cn.exe`
+- `windows/Factory-Setup-2.1.29-cn.exe`
 - `windows/factory-windows-amd64-cn.exe`
 - `windows/factory-windows-arm64-cn.exe`
 
@@ -112,7 +112,7 @@ See [INSTALL.md](INSTALL.md). License terms are in [LICENSE](LICENSE) and
 
 # Aruhan 国内版
 
-版本：**v2.1.28**
+版本：**v2.1.29**
 
 Aruhan 是本地优先的 AI 工程工作台：CLI、终端 TUI、桌面端、VS Code 插件与
 Factory 控制面共享同一套运行时和同一个配置目录。
