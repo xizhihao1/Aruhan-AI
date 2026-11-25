@@ -1,4 +1,4 @@
-# Install / 安装 — Aruhan v2.1.28 (China mainland edition / 国内版)
+# Install / 安装 — Aruhan v2.1.29 (China mainland edition / 国内版)
 
 ## Windows
 
