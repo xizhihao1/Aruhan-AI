@@ -1,0 +1,37 @@
+NOTICE
+======
+
+Aruhan Project
+Copyright 2026 Aruhan Project. All rights reserved.
+
+Aruhan is proprietary software, not open source. Use is governed by the
+Aruhan Proprietary License in the LICENSE file. Personal, non-commercial use is
+permitted; commercial use requires a separate written commercial license.
+
+Aruhan 为专有软件，不是开源软件。使用受 LICENSE 文件中的 Aruhan 专有许可约束。
+允许个人非商业使用；商业使用须取得另行出具的书面商业授权。
+
+Third-party components remain under their own licenses. Their notices are
+listed below and in THIRD_PARTY_NOTICES; they are not relicensed by Aruhan.
+
+SimHei 字体声明
+----------------
+internal/tools/simhei.ttf 是微软 Windows 系统自带字体（SimHei/黑体），
+其版权归微软公司所有。该字体仅用于本地开发与测试环境，禁止自由再分发。
+
+该文件已加入 .gitignore，不会随源代码仓库分发。
+
+CJK 字体加载策略
+-----------------
+PDF CJK 文本生成使用操作系统已安装的系统字体（不再编译任何 OFL 字体进二进制）：
+  - Windows: SimHei (simhei.ttf) / Microsoft YaHei (msyh.ttf)
+  - Linux:   WenQuanYi Micro Hei (wqy-microhei.ttc)
+  - macOS:   PingFang (PingFang.ttc)
+
+代码会自动探测上述系统字体目录；如未找到可用字体，请安装对应系统字体
+或通过 Options.FontPath 指定 TTF 文件路径。
+
+第三方依赖声明
+--------------
+- github.com/pdfcpu/pdfcpu：Apache License 2.0，用于 PDF 内嵌图片抽取（extract_images）。
+  依赖源码与许可证随 Go module 分发；本仓库不复制其源码。
