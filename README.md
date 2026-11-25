@@ -1,455 +1,171 @@
-# Aruhan
+# Aruhan China mainland edition / 国内版
 
-> A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
+Version: **v2.1.28**
 
-**Version:** 2.1.25 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
+Aruhan is a local-first AI engineering workspace: CLI, terminal UI, desktop
+app, VS Code extension, and the Factory control plane share one runtime and
+one configuration directory.
 
-[English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
+This repository is a **release-only channel** for the China mainland edition.
+It contains compiled artifacts, install scripts, licenses, checksums, and
+release notes — not source code.
 
----
+## Core features
 
-## English
+- **No server.** There is no Aruhan-hosted backend: configuration, API keys,
+  sessions, memory, and artifacts stay on the user's machine, and code is never
+  uploaded to the publisher.
+- **Bring your own API key.** Model requests go only to the provider endpoint
+  the user configures.
+- **Free in the current version.** No license purchase or activation is
+  required.
 
-### What Aruhan is
+## Run
 
-Aruhan is a family of clients built on one shared local runtime:
+- CLI / REPL: `aruhan --plain`
+- One-shot: `aruhan query "..."`
+- TUI: `aruhan chat` (or just `aruhan` on an interactive terminal)
+- Desktop: `aruhan-desktop` (on Linux/macOS this is headless and opens the
+  browser UI)
+- Factory: `factory serve`, then open `http://127.0.0.1:8787/console/`
 
-| Client | What it is for | Entry point |
-|---|---|---|
-| **CLI / REPL** | Scriptable, line-oriented assistant for shells, CI, and remote machines | `aruhan`, `aruhan --plain` |
-| **TUI** | Full-screen terminal workspace with panels, modes, and key bindings | `aruhan chat` |
-| **Desktop** | Native window with chat, terminal, files, Git, sessions, memory, skills, MCP, bots, and settings | `aruhan-desktop` / Start Menu |
-| **VS Code extension** | In-editor chat, selection actions, review, sessions, memory, and Git/worktree commands | VSIX |
-| **Factory** | Pipeline-driven software production with a local web console, runs, gates, artifacts, backups, and multi-tenant controls | `factory` / `factory serve` |
+`aruhan-tui-installer-*` is an installer for the CLI/TUI, not a separate
+runtime. After it finishes, start Aruhan with the commands above.
 
-All clients share the same configuration directory. Configure a provider once and every client sees it.
+## Platform and testing status
 
-> **Your `models.json` and `aruhan.json` are the runtime authority.**
-> Built-in providers and models are only a seed used when those files are missing or corrupt.
-> Adding, editing, or deleting entries in any client changes what every client sees.
+- Windows packages have been tested.
+- Linux CLI/Factory binaries have been smoke-tested under WSL; macOS packages
+  are published but have not been exercised on real hardware. Please report
+  issues.
+- Desktop is a native window on Windows. On Linux and macOS it is headless:
+  `aruhan-desktop` serves the same UI at `http://127.0.0.1:9091/` (loopback
+  only) and opens the default browser. Set `ARUHAN_WAILS_PORT` before launch to
+  use another port; visit the URL manually if the browser does not open.
+- Windows installers are not code-signed. If Windows Security / SmartScreen
+  warns, choose **More info → Run anyway**. The warning reflects the missing
+  signature, not malware; verify `SHA256SUMS` if in doubt.
 
-### Download
+## Edition
 
-Download the latest packages from the official Releases pages:
-
-- **GitHub:** <https://github.com/xizhihao1/Aruhan-AI/releases>
-- **Gitee:** <https://gitee.com/guleng2005/Aruhan-AI/releases>
-
-| Platform | Package | Notes |
-|---|---|---|
-| Windows | `Aruhan-Setup-<version>.exe` | CLI + TUI + Desktop (NSIS installer) |
-| Windows | `Aruhan-CLI-Setup-<version>.exe` | CLI/TUI only |
-| Windows | `Aruhan-Desktop-Setup-<version>.exe` | Desktop only |
-| Windows | `Factory-Setup-<version>.exe` | Factory |
-| Windows | `aruhan-windows-{amd64,arm64}-<version>.zip` | Portable CLI/TUI |
-| Windows | `aruhan-desktop-windows-{amd64,arm64}-<version>.zip` | Portable Desktop |
-| Linux | `aruhan-linux-{amd64,arm64}-<version>.tar.gz` | CLI + Desktop + `install.sh` |
-| Linux | `factory-linux-{amd64,arm64}-<version>.tar.gz` | Factory + `install.sh` |
-| macOS | `aruhan-darwin-{amd64,arm64}-<version>.tar.gz` | CLI + Desktop + `install.sh` |
-| macOS | `factory-darwin-{amd64,arm64}-<version>.tar.gz` | Factory + `install.sh` |
-| Cross-platform | `aruhan-tui-installer-*` | Interactive TUI installer |
-| VS Code | `aruhan-vscode.vsix` | Extension with a bundled CLI engine |
-
-| Platform | Architectures | Minimum |
-|---|---|---|
-| Windows | x86_64 / ARM64 | Windows 10 / 11 |
-| Linux | x86_64 / ARM64 | Common glibc/musl distributions |
-| macOS | Intel / Apple Silicon | macOS 11+ |
-| VS Code | All three platforms | 1.85+ |
-
-> This repository distributes **compiled artifacts only**. It does not contain source code.
-> Always download from the official Releases pages and verify `SHA256SUMS` before running.
-> Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
-
-### What's new in 2.1.25
-
-- **Turn result:** every work turn now ends with a model-written conclusion. A new WrapUp tool records the summary, changes, verification, remaining work and next actions; Desktop, VS Code, CLI and TUI render it as one result block. Machine-checked status and remaining items are the fallback.
-- **Stop/timeout:** cancelled or timed-out turns also carry a result, so the UI tells you where it stopped and what remains instead of only saying “cancelled”.
-- **Desktop:** the result card is compact (details fold away), and tool-result diffs are read-only — per-hunk Accept/Reject was a second partial write, not an approval. Use checkpoint/undo to revert.
-- **IDE:** the extension host now forwards the result to the webview, so the same result block appears. The transcript is flat and compact, completed tools collapse into one process row, and the composer no longer shrinks Chinese input to one character per line.
-- No configuration or data migration is required.
-
-### Quick start
-
-#### Windows
-
-1. Download an installer from the Releases page.
-2. Run it. The default install root is `%LOCALAPPDATA%\Aruhan`.
-3. Open **Aruhan Desktop**, or run `aruhan setup` in a new terminal.
-4. Add a provider and API key, then choose a default model.
-5. Open a folder/workspace and start chatting.
-
-Portable ZIP builds do not install services or modify `PATH`; run the executable directly.
-Windows ARM64 users should prefer the ZIP packages.
-
-#### Linux / macOS
-
-```bash
-# CLI + Desktop
-tar -xzf aruhan-linux-amd64-<version>.tar.gz
-cd aruhan-linux-amd64
-./install.sh --user          # installs under ~/.local/share/aruhan
-# or: sudo ./install.sh      # installs under /usr/local/aruhan
-
-# Factory
-tar -xzf factory-linux-amd64-<version>.tar.gz
-cd factory-linux-amd64
-./install.sh --autostart     # optional user-level login autostart
-```
-
-Verify the installation:
-
-```bash
-aruhan --version
-aruhan doctor
-```
-
-#### VS Code
-
-Install `aruhan-vscode.vsix` from **Extensions → … → Install from VSIX…**, then open the
-Aruhan panel. The extension bundles its own CLI engine and uses the same shared configuration.
-
-### First configuration
-
-Interactive:
-
-```bash
-aruhan setup
-```
-
-Non-interactive (the plaintext key comes from the provider's console; Aruhan cannot recover it):
-
-```bash
-export MY_API_KEY="..."
-aruhan setup --provider <catalog-key> --model <model-id> --api-key-env MY_API_KEY --yes
-```
-
-The same settings can be managed in Desktop → **Settings / Models**, in the VS Code chat
-settings panel, or in the Factory console under **Settings → Execution models**.
-
-Media models (image/video) are managed separately in `media.json`, with their own defaults,
-enable/disable state, sync, and reset actions.
-
-### Shared files
-
-| File | Purpose |
+| Item | Value |
 |---|---|
-| `models.json` | Text model catalog: providers, base URLs, protocols, models, context limits |
-| `media.json` | Media catalog: image/video models, defaults, enabled/disabled state |
-| `aruhan.json` | Shared secrets and active selections; keys are encrypted at rest |
-| `terminal.json`, `desktop.json`, `vscode.json` | Per-client preferences (theme, permission mode, work mode, sandbox) |
-| `sessions/`, `memory/`, `logs/`, `history.json` | Local runtime data |
+| Edition | `cn` (China mainland edition) |
+| Release channel | https://gitee.com/guleng2005/Aruhan-AI/releases |
+| Update checks | Gitee Releases only |
+| Language / text models | DeepSeek, Doubao (Volcengine Ark), Qwen / Tongyi, Zhipu GLM, Moonshot Kimi, SenseTime, MiniMax, StepFun |
+| Image / video | Doubao Seedream/Seedance, Kling, Tongyi Wanxiang, Zhipu CogView |
+| Speech | FishSpeech TTS; whisper.cpp local STT |
 
-Default locations:
+This build only allows models and media providers operated in mainland China.
+Foreign model providers are filtered from the catalog, settings, and every
+outbound request; there is no cross-edition fallback.
+Updates are checked against Gitee Releases only.
 
-- Windows: `%APPDATA%\Aruhan`
-- Linux: `${XDG_CONFIG_HOME:-~/.config}/Aruhan`
-- macOS: `~/Library/Application Support/Aruhan`
+## Assets in this release
 
-Override with `ARUHAN_HOME` (highest priority) or `ARUHAN_DATA_DIR`.
+- `darwin/aruhan-darwin-amd64-2.1.28-cn.tar.gz`
+- `darwin/aruhan-darwin-arm64-2.1.28-cn.tar.gz`
+- `darwin/factory-darwin-amd64-2.1.28-cn.tar.gz`
+- `darwin/factory-darwin-arm64-2.1.28-cn.tar.gz`
+- `linux/aruhan-linux-amd64-2.1.28-cn.tar.gz`
+- `linux/aruhan-linux-arm64-2.1.28-cn.tar.gz`
+- `linux/factory-linux-amd64-2.1.28-cn.tar.gz`
+- `linux/factory-linux-arm64-2.1.28-cn.tar.gz`
+- `vscode/aruhan-vscode-cn.vsix`
+- `windows/Aruhan-CLI-Setup-2.1.28-cn.exe`
+- `windows/aruhan-cn.exe`
+- `windows/aruhan-desktop-arm64-cn.exe`
+- `windows/aruhan-desktop-cn.exe`
+- `windows/Aruhan-Desktop-Setup-2.1.28-cn.exe`
+- `windows/aruhan-desktop-windows-amd64-2.1.28-cn.zip`
+- `windows/aruhan-desktop-windows-arm64-2.1.28-cn.zip`
+- `windows/Aruhan-Setup-2.1.28-cn.exe`
+- `windows/aruhan-tui-installer-windows-amd64-cn.exe`
+- `windows/aruhan-tui-installer-windows-arm64-cn.exe`
+- `windows/aruhan-windows-amd64-2.1.28-cn.zip`
+- `windows/aruhan-windows-amd64-cn.exe`
+- `windows/aruhan-windows-arm64-2.1.28-cn.zip`
+- `windows/aruhan-windows-arm64-cn.exe`
+- `windows/factory-cn.exe`
+- `windows/Factory-Setup-2.1.28-cn.exe`
+- `windows/factory-windows-amd64-cn.exe`
+- `windows/factory-windows-arm64-cn.exe`
 
-### Capabilities
+Verify downloads:
 
-- **One shared model catalog** for CLI, TUI, Desktop, VS Code, and Factory.
-- **Full provider/model CRUD**, including built-in entries; deletions are protected by
-  tombstones so upgrades do not silently resurrect them.
-- **Separate media catalog** (`media.json`) for text-to-image and text-to-video.
-- **Encrypted credentials** in `aruhan.json`; plaintext provider keys are never stored.
-- **Local-first:** files, sessions, memory, and credentials stay on your machine; model
-  requests go only to the provider you configure.
-- **Permission and sandbox layers:** permission mode, work mode, and file-access scope are
-  independent controls.
-- **Code agent:** read/write/search the workspace, run commands, debug, refactor, and use Git.
-- **Long-running work:** autonomous goals (`aruhan goal`) and Factory pipelines with
-  pause/resume/rollback.
-- **Operations:** diagnostics (`aruhan doctor`), audit hash chain, SBOM, license inventory,
-  backups, and checksums.
-- **Bots and integrations:** Feishu, WeCom, DingTalk, Telegram, and Slack gateways.
-- **Content tools:** Office/PDF/Markdown/CSV processing, image and video analysis/generation
-  (implemented; image/video features are not yet fully tested).
+```bash
+sha256sum -c SHA256SUMS
+```
 
-### Documentation
+```powershell
+Get-FileHash -Algorithm SHA256 <file>
+# compare with the matching line in SHA256SUMS
+```
 
-The bilingual manuals are published with every release as `Aruhan-Manuals-<version>.zip`.
-They are organized by client, with English first and Chinese below:
+## Install
 
-- Installation and package selection
-- CLI / REPL
-- TUI
-- Desktop
-- VS Code extension
-- Factory
-- Models and credentials
-- Troubleshooting
-- Security and legal
-
-### Verification and security
-
-- Verify every download against `SHA256SUMS` published on the Releases page.
-- Windows builds are currently unsigned; SmartScreen warnings are expected for unsigned binaries.
-- Aruhan executes model-requested tools. Review permission mode and sandbox scope before
-  enabling `auto` or `yolo`.
-- Do not commit `aruhan.json`, `models.json` with embedded secrets, session databases, or logs.
-- Reverse engineering, decompilation, disassembly, or attempts to bypass licensing, tenant
-  isolation, or credential protection are prohibited by project policy and may violate law
-  or third-party terms.
-
-### Contact
-
-For questions, suggestions, bug reports, or partnership inquiries:
-
-- **Email:** <37735973@qq.com>
-
-### License and commercial use
-
-This repository distributes compiled binaries only. Use of the software is subject to the
-following terms:
-
-| Scenario | Authorization |
-|---|---|
-| Personal, non-commercial use | Free to try; no separate authorization required |
-| Enterprise / team commercial use | Commercial authorization required |
-| Private deployment | Commercial authorization required |
-| Custom modification | Commercial authorization required |
-| Resale / redistribution | **Prohibited** |
-| Reverse engineering | **Prohibited** (no decompilation, disassembly, or other reverse engineering) |
-| Removing copyright notices | **Prohibited** |
-
-For commercial licensing, private deployment, or custom development, contact
-<37735973@qq.com>.
-
-### Disclaimer
-
-- The software, installers, documentation, and all related materials are provided **“as is”**,
-  without any express or implied warranty, including merchantability, fitness for a
-  particular purpose, and non-infringement.
-- You use the software **at your own risk**. The author is not liable for any direct or
-  indirect loss, including data loss, business interruption, or lost profits.
-- **Do not use in high-risk production environments**, including medical, aviation, nuclear,
-  autonomous driving, core financial trading, or industrial control systems, without written
-  authorization and a separate liability agreement.
-- AI-generated content may be incorrect, biased, or inappropriate. Verify it independently;
-  do not use it as the sole basis for legal, medical, or investment decisions.
-- You must comply with the laws and regulations of your jurisdiction and may not use the
-  software for unlawful purposes.
-- You are responsible for complying with the terms of any model service you configure.
-
----
+See [INSTALL.md](INSTALL.md). License terms are in [LICENSE](LICENSE) and
+[LICENSE.zh-CN.md](LICENSE.zh-CN.md).
 
 ## 中文
 
-> 本地优先的 AI 工程工作台：终端助手、桌面端、IDE 插件与 AI 软件工厂。
+# Aruhan 国内版
 
-**版本：** 2.1.25 · **平台：** Windows、Linux、macOS（amd64 / arm64） · **VS Code：** 1.85+
+版本：**v2.1.28**
 
-[English](#english) · [中文](#中文) · [下载](#下载) · [发布页](https://gitee.com/guleng2005/Aruhan-AI/releases)
+Aruhan 是本地优先的 AI 工程工作台：CLI、终端 TUI、桌面端、VS Code 插件与
+Factory 控制面共享同一套运行时和同一个配置目录。
 
-### Aruhan 是什么
+本仓库是**国内版的发布专用仓库**，只存放编译产物、安装脚本、许可证、
+校验和与发布说明，不存放源码。
 
-Aruhan 是一套共享同一套本地运行时的多端产品：
+## 核心特点
 
-| 客户端 | 用途 | 入口 |
-|---|---|---|
-| **CLI / REPL** | 面向 Shell、CI、远程机器的行式助手，可脚本化 | `aruhan`、`aruhan --plain` |
-| **TUI** | 全屏终端工作台，带面板、模式与快捷键 | `aruhan chat` |
-| **桌面端** | 原生窗口，集成聊天、终端、文件、Git、会话、记忆、技能、MCP、机器人与设置 | `aruhan-desktop` / 开始菜单 |
-| **VS Code 插件** | 编辑器内聊天、选区操作、代码审查、会话、记忆与 Git/Worktree 命令 | VSIX |
-| **Factory（软件工厂）** | 流水线化软件生产：本机 Web 控制台、运行、卡点、工件、备份与多租户能力 | `factory` / `factory serve` |
+- **无服务端**：没有 Aruhan 托管的后端，配置、API Key、会话、记忆和产物都保存在
+  用户本机，代码不会上传给发布者。
+- **自备 API Key**：模型请求只发往用户配置的供应商端点。
+- **当前版本免费开放**：无需购买授权或激活。
 
-所有客户端共用同一个配置目录。配置一次供应商，各端都能使用。
+## 运行
 
-> **你的 `models.json` 和 `aruhan.json` 才是运行时权威。**
-> 内置供应商和模型只在文件缺失或损坏时作为种子生成。
-> 在任意一端新增、修改或删除，都会改变其他端看到的内容。
+- CLI / REPL：`aruhan --plain`
+- 一次性查询：`aruhan query "..."`
+- TUI：`aruhan chat`（交互终端也可直接运行 `aruhan`）
+- 桌面端：`aruhan-desktop`（Linux/macOS 为 headless，会打开浏览器 UI）
+- Factory：`factory serve` 后打开 `http://127.0.0.1:8787/console/`
 
-### 下载
+`aruhan-tui-installer-*` 是 CLI/TUI 的安装器，不是独立运行程序；安装完成后
+用上面的命令启动。
 
-请从官方发布页下载最新安装包：
+## 平台与测试状态
 
-- **GitHub：** <https://github.com/xizhihao1/Aruhan-AI/releases>
-- **Gitee：** <https://gitee.com/guleng2005/Aruhan-AI/releases>
+- Windows 安装包已测试。
+- Linux 的 CLI/Factory 二进制已在 WSL 冒烟通过；macOS 安装包已发布但尚未在
+  真机验证，试用后欢迎反馈问题。
+- Windows 上是原生窗口；Linux 与 macOS 为 headless：启动 `aruhan-desktop` 后在
+  `http://127.0.0.1:9091/` 提供同一套 UI（只监听本机回环），并用默认浏览器打开。
+  启动前设置 `ARUHAN_WAILS_PORT` 可换端口；浏览器未弹出时手动访问该地址。
+- Windows 安装包未做代码签名。Windows 安全中心 / SmartScreen 拦截时选择
+  **【更多信息】→【仍要运行】**；该提示仅因缺少签名，并非病毒；如有疑虑请核对
+  `SHA256SUMS`。
 
-| 平台 | 安装包 | 说明 |
-|---|---|---|
-| Windows | `Aruhan-Setup-<版本>.exe` | CLI + TUI + 桌面端（NSIS 安装向导） |
-| Windows | `Aruhan-CLI-Setup-<版本>.exe` | 仅 CLI/TUI |
-| Windows | `Aruhan-Desktop-Setup-<版本>.exe` | 仅桌面端 |
-| Windows | `Factory-Setup-<版本>.exe` | 软件工厂 |
-| Windows | `aruhan-windows-{amd64,arm64}-<版本>.zip` | 便携版 CLI/TUI |
-| Windows | `aruhan-desktop-windows-{amd64,arm64}-<版本>.zip` | 便携版桌面端 |
-| Linux | `aruhan-linux-{amd64,arm64}-<版本>.tar.gz` | CLI + 桌面端 + `install.sh` |
-| Linux | `factory-linux-{amd64,arm64}-<版本>.tar.gz` | 软件工厂 + `install.sh` |
-| macOS | `aruhan-darwin-{amd64,arm64}-<版本>.tar.gz` | CLI + 桌面端 + `install.sh` |
-| macOS | `factory-darwin-{amd64,arm64}-<版本>.tar.gz` | 软件工厂 + `install.sh` |
-| 全平台 | `aruhan-tui-installer-*` | TUI 交互式安装器 |
-| VS Code | `aruhan-vscode.vsix` | 内置 CLI 引擎的 IDE 插件 |
+## 发行版信息
 
-| 平台 | 架构 | 最低要求 |
-|---|---|---|
-| Windows | x86_64 / ARM64 | Windows 10 / 11 |
-| Linux | x86_64 / ARM64 | 主流 glibc/musl 发行版 |
-| macOS | Intel / Apple Silicon | macOS 11+ |
-| VS Code | 三平台 | 1.85+ |
-
-> 本仓库仅分发**编译产物**，不含源代码。
-> 请只从官方 Releases 页下载，并在运行前核对 `SHA256SUMS`。
-> Windows 二进制目前**未代码签名**，首次运行可能出现 SmartScreen 提示。
-
-### 2.1.25 更新内容
-
-- **供应商编辑**：Base URL → 默认模型 → API Key 每一步都有独立输入框。此前默认模型这一步仍显示刚输入的 URL，确认后会把 URL 存成模型 id。
-- **弹窗**：鼠标拖选文字并在弹窗外释放时不再关闭弹窗；遮罩关闭要求按下和点击都发生在遮罩上。
-- 无需迁移配置或数据。
-
-### 快速开始
-
-#### Windows
-
-1. 从发布页下载安装包。
-2. 运行安装包。默认安装目录：`%LOCALAPPDATA%\Aruhan`。
-3. 打开 **Aruhan Desktop**，或在新终端运行 `aruhan setup`。
-4. 添加供应商和 API Key，选择默认模型。
-5. 打开一个文件夹/工作区，开始对话。
-
-ZIP 便携版不安装服务、不修改 `PATH`，解压后直接运行可执行文件。Windows ARM64 用户
-建议使用 ZIP 包。
-
-#### Linux / macOS
-
-```bash
-# CLI + 桌面端
-tar -xzf aruhan-linux-amd64-<版本>.tar.gz
-cd aruhan-linux-amd64
-./install.sh --user          # 安装到 ~/.local/share/aruhan
-# 或：sudo ./install.sh      # 安装到 /usr/local/aruhan
-
-# Factory
-tar -xzf factory-linux-amd64-<版本>.tar.gz
-cd factory-linux-amd64
-./install.sh --autostart     # 可选：注册用户登录自启
-```
-
-验证安装：
-
-```bash
-aruhan --version
-aruhan doctor
-```
-
-#### VS Code
-
-通过 **扩展 → … → 从 VSIX 安装…** 安装 `aruhan-vscode.vsix`，然后打开 Aruhan 面板。
-插件内置 CLI 引擎，并使用同一套共享配置。
-
-### 首次配置
-
-交互式：
-
-```bash
-aruhan setup
-```
-
-非交互式（明文密钥来自供应商控制台，Aruhan 无法找回）：
-
-```bash
-export MY_API_KEY="..."
-aruhan setup --provider <目录中的供应商 key> --model <模型 ID> --api-key-env MY_API_KEY --yes
-```
-
-也可以在桌面端 **设置 / 模型**、VS Code 聊天设置面板，或 Factory 控制台的
-**系统设置 → 执行模型** 中完成同样的配置。
-
-媒体模型（图片/视频）单独保存在 `media.json`，支持默认项、启停、合并与恢复。
-
-### 共享文件
-
-| 文件 | 用途 |
+| 项目 | 内容 |
 |---|---|
-| `models.json` | 文本模型目录：供应商、Base URL、协议、模型、上下文上限 |
-| `media.json` | 媒体目录：图片/视频模型、默认项、启停状态 |
-| `aruhan.json` | 共享密钥与当前选择；密钥加密保存 |
-| `terminal.json`、`desktop.json`、`vscode.json` | 各端偏好（主题、权限模式、工作模式、沙箱） |
-| `sessions/`、`memory/`、`logs/`、`history.json` | 本地运行数据 |
+| 发行版 | `cn`（国内版） |
+| 发布通道 | https://gitee.com/guleng2005/Aruhan-AI/releases |
+| 更新检查 | Gitee Releases only |
+| 语言/文本模型 | DeepSeek、Doubao (Volcengine Ark)、Qwen / Tongyi、Zhipu GLM、Moonshot Kimi、SenseTime、MiniMax、StepFun |
+| 图片/视频 | Doubao Seedream/Seedance, Kling, Tongyi Wanxiang, Zhipu CogView |
+| 语音 | FishSpeech TTS; whisper.cpp local STT |
 
-默认位置：
+本构建仅允许中国境内运营的模型与媒体供应商。
+国外模型供应商会从目录、设置和所有对外请求中过滤，不存在跨发行版回退。
+更新仅检查 Gitee Releases。
 
-- Windows：`%APPDATA%\Aruhan`
-- Linux：`${XDG_CONFIG_HOME:-~/.config}/Aruhan`
-- macOS：`~/Library/Application Support/Aruhan`
+## 安装
 
-可用 `ARUHAN_HOME`（最高优先级）或 `ARUHAN_DATA_DIR` 覆盖。
-
-### 主要能力
-
-- **一套共享模型目录**：CLI、TUI、桌面端、VS Code、Factory 完全共用。
-- **供应商/模型完整增删改查**：内置条目也可删除；删除会写入墓碑，升级不会静默复活。
-- **独立媒体模型目录**（`media.json`）：文生图/文生视频的默认、启停、合并、恢复。
-- **加密凭据**：密钥保存在 `aruhan.json`，不保存明文供应商 Key。
-- **本地优先**：文件、会话、记忆和凭据留在本机；模型请求只发往你配置的供应商。
-- **权限与沙箱分层**：权限模式、工作模式、文件访问范围是三个独立控制项。
-- **Code Agent**：读写/搜索工作区、执行命令、调试修复、多文件重构、Git 操作。
-- **长任务能力**：自治目标（`aruhan goal`）与 Factory 流水线，支持暂停、恢复、回滚。
-- **运维工具**：诊断（`aruhan doctor`）、审计哈希链、SBOM、许可证清单、备份与校验和。
-- **Bot 与集成**：飞书、企业微信、钉钉、Telegram、Slack 网关。
-- **内容处理**：Office/PDF/Markdown/CSV，以及图片/视频分析与生成（已实现；图片/视频
-  功能尚未充分测试）。
-
-### 文档
-
-每个版本都会随 Release 提供双语文档 `Aruhan-Manuals-<版本>.zip`，按客户端组织，
-英文在上、中文在下：
-
-- 安装与安装包选择
-- CLI / REPL
-- TUI
-- 桌面端
-- VS Code 插件
-- Factory
-- 模型与凭据
-- 故障排查
-- 安全与法律
-
-### 校验与安全
-
-- 下载后请用发布页的 `SHA256SUMS` 核对完整性。
-- Windows 构建目前未签名，未签名程序出现 SmartScreen 提示属正常现象。
-- Aruhan 会执行模型请求的工具。开启 `auto` 或 `yolo` 前请确认权限模式与沙箱范围。
-- 不要提交 `aruhan.json`、含密钥的 `models.json`、会话数据库或日志。
-- 禁止逆向工程、反编译、反汇编，禁止绕过授权、租户隔离或凭据保护；这可能违反法律
-  或第三方条款。
-
-### 联系方式
-
-如有问题、建议、缺陷反馈或合作意向，欢迎联系：
-
-- **邮箱：** <37735973@qq.com>
-
-### 许可证与商业授权
-
-本仓库仅分发编译产物。使用本软件即表示同意以下条款：
-
-| 使用场景 | 授权 |
-|---|---|
-| 个人非商业用途 | 免费试用，无需另行授权 |
-| 企业 / 团队商业使用 | 须取得商业授权 |
-| 私有化部署 | 须取得商业授权 |
-| 二次定制改造 | 须取得商业授权 |
-| 转售 / 再分发 | **禁止** |
-| 逆向工程 | **禁止**（不得反编译、反汇编或以其他方式逆向） |
-| 移除版权信息 | **禁止** |
-
-如需商业授权、私有化部署或定制开发，请联系 <37735973@qq.com>。
-
-### 免责声明
-
-- 本软件（含安装包、文档及一切相关材料）按**“现状”**提供，不提供任何明示或暗示的
-  担保，包括但不限于对适销性、特定用途适用性、不侵权的担保。
-- 使用者**自行承担**使用本软件的全部风险；作者不对因使用或无法使用本软件造成的
-  **任何直接或间接损失**（含数据丢失、业务中断、利润损失等）负责。
-- **不得用于高危生产环境**：包括但不限于医疗、航空、核设施、自动驾驶、金融交易
-  核心系统、工业控制系统等；如需在此类环境使用，须取得书面授权并另行签订责任
-  界定协议。
-- AI 生成内容可能存在错误、偏见或不当信息，使用者应自行核实；不得将 AI 输出直接
-  用于法律、医疗、投资等高风险决策。
-- 使用者须遵守所在国家/地区法律法规，不得将本软件用于任何违法用途。
-- 使用者须自行确保所选模型服务的服务条款得到遵守。
+见 [INSTALL.md](INSTALL.md)。许可证见 [LICENSE](LICENSE) 与
+[LICENSE.zh-CN.md](LICENSE.zh-CN.md)。
