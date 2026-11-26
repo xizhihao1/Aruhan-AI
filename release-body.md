@@ -127,6 +127,10 @@ with this build.
   files only, user-state merge), platform legacy paths, portable sibling engine
   resolution including CPU architecture, and env-provider selection
   applicability.
+- Trial-state test on the release binary: `trial.json` is stored as
+  `enc:v1:...`; deleting it while the anchor remains exits 1 with the short
+  missing-state message; an expired legacy date exits 1 with the short
+  contact message.
 - Checksums: [CN](v2.1.30-SHA256SUMS.txt),
   [INTL](v2.1.30-SHA256SUMS-intl.txt). Windows binaries remain unsigned.
 - GitHub carries the complete CN and INTL asset sets; the Gitee mirror carries
@@ -136,9 +140,12 @@ with this build.
 
 ### Commercial use and legal notice
 
-Personal, non-commercial use is free. Commercial use, private/on-premises
-deployment, custom development, and source-code or perpetual buyout require a
-separate written commercial license: **37735973@qq.com**. Aruhan is provided
+Official release builds include a 30-day evaluation period from the first run.
+The first-run date is encrypted with a machine-bound key and anchored; deleting
+`trial.json` alone blocks startup. Continued use after the evaluation period,
+commercial use, private/on-premises deployment, custom development, and
+source-code or perpetual buyout require a separate written license:
+**37735973@qq.com**. Aruhan is provided
 **AS IS**, without warranty; to the maximum extent permitted by law the authors
 are not liable for AI output, tool execution, data loss, or other outcomes.
 Review every change, keep backups, use least-privilege permissions, and do not
@@ -251,6 +258,8 @@ v2.1.30 修复安装包数据目录分裂（密钥仍在磁盘却提示“未设
   postinstall/uninstall 与 unix 脚本通过 `bash -n`；`install.ps1` 语法解析通过。
 - 新增测试：旧安装器数据接管（首个有效候选、只补缺失文件、用户状态合并）、
   各平台旧目录、便携桌面同级引擎解析（含 CPU 架构）与环境变量供应商选择。
+- 发布二进制试用状态验证：`trial.json` 为 `enc:v1:...`；删除它但保留锚点时
+  退出码 1，并输出简短的缺失提示；旧日期到期时退出码 1，并输出简短联系提示。
 - 校验和：[国内版](v2.1.30-SHA256SUMS.txt)、
   [国际版](v2.1.30-SHA256SUMS-intl.txt)。Windows 二进制未签名。
 - GitHub 保留 CN/INTL 完整资产；Gitee 镜像提供 CN 安装包、便携压缩包、VSIX、
@@ -259,8 +268,10 @@ v2.1.30 修复安装包数据目录分裂（密钥仍在磁盘却提示“未设
 
 ### 商业使用与法律提示
 
-个人非商业使用免费。商业使用、私有化/本地部署、定制开发以及源码或永久买断，
-需要另行签署书面商业授权：**37735973@qq.com**。Aruhan 按**“现状”**提供，
+官方发布包包含从首次运行起算的 30 天评估期。首次运行日期使用机器绑定密钥加密
+并保存锚点；只删除 `trial.json` 会阻止启动。评估期结束后继续使用、商业使用、
+私有化/本地部署、定制开发以及源码或永久买断，需要另行签署书面授权：
+**37735973@qq.com**。Aruhan 按**“现状”**提供，
 不附带任何担保；在适用法律允许的最大范围内，作者不对 AI 输出、工具执行、
 数据丢失或其他使用后果承担责任。请审查每一处改动、保留备份、使用最小权限；
 未经独立验证，不要用于高风险环境。禁止逆向工程、绕过授权或租户隔离，以及
