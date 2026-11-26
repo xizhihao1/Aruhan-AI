@@ -1,14 +1,37 @@
-# Aruhan v2.1.29
+# Aruhan v2.1.30
 
-**Release date / 发布日期：2026-11-25** · [CN checksums / 国内版校验和](v2.1.29-SHA256SUMS.txt) · [INTL checksums / 国际版校验和](v2.1.29-SHA256SUMS-intl.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.29) · [English](#english) · [中文](#中文)
+**Release date / 发布日期：2026-11-26** · [CN checksums / 国内版校验和](v2.1.30-SHA256SUMS.txt) · [INTL checksums / 国际版校验和](v2.1.30-SHA256SUMS-intl.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.30) · [English](#english) · [中文](#中文)
 
 ---
 
 ## English
 
-v2.1.29 fixes the Windows installer data-directory split that could make an
-installed build show "API key not set" even though the key was still on disk.
-It includes all 2.1.28 features. Replace 2.1.28 installations with this build.
+Aruhan is a local-first AI engineering workspace: one engine behind a CLI,
+terminal UI, desktop app, VS Code extension, and the Factory control plane. It
+reads the repository, edits code, runs commands and tests, reviews the diff,
+and carries work through gated delivery pipelines — with your own API key and
+no publisher-hosted backend.
+
+v2.1.30 fixes the installer data-directory split that could make an installed
+build show "API key not set" even though the key was still on disk, fixes
+portable desktop engine selection, and refreshes the model catalog from official
+provider lists. It includes all 2.1.28 features. Replace 2.1.28 installations
+with this build.
+
+### Model catalog v18
+
+- **Doubao (Volcengine Ark).** Added the official `doubao-seed-2-1-pro-260915`
+  and turbo variants and updated the default; corrected models that had been
+  marked retired while still available.
+- **OpenRouter.** Fixed the fallback slug and added `gpt-6.2-astra-pro`.
+- **Groq.** Removed the retired `qwen3.8-27b`.
+- Retired-model entries are now scoped per provider, so one provider's
+  retirement no longer hides a same-named model at another provider.
+- `models.json` catalog version 17 → 18; existing user catalogs upgrade
+  automatically on first use.
+- GLM-5.4 is intentionally not added yet: the model was announced but its API
+  is not open. It will be added once the official API is available.
+- Catalogs are refreshed across CN and INTL; edition filtering is unchanged.
 
 ### One data directory on every install path
 
@@ -39,9 +62,35 @@ It includes all 2.1.28 features. Replace 2.1.28 installations with this build.
   referenced, and the uninstallers no longer remove an explicit user
   `ARUHAN_DATA_DIR`.
 - **Upgrade note.** If you use the combined Windows installer, installing
-  2.1.29 clears the old installer default from `ARUHAN_DATA_DIR`; the first
-  launch copies the old data automatically. Running 2.1.28 and 2.1.29 side by
+  2.1.30 clears the old installer default from `ARUHAN_DATA_DIR`; the first
+  launch copies the old data automatically. Running 2.1.28 and 2.1.30 side by
   side against different directories is not supported.
+
+### Portable desktop engine selection
+
+- A portable desktop now prefers the same-edition engine binary shipped next to
+  it before falling back to development `build/` intermediates. Previously a
+  CN portable desktop could pick up an INTL `aruhan` left in `build/` and the
+  daemon rejected the CN provider as unavailable. The same fix covers Linux
+  and macOS headless desktops.
+- Sibling-engine discovery also enforces the current CPU architecture. Release
+  directories ship both amd64 and arm64 engines; without this guard a newer
+  arm64 file could be selected on amd64 (and vice versa), making the daemon
+  fork fail and the desktop silently fall back to standalone mode.
+
+### Environment-provider parity in the UI
+
+- When `ARUHAN_API_KEY` / `ARUHAN_PROVIDER` are set, desktop, VS Code and TUI
+  now show that provider as configured and selected instead of "not
+  configured": the daemon's `model.list` / `provider.list` include env-only
+  providers (still edition-filtered), desktop settings and model selection use
+  the env provider/model, VS Code resolves it for the active provider and model
+  list, and the TUI marks it as current.
+- If `ARUHAN_PROVIDER` is set without `ARUHAN_MODEL` (or the model does not
+  belong to that provider), the TUI banner/status, `/provider`, `/model` and
+  desktop `currentModel` display the provider catalog default instead of
+  "unknown". Only the display changes; request routing keeps the engine's
+  existing fallback.
 
 ### 2.1.28 features included
 
@@ -61,20 +110,44 @@ It includes all 2.1.28 features. Replace 2.1.28 installations with this build.
 ### Verification
 
 - Release gate: CN and INTL matrices from the same source SHA, 59 artifacts
-  each, `SHA256SUMS` 57/57, `EDITION.txt` version 2.1.29.
+  each, `SHA256SUMS` 57/57, `EDITION.txt` version 2.1.30.
 - `check-edition-binary.mjs` reports no other-edition tokens in CN or INTL CLI,
   desktop and Factory binaries.
-- Catalog hot-refresh browser E2E on both release builds.
+- Catalog hot-refresh browser E2E on both release builds; catalog v18 provider
+  tests pass for CN and INTL, including scoped retired entries and the 17→18
+  upgrade path.
+- Real-window desktop check with env-only DeepSeek config and no
+  `ARUHAN_MODEL`: Settings → Models showed **DeepSeek 已配置** and
+  **DeepSeek V4.1 Flash**; `/api/models` returned
+  `activeProvider=deepseek`, `currentModel=deepseek-flash`. With a newer INTL
+  engine planted in `build/`, the product desktop selected the CN amd64 sibling
+  and the daemon stayed connected (no standalone fallback).
 - Installer checks: all three Windows NSIS scripts compile with NSIS 3.13; the
   macOS pkg postinstall/uninstall and unix scripts pass `bash -n`; `install.ps1`
   parses cleanly.
 - New tests: legacy installer data adoption (first useful candidate, missing
-  files only, user-state merge) and platform legacy paths.
-- Checksums: [CN](v2.1.29-SHA256SUMS.txt),
-  [INTL](v2.1.29-SHA256SUMS-intl.txt). Windows binaries remain unsigned.
+  files only, user-state merge), platform legacy paths, portable sibling engine
+  resolution including CPU architecture, and env-provider selection
+  applicability.
+- Checksums: [CN](v2.1.30-SHA256SUMS.txt),
+  [INTL](v2.1.30-SHA256SUMS-intl.txt). Windows binaries remain unsigned.
 - GitHub carries the complete CN and INTL asset sets; the Gitee mirror carries
-  the CN installers/archives/VSIX plus Windows TUI installers (repo-wide 1 GB
-  attachment quota; full set remains on GitHub).
+  the CN installers, portable archives, VSIX, Windows TUI installers, and
+  Linux/macOS desktop binaries (repo-wide 1 GB attachment quota; bare CLI
+  binaries remain on GitHub).
+
+### Commercial use and legal notice
+
+Personal, non-commercial use is free. Commercial use, private/on-premises
+deployment, custom development, and source-code or perpetual buyout require a
+separate written commercial license: **37735973@qq.com**. Aruhan is provided
+**AS IS**, without warranty; to the maximum extent permitted by law the authors
+are not liable for AI output, tool execution, data loss, or other outcomes.
+Review every change, keep backups, use least-privilege permissions, and do not
+use Aruhan in high-risk environments without independent validation. Reverse
+engineering, bypassing licensing or tenant isolation, and resale or
+redistribution without written permission are prohibited. The release README
+and `DISCLAIMER.md` carry the full notice.
 
 ### Upgrade notes
 
@@ -87,9 +160,25 @@ It includes all 2.1.28 features. Replace 2.1.28 installations with this build.
 
 ## 中文
 
-v2.1.29 修复 Windows 安装包的数据目录分裂问题：安装后即使密钥仍在磁盘上，
-界面也可能提示“未设置 API Key”。本版包含 2.1.28 的全部功能，请用本版替换
-2.1.28 安装。
+Aruhan 是本地优先的 AI 工程工作台：同一套引擎驱动 CLI、终端 TUI、桌面端、
+VS Code 插件和 Factory 控制面。它会阅读仓库、修改代码、执行命令与测试、
+审查差异，并让工作经过带门禁的交付流水线；使用你自己的 API Key，没有发布者
+托管的后端。
+
+v2.1.30 修复安装包数据目录分裂（密钥仍在磁盘却提示“未设置 API Key”）、
+便携桌面引擎选择，并按供应商官网复核刷新模型目录。本版包含 2.1.28 的全部
+功能，请用本版替换 2.1.28 安装。
+
+### 模型目录 v18
+
+- **豆包（火山方舟）。** 加入官方 `doubao-seed-2-1-pro-260915` 与 turbo 变体
+  并更新默认项；纠正仍在提供却被误标退役的模型。
+- **OpenRouter。** 修正回退 slug，补充 `gpt-6.2-astra-pro`。
+- **Groq。** 删除已退役的 `qwen3.8-27b`。
+- 退役表改为按供应商作用域，某个供应商的退役记录不再误伤其他供应商的同名模型。
+- `models.json` 目录版本 17 → 18；用户已有的旧目录在首次使用时自动升级。
+- GLM-5.4 暂不加入：官方已发布但 API 未开放，待 API 可用后再补。
+- CN/INTL 两版目录同步刷新，发行版过滤逻辑不变。
 
 ### 各安装方式统一到一个数据目录
 
@@ -112,8 +201,30 @@ v2.1.29 修复 Windows 安装包的数据目录分裂问题：安装后即使密
   macOS/Linux 的 pkg、unix 与 TUI 卸载器始终保留数据。macOS pkg 现在真正随包
   安装 README 中引用的 `uninstall.sh`，且各卸载器不再删除用户显式设置的
   `ARUHAN_DATA_DIR`。
-- **升级说明。** 使用 Windows 整合包的用户安装 2.1.29 时会清除旧安装器写入的
-  默认变量，首次启动自动复制旧数据。不支持 2.1.28 与 2.1.29 并行使用不同目录。
+- **升级说明。** 使用 Windows 整合包的用户安装 2.1.30 时会清除旧安装器写入的
+  默认变量，首次启动自动复制旧数据。不支持 2.1.28 与 2.1.30 并行使用不同目录。
+
+### 便携桌面引擎选择
+
+- 便携桌面现在优先使用同目录随包部署的**同发行版**引擎，再回退到开发用的
+  `build/` 中间产物。此前 CN 便携桌面可能选中 `build/` 中残留的 INTL
+  `aruhan`，daemon 因而报 CN 供应商在国际版不可用。Linux/macOS headless
+  桌面同样修复。
+- 同级引擎探测同时校验 CPU 架构：发布目录会同时放 amd64/arm64 引擎，若不校验，
+  amd64 机器可能选中更新的 arm64 文件（反之亦然），daemon fork 失败后桌面会
+  静默降级为 standalone。
+
+### 环境变量供应商在各端 UI 的显示
+
+- 设置 `ARUHAN_API_KEY` / `ARUHAN_PROVIDER` 后，桌面、VS Code 与 TUI 会把该
+  供应商显示为已配置、已选中，不再显示“未配置”：daemon 的 `model.list` /
+  `provider.list` 纳入仅由环境变量提供的供应商（仍按发行版过滤），桌面设置与
+  模型选择使用 env 供应商/模型，VS Code 解析为当前供应商与模型，TUI 标记为
+  current。
+- 设置 `ARUHAN_PROVIDER` 但未设置 `ARUHAN_MODEL`（或模型不属于该供应商）时，
+  TUI banner/状态栏、`/provider`、`/model` 与桌面 `currentModel` 显示该供应商
+  目录中的默认模型，不再显示“unknown”。仅影响显示；请求路由仍沿用引擎原有
+  回退逻辑。
 
 ### 包含的 2.1.28 功能
 
@@ -130,18 +241,34 @@ v2.1.29 修复 Windows 安装包的数据目录分裂问题：安装后即使密
 ### 验证
 
 - 发布门禁：CN/INTL 使用同一源码 SHA，各 59 个产物，`SHA256SUMS` 57/57，
-  `EDITION.txt` 版本 2.1.29。
+  `EDITION.txt` 版本 2.1.30。
 - `check-edition-binary.mjs` 对 CN/INTL 的 CLI、桌面与 Factory 二进制均未发现
   对方版本 token。
-- 两个发行版执行目录热刷新浏览器 E2E。
+- 两个发行版执行目录热刷新浏览器 E2E；目录 v18 的 CN/INTL 供应商测试通过，
+  覆盖退役表按供应商作用域与 17→18 自动升级。
+- 真实桌面窗口验证：仅设置 env DeepSeek、未设 `ARUHAN_MODEL` 时，设置→模型
+  显示 **DeepSeek 已配置**、**DeepSeek V4.1 Flash**；`/api/models` 返回
+  `activeProvider=deepseek`、`currentModel=deepseek-flash`。在 `build/` 放入
+  更新的 INTL 引擎后，产品桌面仍选中同级 CN amd64 引擎，daemon 保持连接，
+  未降级 standalone。
 - 安装器检查：三个 Windows NSIS 脚本均通过 NSIS 3.13 编译；macOS pkg 的
   postinstall/uninstall 与 unix 脚本通过 `bash -n`；`install.ps1` 语法解析通过。
-- 新增测试：旧安装器数据接管（首个有效候选、只补缺失文件、用户状态合并）与
-  各平台旧目录。
-- 校验和：[国内版](v2.1.29-SHA256SUMS.txt)、
-  [国际版](v2.1.29-SHA256SUMS-intl.txt)。Windows 二进制未签名。
-- GitHub 保留 CN/INTL 完整资产；Gitee 镜像提供 CN 安装包/压缩包/VSIX 与
-  Windows TUI 安装器（仓库附件配额 1GB，完整集合见 GitHub）。
+- 新增测试：旧安装器数据接管（首个有效候选、只补缺失文件、用户状态合并）、
+  各平台旧目录、便携桌面同级引擎解析（含 CPU 架构）与环境变量供应商选择。
+- 校验和：[国内版](v2.1.30-SHA256SUMS.txt)、
+  [国际版](v2.1.30-SHA256SUMS-intl.txt)。Windows 二进制未签名。
+- GitHub 保留 CN/INTL 完整资产；Gitee 镜像提供 CN 安装包、便携压缩包、VSIX、
+  Windows TUI 安装器与 Linux/macOS 桌面二进制（仓库附件配额 1GB，裸 CLI
+  二进制保留在 GitHub）。
+
+### 商业使用与法律提示
+
+个人非商业使用免费。商业使用、私有化/本地部署、定制开发以及源码或永久买断，
+需要另行签署书面商业授权：**37735973@qq.com**。Aruhan 按**“现状”**提供，
+不附带任何担保；在适用法律允许的最大范围内，作者不对 AI 输出、工具执行、
+数据丢失或其他使用后果承担责任。请审查每一处改动、保留备份、使用最小权限；
+未经独立验证，不要用于高风险环境。禁止逆向工程、绕过授权或租户隔离，以及
+未经书面许可的转售或再分发。完整条款见发布 README 与 `DISCLAIMER.md`。
 
 ### 升级说明
 
