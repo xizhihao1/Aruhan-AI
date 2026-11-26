@@ -55,14 +55,35 @@ approval prompts show the exact command or file change before it happens.
 
 | Surface | Best for | Entry point |
 |---|---|---|
-| **CLI / REPL** | Scripts, automation, quick one-shot tasks | `aruhan`, `aruhan query "..."` |
-| **Terminal UI** | Long interactive sessions without leaving the shell | `aruhan chat` |
+| **CLI / REPL** | Scripts, automation, quick one-shot tasks | `aruhan --plain`, `aruhan query "..."` |
+| **Terminal UI** | Long interactive sessions without leaving the shell | `aruhan` (default on a terminal), `aruhan chat` |
 | **Desktop** | Visual review, settings, sessions, and Factory console | `aruhan-desktop` |
 | **VS Code extension** | Keeping the agent beside the code you are editing | the `.vsix` in this release |
 | **Factory** | Repeatable, auditable delivery pipelines | `factory serve` |
 
 On Windows the desktop is a native window. On Linux and macOS it is headless:
 it serves the same UI on loopback and opens your default browser.
+
+## Cross-process collaboration
+
+Aruhan sessions are not isolated chat windows. With peer discovery enabled (the
+default), local processes can find each other, hand over work, and return
+results without copy-pasting between terminals.
+
+- **Discover sessions.** `aruhan peers list` shows registered CLI/TUI/engine
+  sessions with their workspace and busy/idle status.
+- **Send and track work.** `aruhan peers send <name> "<message>"` supports
+  `text`, `task`, `result`, and `ask` message kinds. `inbox`, `read`, `ack`,
+  and `accept` list, inspect, close, or start a turn for a queued message. A TUI
+  wakes on arrival and queues messages while it is busy.
+- **Pair machines on a LAN.** `aruhan peers identity` prints this machine's
+  fingerprint; `aruhan peers remote add` pairs another machine;
+  `aruhan peers bridge` listens for peers (default `0.0.0.0:8788`); send with
+  `--remote <name> --to <session>` to reach a session on the paired machine.
+- **Deliberate boundaries.** The registry stores routing metadata only — never
+  conversation content. Messages land in a local mailbox and do not run tools on
+  the receiving side by themselves. Set `ARUHAN_PEER=0` to opt out for one
+  process.
 
 ## Factory: from one-off chats to repeatable delivery
 
@@ -82,20 +103,34 @@ quality bar.
 - **The console is local** at `http://127.0.0.1:8787/console/`, with SQLite by
   default and PostgreSQL for larger deployments.
 
-## Built for real engineering
+## Capability map
 
-- **Permissioned tools.** Read and write files, run shell commands, use git and
-  worktrees, run tests, call MCP servers, automate browsers, and — where enabled
-  — control the desktop. Every capability is subject to permission rules.
-- **Sessions, memory, and skills.** Resume work later, keep durable project
-  memory, and package repeatable know-how as skills.
-- **Subagents and peer collaboration.** Split work across focused agents, or let
-  two local Aruhan processes collaborate over the local peer mesh.
-- **Model and media coverage.** Text models plus image, video, and speech
-  generation, filtered to the providers allowed in this edition.
-- **Extensible by configuration.** MCP servers, skills, packs, pipelines, and
-  model catalogs are configuration, not forks of the engine.
-- **Cross-platform.** Windows, Linux, and macOS on amd64 and arm64.
+| You need | What Aruhan gives you |
+|---|---|
+| **Change a real repository** | An agent loop that reads the code, edits files, runs commands and tests, inspects the diff, and works in isolated git worktrees when needed. |
+| **Stay in control** | Permission modes, work modes, file-access scope, approval prompts, MCP and desktop-control grants, plus audit records. |
+| **Keep context** | Persistent sessions, project memory, and reusable skills instead of re-explaining the repository every time. |
+| **Work beyond one turn** | `aruhan goal "<goal>"` drives a long-running autonomous task; subagents split focused work; local peers can hand work between processes. |
+| **Automate** | `aruhan query "<task>"` with `--json` or `--jsonl`, pipe mode, and machine-readable envelopes for status, doctor, session, and config commands. |
+| **Integrate** | MCP client and a read-only `aruhan mcp-serve` server, lifecycle hooks, skills, and an Agent Client Protocol server (`aruhan acp --stdio`). |
+| **Deliver repeatably** | Factory packs and pipelines: stations with prompts, inputs/outputs, models, timeouts, machine/advisory/human gates, artifacts, evidence, retros, and rollback/pause/stop controls. |
+| **Operate and audit** | `aruhan doctor --bundle` for redacted diagnostics, `aruhan audit verify` for the hash chain, CycloneDX SBOM and license inventory export. |
+| **Reach people where they work** | Native Windows desktop, headless browser UI on Linux/macOS, VS Code extension, and IM bot gateways (WeCom, Feishu, DingTalk, Telegram, Slack) through the desktop daemon. |
+| **Use your own models** | BYOK text, image, video, speech, and local-model endpoints; a shared catalog; credentials encrypted at rest; no Aruhan-hosted model proxy. |
+| **Run anywhere** | Windows, Linux, and macOS on amd64 and arm64, with the same configuration directory across every surface. |
+
+### What that changes for you
+
+- **Less context switching.** Persisted sessions and the same settings are
+  available from the terminal, the desktop app, and VS Code.
+- **Faster feedback.** The agent runs tests and builds itself instead of handing
+  you an untested patch.
+- **Auditable delivery.** Factory records what ran, what passed, and who
+  approved it, so a teammate or customer can verify the result.
+- **Data stays yours.** Prompts, keys, sessions, and artifacts live on your
+  machine; model requests go only to the endpoint you configure.
+- **No model lock-in.** Switching providers or models does not change the
+  workflow, and the catalog is configuration rather than a fork of the engine.
 
 ## Editions and models
 
@@ -114,6 +149,12 @@ This build only allows models and media providers operated in mainland China.
 Foreign model providers are filtered from the catalog, settings, and every
 outbound request; there is no cross-edition fallback.
 Updates are checked against Gitee Releases only.
+
+The two editions share the same engine, tools, permissions, Factory, and UI.
+The difference is the model/media provider catalog and the update channel: CN
+serves mainland-China providers and checks Gitee; the International edition
+serves international providers and checks GitHub. There is no cross-edition
+provider fallback.
 
 ## Quick start
 
@@ -151,9 +192,10 @@ configuration as active, and you can save the same settings in the app.
 ### 3. Run
 
 ~~~bash
-aruhan --plain                 # CLI / REPL
+aruhan                         # full-screen TUI (default on a terminal)
+aruhan --plain                 # line-oriented REPL
 aruhan query "fix the failing test in ./internal/foo"
-aruhan chat                    # full-screen TUI
+aruhan goal "upgrade the test suite and keep it green"
 aruhan-desktop                 # desktop (headless on Linux/macOS)
 factory serve                  # Factory console at 127.0.0.1:8787/console/
 ~~~
