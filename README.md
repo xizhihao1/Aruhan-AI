@@ -17,6 +17,17 @@ There is no Aruhan-hosted backend, no mandatory account, and no telemetry by
 default. Bring your own API key, point Aruhan at the provider you already
 trust, and keep prompts, keys, sessions, memory, and artifacts on your machine.
 
+## Release channels
+
+| Edition | Repositories | Provider policy |
+|---|---|---|
+| **China mainland edition / 国内版** | [GitHub](https://github.com/xizhihao1/Aruhan-AI) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI) | Mainland-China model and media providers only; Gitee is the primary channel. |
+| **International edition / 国际版** | [GitHub](https://github.com/xizhihao1/Aruhan) | International model and media providers only; GitHub is the only channel. |
+
+Both repositories contain compiled artifacts, installers, licenses, checksums,
+and release notes — never source code. Choose the edition that matches the
+providers you are allowed to use.
+
 ## Why Aruhan
 
 Most AI coding tools stop at a suggestion. Aruhan closes the engineering loop:
@@ -361,6 +372,16 @@ Aruhan 是本地优先的 AI 工程工作台。它会阅读你的仓库、规划
 
 没有 Aruhan 托管的后端，没有强制账号，默认不上报遥测。自备 API Key，指向你
 已经信任的模型供应商；提示词、密钥、会话、记忆和产物都留在你的机器上。
+
+## 发布仓库
+
+| 发行版 | 仓库 | 模型范围 |
+|---|---|---|
+| **国内版** | [GitHub](https://github.com/xizhihao1/Aruhan-AI) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI) | 仅中国境内模型与媒体供应商；Gitee 为主通道。 |
+| **国际版** | [GitHub](https://github.com/xizhihao1/Aruhan) | 仅境外模型与媒体供应商；GitHub 为唯一通道。 |
+
+两个仓库都只存放编译产物、安装包、许可证、校验和与发布说明，不存放源代码。
+请按你有权使用的供应商选择发行版。
 
 ## 为什么选择 Aruhan
 
