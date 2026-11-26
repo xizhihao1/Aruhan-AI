@@ -17,6 +17,17 @@ There is no Aruhan-hosted backend, no mandatory account, and no telemetry by
 default. Bring your own API key, point Aruhan at the provider you already
 trust, and keep prompts, keys, sessions, memory, and artifacts on your machine.
 
+## Release channels
+
+| Edition | Repositories | Provider policy |
+|---|---|---|
+| **China mainland edition / 国内版** | [GitHub](https://github.com/xizhihao1/Aruhan-AI) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI) | Mainland-China model and media providers only; Gitee is the primary channel. |
+| **International edition / 国际版** | [GitHub](https://github.com/xizhihao1/Aruhan) | International model and media providers only; GitHub is the only channel. |
+
+Both repositories contain compiled artifacts, installers, licenses, checksums,
+and release notes — never source code. Choose the edition that matches the
+providers you are allowed to use.
+
 ## Why Aruhan
 
 Most AI coding tools stop at a suggestion. Aruhan closes the engineering loop:
