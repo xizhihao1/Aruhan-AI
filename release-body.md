@@ -1,6 +1,6 @@
 # Aruhan v2.1.30
 
-**Release date / 发布日期：2026-11-26** · [CN checksums / 国内版校验和](v2.1.30-SHA256SUMS.txt) · [INTL checksums / 国际版校验和](v2.1.30-SHA256SUMS-intl.txt) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.30) · [English](#english) · [中文](#中文)
+**Release date / 发布日期：2026-11-26** · [CN checksums / 国内版校验和](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.30/SHA256SUMS) · [INTL checksums / 国际版校验和](https://github.com/xizhihao1/Aruhan/releases/download/v2.1.30/SHA256SUMS) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.30) · [English](#english) · [中文](#中文)
 
 ---
 
