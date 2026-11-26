@@ -10,31 +10,31 @@ one configuration directory. This release contains compiled artifacts only.
 
 | Asset | Bytes |
 |---|---|
-| **darwin/aruhan-darwin-amd64-2.1.30-cn.tar.gz** | 43021479 |
-| **darwin/aruhan-darwin-arm64-2.1.30-cn.tar.gz** | 40717329 |
-| **darwin/factory-darwin-amd64-2.1.30-cn.tar.gz** | 44846172 |
-| **darwin/factory-darwin-arm64-2.1.30-cn.tar.gz** | 42274216 |
-| **linux/aruhan-linux-amd64-2.1.30-cn.tar.gz** | 42354791 |
-| **linux/aruhan-linux-arm64-2.1.30-cn.tar.gz** | 39242551 |
-| **linux/factory-linux-amd64-2.1.30-cn.tar.gz** | 44156480 |
-| **linux/factory-linux-arm64-2.1.30-cn.tar.gz** | 40790134 |
-| **vscode/aruhan-vscode-cn.vsix** | 87785977 |
-| **windows/Aruhan-CLI-Setup-2.1.30-cn.exe** | 21786757 |
-| **windows/aruhan-cn.exe** | 72486400 |
-| **windows/aruhan-desktop-arm64-cn.exe** | 38200832 |
-| **windows/aruhan-desktop-cn.exe** | 43929088 |
-| **windows/Aruhan-Desktop-Setup-2.1.30-cn.exe** | 33371707 |
-| **windows/aruhan-desktop-windows-amd64-2.1.30-cn.zip** | 15500355 |
-| **windows/aruhan-desktop-windows-arm64-2.1.30-cn.zip** | 13026635 |
-| **windows/Aruhan-Setup-2.1.30-cn.exe** | 33377724 |
-| **windows/aruhan-tui-installer-windows-amd64-cn.exe** | 76065792 |
-| **windows/aruhan-tui-installer-windows-arm64-cn.exe** | 71153664 |
-| **windows/aruhan-windows-amd64-2.1.30-cn.zip** | 28893170 |
-| **windows/aruhan-windows-amd64-cn.exe** | 72486400 |
-| **windows/aruhan-windows-arm64-2.1.30-cn.zip** | 26637415 |
-| **windows/aruhan-windows-arm64-cn.exe** | 67772416 |
+| **darwin/aruhan-darwin-amd64-2.1.30-cn.tar.gz** | 43019839 |
+| **darwin/aruhan-darwin-arm64-2.1.30-cn.tar.gz** | 40717930 |
+| **darwin/factory-darwin-amd64-2.1.30-cn.tar.gz** | 44847206 |
+| **darwin/factory-darwin-arm64-2.1.30-cn.tar.gz** | 42274439 |
+| **linux/aruhan-linux-amd64-2.1.30-cn.tar.gz** | 42356701 |
+| **linux/aruhan-linux-arm64-2.1.30-cn.tar.gz** | 39244835 |
+| **linux/factory-linux-amd64-2.1.30-cn.tar.gz** | 44157953 |
+| **linux/factory-linux-arm64-2.1.30-cn.tar.gz** | 40789944 |
+| **vscode/aruhan-vscode-cn.vsix** | 87788201 |
+| **windows/Aruhan-CLI-Setup-2.1.30-cn.exe** | 21776139 |
+| **windows/aruhan-cn.exe** | 72487936 |
+| **windows/aruhan-desktop-arm64-cn.exe** | 38202368 |
+| **windows/aruhan-desktop-cn.exe** | 43930624 |
+| **windows/Aruhan-Desktop-Setup-2.1.30-cn.exe** | 33364636 |
+| **windows/aruhan-desktop-windows-amd64-2.1.30-cn.zip** | 15501041 |
+| **windows/aruhan-desktop-windows-arm64-2.1.30-cn.zip** | 13026029 |
+| **windows/Aruhan-Setup-2.1.30-cn.exe** | 33387606 |
+| **windows/aruhan-tui-installer-windows-amd64-cn.exe** | 76067328 |
+| **windows/aruhan-tui-installer-windows-arm64-cn.exe** | 71154688 |
+| **windows/aruhan-windows-amd64-2.1.30-cn.zip** | 28893751 |
+| **windows/aruhan-windows-amd64-cn.exe** | 72487936 |
+| **windows/aruhan-windows-arm64-2.1.30-cn.zip** | 26637730 |
+| **windows/aruhan-windows-arm64-cn.exe** | 67773440 |
 | **windows/factory-cn.exe** | 40718336 |
-| **windows/Factory-Setup-2.1.30-cn.exe** | 33903279 |
+| **windows/Factory-Setup-2.1.30-cn.exe** | 33917655 |
 | **windows/factory-windows-amd64-cn.exe** | 40718336 |
 | **windows/factory-windows-arm64-cn.exe** | 37515264 |
 
@@ -51,12 +51,17 @@ Updates are checked against Gitee Releases only.
 
 ## Licensing / 授权
 
-Personal, non-commercial use is free. Commercial use, private/on-premises
-deployment, custom development, and source-code or perpetual buyout require a
-separate written license. Contact **37735973@qq.com**.
+Official release builds include a 30-day evaluation period from the first run.
+The first-run record is encrypted with a machine-bound key and anchored; deleting
+it alone blocks startup. Continued use after the evaluation period,
+commercial use, private/on-premises deployment, custom development, and
+source-code or perpetual buyout require a separate written license.
+Contact **37735973@qq.com**.
 
-个人非商业使用免费。商业使用、私有化/本地部署、定制开发以及源码或永久买断，
-需要另行签署书面授权。联系 **37735973@qq.com**。
+官方发布包包含从首次运行起算的 30 天评估期。首次运行记录使用机器绑定密钥加密
+并保存锚点；只删除该记录会阻止启动。评估期结束后继续使用、商业使用、
+私有化/本地部署、定制开发以及源码或永久买断，需要另行签署书面授权。
+联系 **37735973@qq.com**。
 
 See [LICENSE](LICENSE) and [DISCLAIMER.md](DISCLAIMER.md). Source code is not
 published in this repository.
