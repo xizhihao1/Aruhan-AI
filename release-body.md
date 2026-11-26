@@ -1,6 +1,6 @@
-# Aruhan v2.1.31
+# Aruhan v2.1.32
 
-**Release date / 发布日期：2026-11-26** · [CN checksums / 国内版校验和](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.31/SHA256SUMS) · [English](#english) · [中文](#中文)
+**Release date / 发布日期：2026-11-26** · [CN checksums / 国内版校验和](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.32/SHA256SUMS) · [English](#english) · [中文](#中文)
 
 ---
 
@@ -12,11 +12,12 @@ reads the repository, edits code, runs commands and tests, reviews the diff,
 and carries work through gated delivery pipelines — with your own API key and
 no publisher-hosted backend.
 
-v2.1.31 is a desktop hotfix on top of 2.1.30: deleting a chat task now removes
-its daemon counterpart, so deleted tasks no longer reappear as blank entries
-after a restart. The fix is in the shared desktop UI, covering the native
-Windows desktop and the Linux/macOS headless browser UI. All 2.1.30 installer,
-catalog and client fixes are included.
+v2.1.32 is a desktop hotfix on top of 2.1.31: deleted chat tasks no longer
+reappear as blank entries after a restart, and deleting the last task no longer
+leaves its conversation visible in an empty task list. The fixes are in the
+shared desktop UI, covering the native Windows desktop and the Linux/macOS
+headless browser UI. All 2.1.31/2.1.30 installer, catalog and client fixes are
+included.
 
 ### Deleted tasks stay deleted
 
@@ -29,8 +30,17 @@ catalog and client fixes are included.
   failed daemon delete cannot resurrect the task, cleans up a `task.create`
   response that arrives after the user deleted the local task, and unmarks both
   ids when restoring from Trash.
+- Deleting the last task (or a non-active task while `activeTaskId` was empty or
+  stale) used to leave the persisted message mirror untouched. The next start
+  cleared the task list and active id, then rendered those orphan messages in an
+  empty task list; the ChatView daemon-session fallback could restore the
+  deleted conversation the same way. Messages and the active-task key are now
+  cleared whenever the active task no longer exists, persisted messages are
+  ignored when no task/active task remains, and the daemon fallback is skipped
+  when the task list is empty.
 - VS Code already used the daemon task id and is unaffected; CLI/TUI have no
-  workspace task list. A regression test covers the `task.list` sync path.
+  workspace task list. Regression tests cover the `task.list` sync path and the
+  empty-list orphan-message case.
 
 ### Model catalog v18
 
@@ -74,8 +84,8 @@ catalog and client fixes are included.
   referenced, and the uninstallers no longer remove an explicit user
   `ARUHAN_DATA_DIR`.
 - **Upgrade note.** If you use the combined Windows installer, installing
-  2.1.31 clears the old installer default from `ARUHAN_DATA_DIR`; the first
-  launch copies the old data automatically. Running 2.1.28 and 2.1.31 side by
+  2.1.32 clears the old installer default from `ARUHAN_DATA_DIR`; the first
+  launch copies the old data automatically. Running 2.1.28 and 2.1.32 side by
   side against different directories is not supported.
 
 ### Portable desktop engine selection
@@ -122,7 +132,7 @@ catalog and client fixes are included.
 ### Verification
 
 - Release gate: CN and INTL matrices from the same source SHA, 59 artifacts
-  each, `SHA256SUMS` 57/57, `EDITION.txt` version 2.1.31.
+  each, `SHA256SUMS` 57/57, `EDITION.txt` version 2.1.32.
 - `check-edition-binary.mjs` reports no other-edition tokens in CN or INTL CLI,
   desktop and Factory binaries.
 - Catalog hot-refresh browser E2E on both release builds; catalog v18 provider
@@ -145,8 +155,8 @@ catalog and client fixes are included.
   `enc:v1:...`; deleting it while the anchor remains exits 1 with the short
   missing-state message; an expired legacy date exits 1 with the short
   contact message.
-- Checksums: [CN](v2.1.31-SHA256SUMS.txt),
-  [INTL](v2.1.31-SHA256SUMS-intl.txt). Windows binaries remain unsigned.
+- Checksums: [CN](v2.1.32-SHA256SUMS.txt),
+  [INTL](v2.1.32-SHA256SUMS-intl.txt). Windows binaries remain unsigned.
 - GitHub carries the complete CN and INTL asset sets; the Gitee mirror carries
   the CN installers, portable archives, VSIX, Windows TUI installers, and
   Linux/macOS desktop binaries (repo-wide 1 GB attachment quota; bare CLI
@@ -184,10 +194,10 @@ VS Code 插件和 Factory 控制面。它会阅读仓库、修改代码、执行
 审查差异，并让工作经过带门禁的交付流水线；使用你自己的 API Key，没有发布者
 托管的后端。
 
-v2.1.31 是 2.1.30 的桌面端热修：删除聊天任务时同时删除对应的 daemon 任务，
-删除后不再在重启时以空白任务形式复活。修复位于共享桌面 UI，覆盖 Windows
-原生桌面与 Linux/macOS headless 浏览器 UI。2.1.30 的安装器、模型目录与各端
-修复全部包含在内。
+v2.1.32 是 2.1.31 的桌面端热修：删除聊天任务后不再在重启时以空白任务复活；
+删除最后一个任务后，也不会再出现“任务列表为空但聊天窗口仍显示已删任务内容”。
+修复位于共享桌面 UI，覆盖 Windows 原生桌面与 Linux/macOS headless 浏览器 UI。
+2.1.31/2.1.30 的安装器、模型目录与各端修复全部包含在内。
 
 ### 删除的任务不再复活
 
@@ -198,8 +208,13 @@ v2.1.31 是 2.1.30 的桌面端热修：删除聊天任务时同时删除对应�
 - 现在删除优先使用 `daemonTaskId`，并给两个 id 都登记持久化墓碑，daemon
   删除失败也不会复活；用户删除本地任务后迟到的 `task.create` 响应会立即
   清理；从回收站恢复时解除两个 id 的墓碑。
+- 删除最后一个任务（或删除非活动任务时 `activeTaskId` 已为空/失效）过去不会
+  清理持久化的消息镜像；重启后任务列表和 active id 都被清空，但聊天窗口仍
+  渲染这些孤儿消息，ChatView 的 daemon 会话兜底还可能把已删对话恢复出来。
+  现在只要活动任务不再存在，就同时清空消息与 active-task 键；无任务/无活动
+  任务时忽略持久化消息，任务列表为空时跳过 daemon 会话兜底。
 - VS Code 原本就用 daemon 任务 id，不受影响；CLI/TUI 没有工作区任务列表。
-  新增回归测试覆盖 `task.list` 同步路径。
+  新增回归测试覆盖 `task.list` 同步与“空列表孤儿消息”两种路径。
 
 ### 模型目录 v18
 
@@ -231,8 +246,8 @@ v2.1.31 是 2.1.30 的桌面端热修：删除聊天任务时同时删除对应�
   macOS/Linux 的 pkg、unix 与 TUI 卸载器始终保留数据。macOS pkg 现在真正随包
   安装 README 中引用的 `uninstall.sh`，且各卸载器不再删除用户显式设置的
   `ARUHAN_DATA_DIR`。
-- **升级说明。** 使用 Windows 整合包的用户安装 2.1.31 时会清除旧安装器写入的
-  默认变量，首次启动自动复制旧数据。不支持 2.1.28 与 2.1.31 并行使用不同目录。
+- **升级说明。** 使用 Windows 整合包的用户安装 2.1.32 时会清除旧安装器写入的
+  默认变量，首次启动自动复制旧数据。不支持 2.1.28 与 2.1.32 并行使用不同目录。
 
 ### 便携桌面引擎选择
 
@@ -271,7 +286,7 @@ v2.1.31 是 2.1.30 的桌面端热修：删除聊天任务时同时删除对应�
 ### 验证
 
 - 发布门禁：CN/INTL 使用同一源码 SHA，各 59 个产物，`SHA256SUMS` 57/57，
-  `EDITION.txt` 版本 2.1.31。
+  `EDITION.txt` 版本 2.1.32。
 - `check-edition-binary.mjs` 对 CN/INTL 的 CLI、桌面与 Factory 二进制均未发现
   对方版本 token。
 - 两个发行版执行目录热刷新浏览器 E2E；目录 v18 的 CN/INTL 供应商测试通过，
@@ -287,8 +302,8 @@ v2.1.31 是 2.1.30 的桌面端热修：删除聊天任务时同时删除对应�
   各平台旧目录、便携桌面同级引擎解析（含 CPU 架构）与环境变量供应商选择。
 - 发布二进制试用状态验证：`trial.json` 为 `enc:v1:...`；删除它但保留锚点时
   退出码 1，并输出简短的缺失提示；旧日期到期时退出码 1，并输出简短联系提示。
-- 校验和：[国内版](v2.1.31-SHA256SUMS.txt)、
-  [国际版](v2.1.31-SHA256SUMS-intl.txt)。Windows 二进制未签名。
+- 校验和：[国内版](v2.1.32-SHA256SUMS.txt)、
+  [国际版](v2.1.32-SHA256SUMS-intl.txt)。Windows 二进制未签名。
 - GitHub 保留 CN/INTL 完整资产；Gitee 镜像提供 CN 安装包、便携压缩包、VSIX、
   Windows TUI 安装器与 Linux/macOS 桌面二进制（仓库附件配额 1GB，裸 CLI
   二进制保留在 GitHub）。
