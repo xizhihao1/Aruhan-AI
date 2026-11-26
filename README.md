@@ -169,7 +169,7 @@ provider fallback.
 | Windows portable | the matching **aruhan-windows-*-2.1.30-cn.zip** |
 | Linux CLI / Factory | **aruhan-linux-*.tar.gz**, **factory-linux-*.tar.gz** |
 | macOS CLI / Factory | **aruhan-darwin-*.tar.gz**, **factory-darwin-*.tar.gz** |
-| Linux / macOS desktop | the matching **aruhan-desktop-*--cn** binary |
+| Linux / macOS desktop | the matching **aruhan-desktop-*-cn** binary |
 | VS Code | **aruhan-vscode-cn.vsix** |
 
 See [INSTALL.md](INSTALL.md) for step-by-step instructions, including PATH,
@@ -489,7 +489,7 @@ Factory 是面向"必须可重复"的工作的控制面。Pack 定义交付过�
 | Windows 便携版 | 对应的 **aruhan-windows-*-2.1.30-cn.zip** |
 | Linux CLI / Factory | **aruhan-linux-*.tar.gz**、**factory-linux-*.tar.gz** |
 | macOS CLI / Factory | **aruhan-darwin-*.tar.gz**、**factory-darwin-*.tar.gz** |
-| Linux / macOS 桌面端 | 对应的 **aruhan-desktop-*--cn** 二进制 |
+| Linux / macOS 桌面端 | 对应的 **aruhan-desktop-*-cn** 二进制 |
 | VS Code | **aruhan-vscode-cn.vsix** |
 
 逐步说明（PATH、Gatekeeper、SmartScreen）见 [INSTALL.md](INSTALL.md)。
