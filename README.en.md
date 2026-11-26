@@ -1,238 +1,303 @@
-# Aruhan
+# Aruhan — China mainland edition / 国内版
 
-> A local-first AI engineering workspace: terminal assistant, desktop client, IDE extension, and an AI software factory.
+**Version v2.1.30** · **China mainland edition** · [Download](https://gitee.com/guleng2005/Aruhan-AI/releases) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
 
-**Version:** 2.1.29 · **Platforms:** Windows, Linux, macOS (amd64 / arm64) · **VS Code:** 1.85+
 
-[English](#english) · [中文](#中文) · [Download](#download) · [Releases](https://github.com/xizhihao1/Aruhan-AI/releases)
+**Your codebase. Your machine. Your models. An AI engineer that actually runs
+the loop.**
 
----
+Aruhan is a local-first AI engineering workspace. It reads your repository,
+plans the change, edits files, runs commands and tests, reviews the diff, and
+carries the work through a gated delivery pipeline. The same engine powers a
+CLI, a terminal UI, a desktop app, a VS Code extension, and the Factory control
+plane — so you can start in one surface and continue in another without losing
+context.
 
-## English
+There is no Aruhan-hosted backend, no mandatory account, and no telemetry by
+default. Bring your own API key, point Aruhan at the provider you already
+trust, and keep prompts, keys, sessions, memory, and artifacts on your machine.
 
-### What Aruhan is
+## Why Aruhan
 
-Aruhan is a family of clients built on one shared local runtime:
+Most AI coding tools stop at a suggestion. Aruhan closes the engineering loop:
 
-| Client | What it is for | Entry point |
+1. **Understand.** Explore the repository, read the relevant files, and inspect
+   tests, history, and project rules.
+2. **Plan.** Break the task into steps and choose the tools and files involved.
+3. **Execute.** Edit code, run commands, apply patches, and work in isolated git
+   worktrees when a task should not touch your main checkout.
+4. **Verify.** Run tests, linters, and builds; inspect the diff; react to
+   failures instead of declaring success.
+5. **Deliver.** Record artifacts and evidence, pass quality gates, and hand off
+   a result that a teammate or customer can audit.
+
+You stay in control at every step: permission modes decide what may run, and
+approval prompts show the exact command or file change before it happens.
+
+## What you can do with it
+
+- **Fix a failing test without babysitting it.** Point Aruhan at the failure,
+  let it read the trace, patch the code, run the suite, and show you the diff.
+- **Ship a feature across a real repository.** The agent follows project rules,
+  reuses existing patterns, updates tests and docs, and keeps changes reviewable.
+- **Standardize delivery with Factory.** Turn a repeatable process into a YAML
+  pipeline of stations with prompts, inputs, outputs, models, timeouts, and
+  quality gates. Every run leaves artifacts, evidence, and a retrospective.
+- **Keep sensitive work local.** Use a provider endpoint inside your own network, including a local or private deployment. Nothing is sent to the publisher.
+- **Use the model you already pay for.** Switch providers and models without
+  changing your workflow; the catalog stays current with official provider
+  lists, and credentials are encrypted at rest.
+- **Work from the surface you prefer.** Start in the terminal, open the desktop
+  app for long sessions, or stay inside VS Code — it is one runtime and one
+  configuration directory.
+
+## One engine, five surfaces
+
+| Surface | Best for | Entry point |
 |---|---|---|
-| **CLI / REPL** | Scriptable, line-oriented assistant for shells, CI, and remote machines | `aruhan`, `aruhan --plain` |
-| **TUI** | Full-screen terminal workspace with panels, modes, and key bindings | `aruhan chat` |
-| **Desktop** | Native window with chat, terminal, files, Git, sessions, memory, skills, MCP, bots, and settings | `aruhan-desktop` / Start Menu |
-| **VS Code extension** | In-editor chat, selection actions, review, sessions, memory, and Git/worktree commands | VSIX |
-| **Factory** | Pipeline-driven software production with a local web console, runs, gates, artifacts, backups, and multi-tenant controls | `factory` / `factory serve` |
+| **CLI / REPL** | Scripts, automation, quick one-shot tasks | `aruhan`, `aruhan query "..."` |
+| **Terminal UI** | Long interactive sessions without leaving the shell | `aruhan chat` |
+| **Desktop** | Visual review, settings, sessions, and Factory console | `aruhan-desktop` |
+| **VS Code extension** | Keeping the agent beside the code you are editing | the `.vsix` in this release |
+| **Factory** | Repeatable, auditable delivery pipelines | `factory serve` |
 
-All clients share the same configuration directory. Configure a provider once and every client sees it.
+On Windows the desktop is a native window. On Linux and macOS it is headless:
+it serves the same UI on loopback and opens your default browser.
 
-> **Your `models.json` and `aruhan.json` are the runtime authority.**
-> Built-in providers and models are only a seed used when those files are missing or corrupt.
-> Adding, editing, or deleting entries in any client changes what every client sees.
+## Factory: from one-off chats to repeatable delivery
 
-### Download
+Factory is the control plane for work that must be repeatable. A pack defines
+the delivery process; a pipeline is a sequence of stations. Each station
+declares its prompt, inputs, outputs, timeout, model, and gates, so the same
+process can run again next week with a different repository and the same
+quality bar.
 
-Download the latest packages from the official Releases pages:
+- **Machine checks block; advisory checks warn; human gates park the run** until
+  someone with authority approves it.
+- **Evidence is recorded per run** — artifacts, ledger entries, retrospectives,
+  and worktree isolation — instead of being scattered across chat logs.
+- **The control plane stays separate from execution.** `factory serve` accepts
+  and tracks runs; a detached worker executes the stations, so an HTTP request
+  never becomes the runtime.
+- **The console is local** at `http://127.0.0.1:8787/console/`, with SQLite by
+  default and PostgreSQL for larger deployments.
 
-- **GitHub:** <https://github.com/xizhihao1/Aruhan-AI/releases>
-- **Gitee:** <https://gitee.com/guleng2005/Aruhan-AI/releases>
+## Built for real engineering
 
-| Platform | Package | Notes |
-|---|---|---|
-| Windows | `Aruhan-Setup-<version>.exe` | CLI + TUI + Desktop (NSIS installer) |
-| Windows | `Aruhan-CLI-Setup-<version>.exe` | CLI/TUI only |
-| Windows | `Aruhan-Desktop-Setup-<version>.exe` | Desktop only |
-| Windows | `Factory-Setup-<version>.exe` | Factory |
-| Windows | `aruhan-windows-{amd64,arm64}-<version>.zip` | Portable CLI/TUI |
-| Windows | `aruhan-desktop-windows-{amd64,arm64}-<version>.zip` | Portable Desktop |
-| Linux | `aruhan-linux-{amd64,arm64}-<version>.tar.gz` | CLI + Desktop + `install.sh` |
-| Linux | `factory-linux-{amd64,arm64}-<version>.tar.gz` | Factory + `install.sh` |
-| macOS | `aruhan-darwin-{amd64,arm64}-<version>.tar.gz` | CLI + Desktop + `install.sh` |
-| macOS | `factory-darwin-{amd64,arm64}-<version>.tar.gz` | Factory + `install.sh` |
-| Cross-platform | `aruhan-tui-installer-*` | Interactive TUI installer |
-| VS Code | `aruhan-vscode.vsix` | Extension with a bundled CLI engine |
+- **Permissioned tools.** Read and write files, run shell commands, use git and
+  worktrees, run tests, call MCP servers, automate browsers, and — where enabled
+  — control the desktop. Every capability is subject to permission rules.
+- **Sessions, memory, and skills.** Resume work later, keep durable project
+  memory, and package repeatable know-how as skills.
+- **Subagents and peer collaboration.** Split work across focused agents, or let
+  two local Aruhan processes collaborate over the local peer mesh.
+- **Model and media coverage.** Text models plus image, video, and speech
+  generation, filtered to the providers allowed in this edition.
+- **Extensible by configuration.** MCP servers, skills, packs, pipelines, and
+  model catalogs are configuration, not forks of the engine.
+- **Cross-platform.** Windows, Linux, and macOS on amd64 and arm64.
 
-| Platform | Architectures | Minimum |
-|---|---|---|
-| Windows | x86_64 / ARM64 | Windows 10 / 11 |
-| Linux | x86_64 / ARM64 | Common glibc/musl distributions |
-| macOS | Intel / Apple Silicon | macOS 11+ |
-| VS Code | All three platforms | 1.85+ |
+## Editions and models
 
-> This repository distributes **compiled artifacts only**. It does not contain source code.
-> Always download from the official Releases pages and verify `SHA256SUMS` before running.
-> Windows binaries are currently **not code-signed**; SmartScreen may warn on first launch.
+This download is the **China mainland edition** (`cn`).
 
-### What's new in 2.1.25
+| Item | Value |
+|---|---|
+| Edition | `cn` (China mainland edition) |
+| Release channel | https://gitee.com/guleng2005/Aruhan-AI/releases |
+| Update checks | Gitee Releases only |
+| Language / text models | DeepSeek, Doubao (Volcengine Ark), Qwen / Tongyi, Zhipu GLM, Moonshot Kimi, SenseTime, MiniMax, StepFun |
+| Image / video | Doubao Seedream/Seedance, Kling, Tongyi Wanxiang, Zhipu CogView |
+| Speech | FishSpeech TTS; whisper.cpp local STT |
 
-- **Provider edit:** each step (Base URL → Default Model → API Key) now has its own input. Previously the default-model step still showed the URL you had just typed and would save it as the model id.
-- **Dialogs:** dragging to select text no longer closes the dialog when the mouse is released outside; backdrop close now requires pressing and clicking on the backdrop.
-- No configuration or data migration is required.
+This build only allows models and media providers operated in mainland China.
+Foreign model providers are filtered from the catalog, settings, and every
+outbound request; there is no cross-edition fallback.
+Updates are checked against Gitee Releases only.
 
-See the [release notes](https://github.com/xizhihao1/Aruhan-AI/releases) for the complete list.
+## Quick start
 
-### Quick start
+### 1. Install
 
-#### Windows
+| You want | Download |
+|---|---|
+| Windows, everything (recommended) | **Aruhan-Setup-2.1.30-cn.exe** |
+| Windows CLI only | **Aruhan-CLI-Setup-2.1.30-cn.exe** |
+| Windows desktop only | **Aruhan-Desktop-Setup-2.1.30-cn.exe** |
+| Windows Factory | **Factory-Setup-2.1.30-cn.exe** |
+| Windows portable | the matching **aruhan-windows-*-2.1.30-cn.zip** |
+| Linux CLI / Factory | **aruhan-linux-*.tar.gz**, **factory-linux-*.tar.gz** |
+| macOS CLI / Factory | **aruhan-darwin-*.tar.gz**, **factory-darwin-*.tar.gz** |
+| Linux / macOS desktop | the matching **aruhan-desktop-*--cn** binary |
+| VS Code | **aruhan-vscode-cn.vsix** |
 
-1. Download an installer from the Releases page.
-2. Run it. The default install root is `%LOCALAPPDATA%\Aruhan`.
-3. Open **Aruhan Desktop**, or run `aruhan setup` in a new terminal.
-4. Add a provider and API key, then choose a default model.
-5. Open a folder/workspace and start chatting.
+See [INSTALL.md](INSTALL.md) for step-by-step instructions, including PATH,
+Gatekeeper, and SmartScreen notes.
 
-Portable ZIP builds do not install services or modify `PATH`; run the executable directly.
-Windows ARM64 users should prefer the ZIP packages.
+### 2. Configure a model
 
-#### Linux / macOS
+The simplest path is an environment variable:
 
-```bash
-# CLI + Desktop
-tar -xzf aruhan-linux-amd64-<version>.tar.gz
-cd aruhan-linux-amd64
-./install.sh --user          # installs under ~/.local/share/aruhan
-# or: sudo ./install.sh      # installs under /usr/local/aruhan
+~~~bash
+export ARUHAN_PROVIDER="your-provider"
+export ARUHAN_MODEL="your-model"
+export ARUHAN_API_KEY="your-key"
+~~~
 
-# Factory
-tar -xzf factory-linux-amd64-<version>.tar.gz
-cd factory-linux-amd64
-./install.sh --autostart     # optional user-level login autostart
-```
+Provider-specific variables such as `DEEPSEEK_API_KEY` also
+work. The desktop app, VS Code extension, CLI, and TUI all show the environment
+configuration as active, and you can save the same settings in the app.
 
-Verify the installation:
+### 3. Run
 
-```bash
+~~~bash
+aruhan --plain                 # CLI / REPL
+aruhan query "fix the failing test in ./internal/foo"
+aruhan chat                    # full-screen TUI
+aruhan-desktop                 # desktop (headless on Linux/macOS)
+factory serve                  # Factory console at 127.0.0.1:8787/console/
+~~~
+
+### 4. Verify the download
+
+~~~bash
+sha256sum -c SHA256SUMS
+~~~
+
+~~~powershell
+Get-FileHash -Algorithm SHA256 <file>
+# compare with the matching line in SHA256SUMS
+~~~
+
+Every China mainland edition build reports its edition:
+
+~~~bash
 aruhan --version
-aruhan doctor
-```
+~~~
 
-#### VS Code
+## Platform status
 
-Install `aruhan-vscode.vsix` from **Extensions → … → Install from VSIX…**, then open the
-Aruhan panel. The extension bundles its own CLI engine and uses the same shared configuration.
-
-### First configuration
-
-Interactive:
-
-```bash
-aruhan setup
-```
-
-Non-interactive (the plaintext key comes from the provider's console; Aruhan cannot recover it):
-
-```bash
-export MY_API_KEY="..."
-aruhan setup --provider <catalog-key> --model <model-id> --api-key-env MY_API_KEY --yes
-```
-
-The same settings can be managed in Desktop → **Settings / Models**, in the VS Code chat
-settings panel, or in the Factory console under **Settings → Execution models**.
-
-Media models (image/video) are managed separately in `media.json`, with their own defaults,
-enable/disable state, sync, and reset actions.
-
-### Shared files
-
-| File | Purpose |
+| Platform | Status |
 |---|---|
-| `models.json` | Text model catalog: providers, base URLs, protocols, models, context limits |
-| `media.json` | Media catalog: image/video models, defaults, enabled/disabled state |
-| `aruhan.json` | Shared secrets and active selections; keys are encrypted at rest |
-| `terminal.json`, `desktop.json`, `vscode.json` | Per-client preferences (theme, permission mode, work mode, sandbox) |
-| `sessions/`, `memory/`, `logs/`, `history.json` | Local runtime data |
+| Windows | Tested, including the native desktop and installers. |
+| Linux | CLI and Factory smoke-tested under WSL; desktop is headless and uses the browser UI. |
+| macOS | Published for Intel and Apple Silicon; not yet exercised on every macOS version. Please report issues. |
 
-Default locations:
+Windows installers are **not code-signed**. If SmartScreen warns, choose
+**More info → Run anyway** after verifying `SHA256SUMS`. The warning reflects
+the missing signature, not malware.
 
-- Windows: `%APPDATA%\Aruhan`
-- Linux: `${XDG_CONFIG_HOME:-~/.config}/Aruhan`
-- macOS: `~/Library/Application Support/Aruhan`
+## Licensing and commercial use
 
-Override with `ARUHAN_HOME` (highest priority) or `ARUHAN_DATA_DIR`.
+Aruhan is **free for personal, non-commercial use**. Commercial use — including
+use by a company or team, production deployment, private or on-premises
+deployment, embedding Aruhan in a product or service, custom development, or a
+source-code / perpetual buyout — requires a separate written commercial license.
 
-### Capabilities
+We keep those terms practical:
 
-- **One shared model catalog** for CLI, TUI, Desktop, VS Code, and Factory.
-- **Full provider/model CRUD**, including built-in entries; deletions are protected by
-  tombstones so upgrades do not silently resurrect them.
-- **Separate media catalog** (`media.json`) for text-to-image and text-to-video.
-- **Encrypted credentials** in `aruhan.json`; plaintext provider keys are never stored.
-- **Local-first:** files, sessions, memory, and credentials stay on your machine; model
-  requests go only to the provider you configure.
-- **Permission and sandbox layers:** permission mode, work mode, and file-access scope are
-  independent controls.
-- **Code agent:** read/write/search the workspace, run commands, debug, refactor, and use Git.
-- **Long-running work:** autonomous goals (`aruhan goal`) and Factory pipelines with
-  pause/resume/rollback.
-- **Operations:** diagnostics (`aruhan doctor`), audit hash chain, SBOM, license inventory,
-  backups, and checksums.
-- **Bots and integrations:** Feishu, WeCom, DingTalk, Telegram, and Slack gateways.
-- **Content tools:** Office/PDF/Markdown/CSV processing, image and video analysis/generation
-  (implemented; image/video features are not yet fully tested).
+- **Team and commercial licenses** sized to the number of users and deployments.
+- **Private / on-premises deployment**, including offline and internal-network
+  installation, with a written scope and support terms.
+- **Custom development and integration** for your delivery process, providers,
+  or internal systems.
+- **Source-code or perpetual buyout** under a signed agreement. Ownership
+  transfer is effective only when the agreement says so explicitly.
 
-### Documentation
+Contact **37735973@qq.com** with your organization, deployment scale, and
+intended use. For a faster reply, use the subject
+`Aruhan commercial license` or `Aruhan private deployment`.
 
-The bilingual manuals are published with every release as `Aruhan-Manuals-<version>.zip`.
-They are organized by client, with English first and Chinese below:
+The release repository contains compiled artifacts only; source code is not
+published here. See [LICENSE](LICENSE) and [LICENSE.zh-CN.md](LICENSE.zh-CN.md)
+for the binding terms.
 
-- Installation and package selection
-- CLI / REPL
-- TUI
-- Desktop
-- VS Code extension
-- Factory
-- Models and credentials
-- Troubleshooting
-- Security and legal
+## Security, acceptable use, and disclaimer
 
-### Verification and security
+Aruhan executes model-requested tools and can change files, run commands, and
+call external services. Read this before enabling unattended modes.
 
-- Verify every download against `SHA256SUMS` published on the Releases page.
-- Windows builds are currently unsigned; SmartScreen warnings are expected for unsigned binaries.
-- Aruhan executes model-requested tools. Review permission mode and sandbox scope before
-  enabling `auto` or `yolo`.
-- Do not commit `aruhan.json`, `models.json` with embedded secrets, session databases, or logs.
-- Reverse engineering, decompilation, disassembly, or attempts to bypass licensing, tenant
-  isolation, or credential protection are prohibited by project policy and may violate law
-  or third-party terms.
+- **No warranty.** The software is provided **AS IS**, without express or
+  implied warranties, including merchantability, fitness for a particular
+  purpose, and non-infringement.
+- **No liability for outcomes.** To the maximum extent permitted by law, the
+  authors and copyright holders are not liable for any direct, indirect,
+  incidental, special, consequential, or punitive damages, including lost
+  profits, data, or business, arising from the software, AI output, tool
+  execution, provider behavior, configuration, or data loss.
+- **You are responsible for review and compliance.** Review every diff and
+  command, keep backups, use least-privilege permissions, test outside
+  production, and comply with the law and every model provider's terms. AI
+  output is not legal, medical, financial, or other professional advice.
+- **High-risk use is prohibited** without independent validation and all
+  required approvals: life support, medical diagnosis, aviation, rail,
+  automotive safety, industrial control, nuclear, chemical, biological,
+  weapons, emergency response, law enforcement, judicial decisions, and
+  critical infrastructure.
+- **Prohibited conduct** includes unlawful use, malware, unauthorized access,
+  evading security or licensing controls, and the restrictions below.
 
-### Contact
+**Reverse engineering and resale.** Except where applicable law expressly
+permits, you may not decompile, disassemble, or reverse engineer the official
+binaries; bypass licensing, authentication, tenant isolation, or credential
+protection; remove proprietary or attribution notices; or resell, rent, lease,
+sublicense, distribute, or redistribute the software or modified binaries
+without written permission. Modified binaries must never be presented as
+official builds.
 
-For questions, suggestions, bug reports, or partnership inquiries:
+The full notice is in [DISCLAIMER.md](DISCLAIMER.md). It is a project notice,
+not legal advice; obtain local counsel for your jurisdiction.
 
-- **Email:** <37735973@qq.com>
+## Support and contact
 
-### License and commercial use
+- **Installation and usage:** see [INSTALL.md](INSTALL.md) and the issue tracker
+  at https://gitee.com/guleng2005/Aruhan-AI/issues.
+- **Security reports:** email **37735973@qq.com** privately. Do not open a public
+  issue containing credentials, customer data, or exploit details.
+- **Commercial, private deployment, and buyout:** **37735973@qq.com**.
 
-This repository distributes compiled binaries only. Use of the software is subject to the
-following terms:
+## Assets in this release
 
-| Scenario | Authorization |
+<details>
+<summary><strong>Show all 27 assets</strong></summary>
+
+- **darwin/aruhan-darwin-amd64-2.1.30-cn.tar.gz** — 43,021,479 bytes
+- **darwin/aruhan-darwin-arm64-2.1.30-cn.tar.gz** — 40,717,329 bytes
+- **darwin/factory-darwin-amd64-2.1.30-cn.tar.gz** — 44,846,172 bytes
+- **darwin/factory-darwin-arm64-2.1.30-cn.tar.gz** — 42,274,216 bytes
+- **linux/aruhan-linux-amd64-2.1.30-cn.tar.gz** — 42,354,791 bytes
+- **linux/aruhan-linux-arm64-2.1.30-cn.tar.gz** — 39,242,551 bytes
+- **linux/factory-linux-amd64-2.1.30-cn.tar.gz** — 44,156,480 bytes
+- **linux/factory-linux-arm64-2.1.30-cn.tar.gz** — 40,790,134 bytes
+- **vscode/aruhan-vscode-cn.vsix** — 87,785,977 bytes
+- **windows/Aruhan-CLI-Setup-2.1.30-cn.exe** — 21,786,757 bytes
+- **windows/aruhan-cn.exe** — 72,486,400 bytes
+- **windows/aruhan-desktop-arm64-cn.exe** — 38,200,832 bytes
+- **windows/aruhan-desktop-cn.exe** — 43,929,088 bytes
+- **windows/Aruhan-Desktop-Setup-2.1.30-cn.exe** — 33,371,707 bytes
+- **windows/aruhan-desktop-windows-amd64-2.1.30-cn.zip** — 15,500,355 bytes
+- **windows/aruhan-desktop-windows-arm64-2.1.30-cn.zip** — 13,026,635 bytes
+- **windows/Aruhan-Setup-2.1.30-cn.exe** — 33,377,724 bytes
+- **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,065,792 bytes
+- **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,153,664 bytes
+- **windows/aruhan-windows-amd64-2.1.30-cn.zip** — 28,893,170 bytes
+- **windows/aruhan-windows-amd64-cn.exe** — 72,486,400 bytes
+- **windows/aruhan-windows-arm64-2.1.30-cn.zip** — 26,637,415 bytes
+- **windows/aruhan-windows-arm64-cn.exe** — 67,772,416 bytes
+- **windows/factory-cn.exe** — 40,718,336 bytes
+- **windows/Factory-Setup-2.1.30-cn.exe** — 33,903,279 bytes
+- **windows/factory-windows-amd64-cn.exe** — 40,718,336 bytes
+- **windows/factory-windows-arm64-cn.exe** — 37,515,264 bytes
+
+</details>
+
+## Documentation
+
+| Document | Purpose |
 |---|---|
-| Personal, non-commercial use | Free to try; no separate authorization required |
-| Enterprise / team commercial use | Commercial authorization required |
-| Private deployment | Commercial authorization required |
-| Custom modification | Commercial authorization required |
-| Resale / redistribution | **Prohibited** |
-| Reverse engineering | **Prohibited** (no decompilation, disassembly, or other reverse engineering) |
-| Removing copyright notices | **Prohibited** |
-
-For commercial licensing, private deployment, or custom development, contact
-<37735973@qq.com>.
-
-### Disclaimer
-
-- The software, installers, documentation, and all related materials are provided **“as is”**,
-  without any express or implied warranty, including merchantability, fitness for a
-  particular purpose, and non-infringement.
-- You use the software **at your own risk**. The author is not liable for any direct or
-  indirect loss, including data loss, business interruption, or lost profits.
-- **Do not use in high-risk production environments**, including medical, aviation, nuclear,
-  autonomous driving, core financial trading, or industrial control systems, without written
-  authorization and a separate liability agreement.
-- AI-generated content may be incorrect, biased, or inappropriate. Verify it independently;
-  do not use it as the sole basis for legal, medical, or investment decisions.
-- You must comply with the laws and regulations of your jurisdiction and may not use the
-  software for unlawful purposes.
-- You are responsible for complying with the terms of any model service you configure.
-
----
+| [INSTALL.md](INSTALL.md) | Install, upgrade, PATH, Gatekeeper, and SmartScreen |
+| [LICENSE](LICENSE) / [LICENSE.zh-CN.md](LICENSE.zh-CN.md) | Binding license terms |
+| [DISCLAIMER.md](DISCLAIMER.md) | Warranty, liability, acceptable use, and high-risk limits |
+| [RELEASE_NOTES.md](RELEASE_NOTES.md) | What changed in this version |
+| **SHA256SUMS** | Checksums for every distributed file |
 
