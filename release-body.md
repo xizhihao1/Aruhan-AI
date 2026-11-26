@@ -1,6 +1,6 @@
 # Aruhan v2.1.30
 
-**Release date / 发布日期：2026-11-26** · [CN checksums / 国内版校验和](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.30/SHA256SUMS) · [INTL checksums / 国际版校验和](https://github.com/xizhihao1/Aruhan/releases/download/v2.1.30/SHA256SUMS) · [Gitee](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.30) · [English](#english) · [中文](#中文)
+**Release date / 发布日期：2026-11-26** · [CN checksums / 国内版校验和](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.30/SHA256SUMS) · [English](#english) · [中文](#中文)
 
 ---
 
@@ -23,8 +23,6 @@ with this build.
 - **Doubao (Volcengine Ark).** Added the official `doubao-seed-2-1-pro-260915`
   and turbo variants and updated the default; corrected models that had been
   marked retired while still available.
-- **OpenRouter.** Fixed the fallback slug and added `gpt-6.2-astra-pro`.
-- **Groq.** Removed the retired `qwen3.8-27b`.
 - Retired-model entries are now scoped per provider, so one provider's
   retirement no longer hides a same-named model at another provider.
 - `models.json` catalog version 17 → 18; existing user catalogs upgrade
@@ -173,8 +171,6 @@ v2.1.30 修复安装包数据目录分裂（密钥仍在磁盘却提示“未设
 
 - **豆包（火山方舟）。** 加入官方 `doubao-seed-2-1-pro-260915` 与 turbo 变体
   并更新默认项；纠正仍在提供却被误标退役的模型。
-- **OpenRouter。** 修正回退 slug，补充 `gpt-6.2-astra-pro`。
-- **Groq。** 删除已退役的 `qwen3.8-27b`。
 - 退役表改为按供应商作用域，某个供应商的退役记录不再误伤其他供应商的同名模型。
 - `models.json` 目录版本 17 → 18；用户已有的旧目录在首次使用时自动升级。
 - GLM-5.4 暂不加入：官方已发布但 API 未开放，待 API 可用后再补。
