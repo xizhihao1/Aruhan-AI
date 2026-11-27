@@ -36,7 +36,7 @@ param(
 # --- 可配置常量 ---
 $Owner   = "guleng2005"
 $Repo    = "Aruhan-AI"
-$DefaultVersion = "v2.1.29"
+$DefaultVersion = "v2.1.33"
 $BaseUrl = "https://gitee.com/$Owner/$Repo/releases/download"
 
 # --- 颜色输出辅助 ---
@@ -88,7 +88,8 @@ $InstallDir = Join-Path $Prefix "CLI"
 $BinName    = "aruhan.exe"
 
 # --- 下载 ---
-$ZipName = "aruhan-windows-$Arch-$Ver.zip"
+# 发布资产按发行版加后缀；后缀须与 stage-edition-release.mjs 生成的资产名一致。
+$ZipName = "aruhan-windows-$Arch-$Ver-cn.zip"
 $Url     = "$BaseUrl/$Version/$ZipName"
 $TmpDir  = Join-Path ([System.IO.Path]::GetTempPath()) ("aruhan-install-" + [System.Guid]::NewGuid().ToString("N").Substring(0,8))
 
