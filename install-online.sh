@@ -23,7 +23,7 @@ set -euo pipefail
 # --- 可配置常量 ---
 OWNER="guleng2005"
 REPO="Aruhan-AI"
-DEFAULT_VERSION="v2.1.29"
+DEFAULT_VERSION="v2.1.33"
 # Gitee release 下载基础 URL (若 Gitee 实际 URL 格式不同, 改这里)
 BASE_URL="https://gitee.com/${OWNER}/${REPO}/releases/download"
 
@@ -94,7 +94,9 @@ INSTALL_DIR="${PREFIX}/bin"
 BIN_NAME="aruhan"
 
 # --- 下载 ---
-TARBALL="aruhan-${OS}-${ARCH}-${VER}.tar.gz"
+# 发布资产按发行版加后缀（不带后缀的 URL 实测 404）；后缀须与
+# stage-edition-release.mjs 生成的资产名一致。
+TARBALL="aruhan-${OS}-${ARCH}-${VER}-cn.tar.gz"
 URL="${BASE_URL}/${VERSION}/${TARBALL}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
