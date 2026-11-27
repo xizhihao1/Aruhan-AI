@@ -1,11 +1,9 @@
 # Aruhan — China mainland edition / 国内版
 
 **Version v2.1.33** · **China mainland edition** · [Download](https://gitee.com/guleng2005/Aruhan-AI/releases) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
- · 中文（文末点击展开 / collapsed at the end）
 
-**⬇ [立即下载 / Download now](https://gitee.com/guleng2005/Aruhan-AI/releases)** —
-[Windows](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe) · [macOS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Linux](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) ·
-[全部资产 / all assets](https://gitee.com/guleng2005/Aruhan-AI/releases)
+**⬇ [Download Aruhan 2.1.33 for Windows](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe)** —
+[macOS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Linux](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) · all platforms below
 
 ## Download / 下载
 
@@ -382,4 +380,3 @@ not legal advice; obtain local counsel for your jurisdiction.
 | [DISCLAIMER.md](DISCLAIMER.md) | Warranty, liability, acceptable use, and high-risk limits |
 | [RELEASE_NOTES.md](RELEASE_NOTES.md) | What changed in this version |
 | **SHA256SUMS** | Checksums for every distributed file |
-
