@@ -1,6 +1,29 @@
 # Aruhan — China mainland edition / 国内版
 
-**Version v2.1.32** · **China mainland edition** · [Download](https://gitee.com/guleng2005/Aruhan-AI/releases) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
+**Version v2.1.33** · **China mainland edition** · [Download](https://gitee.com/guleng2005/Aruhan-AI/releases) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
+ · 中文（文末点击展开 / collapsed at the end）
+
+**⬇ [立即下载 / Download now](https://gitee.com/guleng2005/Aruhan-AI/releases)** —
+[Windows](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe) · [macOS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Linux](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) ·
+[全部资产 / all assets](https://gitee.com/guleng2005/Aruhan-AI/releases)
+
+## Download / 下载
+
+| Platform | Package | Download |
+|---|---|---|
+| Windows | Bundle: CLI + desktop + Factory | [Aruhan bundle installer](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe) |
+| Windows | Separate installers | [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-CLI-Setup-2.1.33-cn.exe) · [Desktop](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Desktop-Setup-2.1.33-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Factory-Setup-2.1.33-cn.exe) |
+| Windows | Portable ZIP | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-windows-amd64-2.1.33-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-windows-arm64-2.1.33-cn.zip) |
+| Windows arm64 | TUI installer | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-tui-installer-windows-arm64-cn.exe) |
+| macOS | Desktop app | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-arm64-cn) |
+| macOS | CLI/TUI tarball | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-darwin-amd64-2.1.33-cn.tar.gz) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-darwin-arm64-2.1.33-cn.tar.gz) |
+| Linux | Desktop app | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-linux-amd64-cn) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-linux-arm64-cn) |
+| Linux | CLI/TUI/Factory tarball | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-arm64-2.1.33-cn.tar.gz) |
+| VS Code | Extension | [VSIX](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-vscode-cn.vsix) |
+| All | Integrity | [SHA256SUMS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/SHA256SUMS) |
+
+Install, upgrade, PATH, Gatekeeper and SmartScreen notes are in
+[INSTALL.md](INSTALL.md); the full asset list is at the bottom of this page.
 
 
 **Your codebase. Your machine. Your models. An AI engineer that actually runs
@@ -173,11 +196,11 @@ provider fallback.
 
 | You want | Download |
 |---|---|
-| Windows, everything (recommended) | **Aruhan-Setup-2.1.32-cn.exe** |
-| Windows CLI only | **Aruhan-CLI-Setup-2.1.32-cn.exe** |
-| Windows desktop only | **Aruhan-Desktop-Setup-2.1.32-cn.exe** |
-| Windows Factory | **Factory-Setup-2.1.32-cn.exe** |
-| Windows portable | the matching **aruhan-windows-*-2.1.32-cn.zip** |
+| Windows, everything (recommended) | **Aruhan-Setup-2.1.33-cn.exe** |
+| Windows CLI only | **Aruhan-CLI-Setup-2.1.33-cn.exe** |
+| Windows desktop only | **Aruhan-Desktop-Setup-2.1.33-cn.exe** |
+| Windows Factory | **Factory-Setup-2.1.33-cn.exe** |
+| Windows portable | the matching **aruhan-windows-*-2.1.33-cn.zip** |
 | Linux CLI / Factory | **aruhan-linux-*.tar.gz**, **factory-linux-*.tar.gz** |
 | macOS CLI / Factory | **aruhan-darwin-*.tar.gz**, **factory-darwin-*.tar.gz** |
 | Linux / macOS desktop | the matching **aruhan-desktop-*-cn** binary |
@@ -320,33 +343,33 @@ not legal advice; obtain local counsel for your jurisdiction.
 <details>
 <summary><strong>Show all 27 assets</strong></summary>
 
-- **darwin/aruhan-darwin-amd64-2.1.32-cn.tar.gz** — 43,020,016 bytes
-- **darwin/aruhan-darwin-arm64-2.1.32-cn.tar.gz** — 40,718,074 bytes
-- **darwin/factory-darwin-amd64-2.1.32-cn.tar.gz** — 44,847,217 bytes
-- **darwin/factory-darwin-arm64-2.1.32-cn.tar.gz** — 42,274,431 bytes
-- **linux/aruhan-linux-amd64-2.1.32-cn.tar.gz** — 42,356,913 bytes
-- **linux/aruhan-linux-arm64-2.1.32-cn.tar.gz** — 39,245,077 bytes
-- **linux/factory-linux-amd64-2.1.32-cn.tar.gz** — 44,157,955 bytes
-- **linux/factory-linux-arm64-2.1.32-cn.tar.gz** — 40,789,982 bytes
-- **vscode/aruhan-vscode-cn.vsix** — 87,788,236 bytes
-- **windows/Aruhan-CLI-Setup-2.1.32-cn.exe** — 21,784,027 bytes
-- **windows/aruhan-cn.exe** — 72,487,936 bytes
-- **windows/aruhan-desktop-arm64-cn.exe** — 38,202,368 bytes
-- **windows/aruhan-desktop-cn.exe** — 43,931,136 bytes
-- **windows/Aruhan-Desktop-Setup-2.1.32-cn.exe** — 33,374,431 bytes
-- **windows/aruhan-desktop-windows-amd64-2.1.32-cn.zip** — 15,501,167 bytes
-- **windows/aruhan-desktop-windows-arm64-2.1.32-cn.zip** — 13,027,033 bytes
-- **windows/Aruhan-Setup-2.1.32-cn.exe** — 33,387,026 bytes
-- **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,067,328 bytes
-- **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,154,688 bytes
-- **windows/aruhan-windows-amd64-2.1.32-cn.zip** — 28,893,756 bytes
-- **windows/aruhan-windows-amd64-cn.exe** — 72,487,936 bytes
-- **windows/aruhan-windows-arm64-2.1.32-cn.zip** — 26,637,752 bytes
-- **windows/aruhan-windows-arm64-cn.exe** — 67,773,440 bytes
-- **windows/factory-cn.exe** — 40,718,336 bytes
-- **windows/Factory-Setup-2.1.32-cn.exe** — 33,906,455 bytes
-- **windows/factory-windows-amd64-cn.exe** — 40,718,336 bytes
-- **windows/factory-windows-arm64-cn.exe** — 37,515,264 bytes
+- **darwin/aruhan-darwin-amd64-2.1.33-cn.tar.gz** — 43,237,860 bytes
+- **darwin/aruhan-darwin-arm64-2.1.33-cn.tar.gz** — 40,918,732 bytes
+- **darwin/factory-darwin-amd64-2.1.33-cn.tar.gz** — 45,225,285 bytes
+- **darwin/factory-darwin-arm64-2.1.33-cn.tar.gz** — 42,617,032 bytes
+- **linux/aruhan-linux-amd64-2.1.33-cn.tar.gz** — 42,568,163 bytes
+- **linux/aruhan-linux-arm64-2.1.33-cn.tar.gz** — 39,438,475 bytes
+- **linux/factory-linux-amd64-2.1.33-cn.tar.gz** — 44,533,301 bytes
+- **linux/factory-linux-arm64-2.1.33-cn.tar.gz** — 41,118,625 bytes
+- **vscode/aruhan-vscode-cn.vsix** — 88,280,991 bytes
+- **windows/Aruhan-CLI-Setup-2.1.33-cn.exe** — 21,885,467 bytes
+- **windows/aruhan-cn.exe** — 72,840,192 bytes
+- **windows/aruhan-desktop-arm64-cn.exe** — 38,287,872 bytes
+- **windows/aruhan-desktop-cn.exe** — 44,029,440 bytes
+- **windows/Aruhan-Desktop-Setup-2.1.33-cn.exe** — 33,528,161 bytes
+- **windows/aruhan-desktop-windows-amd64-2.1.33-cn.zip** — 15,553,550 bytes
+- **windows/aruhan-desktop-windows-arm64-2.1.33-cn.zip** — 13,074,706 bytes
+- **windows/Aruhan-Setup-2.1.33-cn.exe** — 33,532,178 bytes
+- **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,399,104 bytes
+- **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,447,040 bytes
+- **windows/aruhan-windows-amd64-2.1.33-cn.zip** — 29,058,370 bytes
+- **windows/aruhan-windows-amd64-cn.exe** — 72,840,192 bytes
+- **windows/aruhan-windows-arm64-2.1.33-cn.zip** — 26,780,433 bytes
+- **windows/aruhan-windows-arm64-cn.exe** — 68,085,760 bytes
+- **windows/factory-cn.exe** — 41,271,296 bytes
+- **windows/Factory-Setup-2.1.33-cn.exe** — 34,179,336 bytes
+- **windows/factory-windows-amd64-cn.exe** — 41,271,296 bytes
+- **windows/factory-windows-arm64-cn.exe** — 37,991,424 bytes
 
 </details>
 
