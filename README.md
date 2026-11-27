@@ -1,27 +1,27 @@
 # Aruhan — China mainland edition / 国内版
 
-**⬇ [下载 / Download](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.33)**
+**⬇ [下载 / Download](https://gitee.com/guleng2005/Aruhan-AI/releases/tag/v2.1.34)**
 
 <details name="lang">
 <summary><strong>中文 / Chinese</strong></summary>
 
-**⬇ [立即下载 Windows 安装包](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe)** —
-[macOS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Linux](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) · 全部平台见下表
+**⬇ [立即下载 Windows 安装包](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Setup-2.1.34-cn.exe)** —
+[macOS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-amd64-cn) · [Linux](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-amd64-2.1.34-cn.tar.gz) · 全部平台见下表
 
 ## 下载 / Download
 
 | 平台 | 安装包 | 下载 |
 |---|---|---|
-| Windows | 合集：CLI + 桌面 + Factory | [Aruhan 安装包](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe) |
-| Windows | 单独安装包 | [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-CLI-Setup-2.1.33-cn.exe) · [桌面](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Desktop-Setup-2.1.33-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Factory-Setup-2.1.33-cn.exe) |
-| Windows | 便携 ZIP | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-windows-amd64-2.1.33-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-windows-arm64-2.1.33-cn.zip) |
-| Windows arm64 | TUI 安装器 | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-tui-installer-windows-arm64-cn.exe) |
-| macOS | 桌面应用 | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-arm64-cn) |
-| macOS | CLI/TUI 压缩包 | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-darwin-amd64-2.1.33-cn.tar.gz) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-darwin-arm64-2.1.33-cn.tar.gz) |
-| Linux | 桌面应用 | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-linux-amd64-cn) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-linux-arm64-cn) |
-| Linux | CLI/TUI/Factory 压缩包 | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-arm64-2.1.33-cn.tar.gz) |
-| VS Code | 扩展 | [VSIX](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-vscode-cn.vsix) |
-| 全部 | 完整性校验 | [SHA256SUMS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/SHA256SUMS) |
+| Windows | 合集：CLI + 桌面 + Factory | [Aruhan 安装包](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Setup-2.1.34-cn.exe) |
+| Windows | 单独安装包 | [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-CLI-Setup-2.1.34-cn.exe) · [桌面](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Desktop-Setup-2.1.34-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Factory-Setup-2.1.34-cn.exe) |
+| Windows | 便携 ZIP | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-amd64-2.1.34-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-arm64-2.1.34-cn.zip) |
+| Windows arm64 | TUI 安装器 | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-arm64-cn.exe) |
+| macOS | 桌面应用 | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-amd64-cn) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-arm64-cn) |
+| macOS | CLI/TUI 压缩包 | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-amd64-2.1.34-cn.tar.gz) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-arm64-2.1.34-cn.tar.gz) |
+| Linux | 桌面应用 | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-amd64-cn) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-arm64-cn) |
+| Linux | CLI/TUI/Factory 压缩包 | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-amd64-2.1.34-cn.tar.gz) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-arm64-2.1.34-cn.tar.gz) |
+| VS Code | 扩展 | [VSIX](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-vscode-cn.vsix) |
+| 全部 | 完整性校验 | [SHA256SUMS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/SHA256SUMS) |
 
 安装、升级、PATH、Gatekeeper 与 SmartScreen 说明见 [INSTALL.md](INSTALL.md)；
 完整资产列表在页面最下方。
@@ -30,7 +30,7 @@
 
 # Aruhan — 国内版
 
-**版本 v2.1.33** · **国内版** · [下载](https://gitee.com/guleng2005/Aruhan-AI/releases) · [安装](INSTALL.md) · [许可证](LICENSE.zh-CN.md) · [免责声明](DISCLAIMER.md)
+**版本 v2.1.34** · **国内版** · [下载](https://gitee.com/guleng2005/Aruhan-AI/releases) · [安装](INSTALL.md) · [许可证](LICENSE.zh-CN.md) · [免责声明](DISCLAIMER.md)
 
 **你的代码库，你的机器，你的模型；一个真正把工程闭环跑完的 AI 工程师。**
 
@@ -172,11 +172,11 @@ Factory 是面向"必须可重复"的工作的控制面。Pack 定义交付过�
 
 | 你需要 | 下载 |
 |---|---|
-| Windows 全量安装（推荐） | **Aruhan-Setup-2.1.33-cn.exe** |
-| 仅 Windows CLI | **Aruhan-CLI-Setup-2.1.33-cn.exe** |
-| 仅 Windows 桌面端 | **Aruhan-Desktop-Setup-2.1.33-cn.exe** |
-| Windows Factory | **Factory-Setup-2.1.33-cn.exe** |
-| Windows 便携版 | 对应的 **aruhan-windows-*-2.1.33-cn.zip** |
+| Windows 全量安装（推荐） | **Aruhan-Setup-2.1.34-cn.exe** |
+| 仅 Windows CLI | **Aruhan-CLI-Setup-2.1.34-cn.exe** |
+| 仅 Windows 桌面端 | **Aruhan-Desktop-Setup-2.1.34-cn.exe** |
+| Windows Factory | **Factory-Setup-2.1.34-cn.exe** |
+| Windows 便携版 | 对应的 **aruhan-windows-*-2.1.34-cn.zip** |
 | Linux CLI / Factory | **aruhan-linux-*.tar.gz**、**factory-linux-*.tar.gz** |
 | macOS CLI / Factory | **aruhan-darwin-*.tar.gz**、**factory-darwin-*.tar.gz** |
 | Linux / macOS 桌面端 | 对应的 **aruhan-desktop-*-cn** 二进制 |
@@ -296,33 +296,33 @@ Aruhan 会执行模型请求的工具，可能修改文件、运行命令、调�
 <details>
 <summary><strong>展开全部 27 个资产</strong></summary>
 
-- **darwin/aruhan-darwin-amd64-2.1.33-cn.tar.gz** — 43,237,860 bytes
-- **darwin/aruhan-darwin-arm64-2.1.33-cn.tar.gz** — 40,918,732 bytes
-- **darwin/factory-darwin-amd64-2.1.33-cn.tar.gz** — 45,225,285 bytes
-- **darwin/factory-darwin-arm64-2.1.33-cn.tar.gz** — 42,617,032 bytes
-- **linux/aruhan-linux-amd64-2.1.33-cn.tar.gz** — 42,568,163 bytes
-- **linux/aruhan-linux-arm64-2.1.33-cn.tar.gz** — 39,438,475 bytes
-- **linux/factory-linux-amd64-2.1.33-cn.tar.gz** — 44,533,301 bytes
-- **linux/factory-linux-arm64-2.1.33-cn.tar.gz** — 41,118,625 bytes
-- **vscode/aruhan-vscode-cn.vsix** — 88,280,991 bytes
-- **windows/Aruhan-CLI-Setup-2.1.33-cn.exe** — 21,885,467 bytes
-- **windows/aruhan-cn.exe** — 72,840,192 bytes
-- **windows/aruhan-desktop-arm64-cn.exe** — 38,287,872 bytes
-- **windows/aruhan-desktop-cn.exe** — 44,029,440 bytes
-- **windows/Aruhan-Desktop-Setup-2.1.33-cn.exe** — 33,528,161 bytes
-- **windows/aruhan-desktop-windows-amd64-2.1.33-cn.zip** — 15,553,550 bytes
-- **windows/aruhan-desktop-windows-arm64-2.1.33-cn.zip** — 13,074,706 bytes
-- **windows/Aruhan-Setup-2.1.33-cn.exe** — 33,532,178 bytes
-- **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,399,104 bytes
-- **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,447,040 bytes
-- **windows/aruhan-windows-amd64-2.1.33-cn.zip** — 29,058,370 bytes
-- **windows/aruhan-windows-amd64-cn.exe** — 72,840,192 bytes
-- **windows/aruhan-windows-arm64-2.1.33-cn.zip** — 26,780,433 bytes
-- **windows/aruhan-windows-arm64-cn.exe** — 68,085,760 bytes
-- **windows/factory-cn.exe** — 41,271,296 bytes
-- **windows/Factory-Setup-2.1.33-cn.exe** — 34,179,336 bytes
-- **windows/factory-windows-amd64-cn.exe** — 41,271,296 bytes
-- **windows/factory-windows-arm64-cn.exe** — 37,991,424 bytes
+- **darwin/aruhan-darwin-amd64-2.1.34-cn.tar.gz** — 43,244,890 bytes
+- **darwin/aruhan-darwin-arm64-2.1.34-cn.tar.gz** — 40,923,695 bytes
+- **darwin/factory-darwin-amd64-2.1.34-cn.tar.gz** — 45,225,578 bytes
+- **darwin/factory-darwin-arm64-2.1.34-cn.tar.gz** — 42,615,882 bytes
+- **linux/aruhan-linux-amd64-2.1.34-cn.tar.gz** — 42,580,113 bytes
+- **linux/aruhan-linux-arm64-2.1.34-cn.tar.gz** — 39,443,192 bytes
+- **linux/factory-linux-amd64-2.1.34-cn.tar.gz** — 44,533,247 bytes
+- **linux/factory-linux-arm64-2.1.34-cn.tar.gz** — 41,119,587 bytes
+- **vscode/aruhan-vscode-cn.vsix** — 88,282,311 bytes
+- **windows/Aruhan-CLI-Setup-2.1.34-cn.exe** — 21,898,625 bytes
+- **windows/aruhan-cn.exe** — 72,830,464 bytes
+- **windows/aruhan-desktop-arm64-cn.exe** — 38,299,648 bytes
+- **windows/aruhan-desktop-cn.exe** — 44,043,264 bytes
+- **windows/Aruhan-Desktop-Setup-2.1.34-cn.exe** — 33,524,655 bytes
+- **windows/aruhan-desktop-windows-amd64-2.1.34-cn.zip** — 15,561,481 bytes
+- **windows/aruhan-desktop-windows-arm64-2.1.34-cn.zip** — 13,075,258 bytes
+- **windows/Aruhan-Setup-2.1.34-cn.exe** — 33,537,912 bytes
+- **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,389,376 bytes
+- **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,437,312 bytes
+- **windows/aruhan-windows-amd64-2.1.34-cn.zip** — 29,059,069 bytes
+- **windows/aruhan-windows-amd64-cn.exe** — 72,830,464 bytes
+- **windows/aruhan-windows-arm64-2.1.34-cn.zip** — 26,780,104 bytes
+- **windows/aruhan-windows-arm64-cn.exe** — 68,076,032 bytes
+- **windows/factory-cn.exe** — 41,264,640 bytes
+- **windows/Factory-Setup-2.1.34-cn.exe** — 34,172,751 bytes
+- **windows/factory-windows-amd64-cn.exe** — 41,264,640 bytes
+- **windows/factory-windows-arm64-cn.exe** — 37,983,744 bytes
 
 </details>
 
@@ -342,25 +342,25 @@ Aruhan 会执行模型请求的工具，可能修改文件、运行命令、调�
 <details name="lang" open>
 <summary><strong>English</strong></summary>
 
-**Version v2.1.33** · **China mainland edition** · [Download](https://gitee.com/guleng2005/Aruhan-AI/releases) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
+**Version v2.1.34** · **China mainland edition** · [Download](https://gitee.com/guleng2005/Aruhan-AI/releases) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
 
-**⬇ [Download Aruhan 2.1.33 for Windows](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe)** —
-[macOS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Linux](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) · all platforms below
+**⬇ [Download Aruhan 2.1.34 for Windows](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Setup-2.1.34-cn.exe)** —
+[macOS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-amd64-cn) · [Linux](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-amd64-2.1.34-cn.tar.gz) · all platforms below
 
 ## Download / 下载
 
 | Platform | Package | Download |
 |---|---|---|
-| Windows | Bundle: CLI + desktop + Factory | [Aruhan bundle installer](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe) |
-| Windows | Separate installers | [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-CLI-Setup-2.1.33-cn.exe) · [Desktop](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Desktop-Setup-2.1.33-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Factory-Setup-2.1.33-cn.exe) |
-| Windows | Portable ZIP | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-windows-amd64-2.1.33-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-windows-arm64-2.1.33-cn.zip) |
-| Windows arm64 | TUI installer | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-tui-installer-windows-arm64-cn.exe) |
-| macOS | Desktop app | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-amd64-cn) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-darwin-arm64-cn) |
-| macOS | CLI/TUI tarball | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-darwin-amd64-2.1.33-cn.tar.gz) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-darwin-arm64-2.1.33-cn.tar.gz) |
-| Linux | Desktop app | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-linux-amd64-cn) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-desktop-linux-arm64-cn) |
-| Linux | CLI/TUI/Factory tarball | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-amd64-2.1.33-cn.tar.gz) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-linux-arm64-2.1.33-cn.tar.gz) |
-| VS Code | Extension | [VSIX](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/aruhan-vscode-cn.vsix) |
-| All | Integrity | [SHA256SUMS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/SHA256SUMS) |
+| Windows | Bundle: CLI + desktop + Factory | [Aruhan bundle installer](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Setup-2.1.34-cn.exe) |
+| Windows | Separate installers | [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-CLI-Setup-2.1.34-cn.exe) · [Desktop](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Desktop-Setup-2.1.34-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Factory-Setup-2.1.34-cn.exe) |
+| Windows | Portable ZIP | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-amd64-2.1.34-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-arm64-2.1.34-cn.zip) |
+| Windows arm64 | TUI installer | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-arm64-cn.exe) |
+| macOS | Desktop app | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-amd64-cn) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-arm64-cn) |
+| macOS | CLI/TUI tarball | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-amd64-2.1.34-cn.tar.gz) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-arm64-2.1.34-cn.tar.gz) |
+| Linux | Desktop app | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-amd64-cn) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-arm64-cn) |
+| Linux | CLI/TUI/Factory tarball | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-amd64-2.1.34-cn.tar.gz) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-arm64-2.1.34-cn.tar.gz) |
+| VS Code | Extension | [VSIX](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-vscode-cn.vsix) |
+| All | Integrity | [SHA256SUMS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/SHA256SUMS) |
 
 Install, upgrade, PATH, Gatekeeper and SmartScreen notes are in
 [INSTALL.md](INSTALL.md); the full asset list is at the bottom of this page.
@@ -536,11 +536,11 @@ provider fallback.
 
 | You want | Download |
 |---|---|
-| Windows, everything (recommended) | **Aruhan-Setup-2.1.33-cn.exe** |
-| Windows CLI only | **Aruhan-CLI-Setup-2.1.33-cn.exe** |
-| Windows desktop only | **Aruhan-Desktop-Setup-2.1.33-cn.exe** |
-| Windows Factory | **Factory-Setup-2.1.33-cn.exe** |
-| Windows portable | the matching **aruhan-windows-*-2.1.33-cn.zip** |
+| Windows, everything (recommended) | **Aruhan-Setup-2.1.34-cn.exe** |
+| Windows CLI only | **Aruhan-CLI-Setup-2.1.34-cn.exe** |
+| Windows desktop only | **Aruhan-Desktop-Setup-2.1.34-cn.exe** |
+| Windows Factory | **Factory-Setup-2.1.34-cn.exe** |
+| Windows portable | the matching **aruhan-windows-*-2.1.34-cn.zip** |
 | Linux CLI / Factory | **aruhan-linux-*.tar.gz**, **factory-linux-*.tar.gz** |
 | macOS CLI / Factory | **aruhan-darwin-*.tar.gz**, **factory-darwin-*.tar.gz** |
 | Linux / macOS desktop | the matching **aruhan-desktop-*-cn** binary |
@@ -683,33 +683,33 @@ not legal advice; obtain local counsel for your jurisdiction.
 <details>
 <summary><strong>Show all 27 assets</strong></summary>
 
-- **darwin/aruhan-darwin-amd64-2.1.33-cn.tar.gz** — 43,237,860 bytes
-- **darwin/aruhan-darwin-arm64-2.1.33-cn.tar.gz** — 40,918,732 bytes
-- **darwin/factory-darwin-amd64-2.1.33-cn.tar.gz** — 45,225,285 bytes
-- **darwin/factory-darwin-arm64-2.1.33-cn.tar.gz** — 42,617,032 bytes
-- **linux/aruhan-linux-amd64-2.1.33-cn.tar.gz** — 42,568,163 bytes
-- **linux/aruhan-linux-arm64-2.1.33-cn.tar.gz** — 39,438,475 bytes
-- **linux/factory-linux-amd64-2.1.33-cn.tar.gz** — 44,533,301 bytes
-- **linux/factory-linux-arm64-2.1.33-cn.tar.gz** — 41,118,625 bytes
-- **vscode/aruhan-vscode-cn.vsix** — 88,280,991 bytes
-- **windows/Aruhan-CLI-Setup-2.1.33-cn.exe** — 21,885,467 bytes
-- **windows/aruhan-cn.exe** — 72,840,192 bytes
-- **windows/aruhan-desktop-arm64-cn.exe** — 38,287,872 bytes
-- **windows/aruhan-desktop-cn.exe** — 44,029,440 bytes
-- **windows/Aruhan-Desktop-Setup-2.1.33-cn.exe** — 33,528,161 bytes
-- **windows/aruhan-desktop-windows-amd64-2.1.33-cn.zip** — 15,553,550 bytes
-- **windows/aruhan-desktop-windows-arm64-2.1.33-cn.zip** — 13,074,706 bytes
-- **windows/Aruhan-Setup-2.1.33-cn.exe** — 33,532,178 bytes
-- **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,399,104 bytes
-- **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,447,040 bytes
-- **windows/aruhan-windows-amd64-2.1.33-cn.zip** — 29,058,370 bytes
-- **windows/aruhan-windows-amd64-cn.exe** — 72,840,192 bytes
-- **windows/aruhan-windows-arm64-2.1.33-cn.zip** — 26,780,433 bytes
-- **windows/aruhan-windows-arm64-cn.exe** — 68,085,760 bytes
-- **windows/factory-cn.exe** — 41,271,296 bytes
-- **windows/Factory-Setup-2.1.33-cn.exe** — 34,179,336 bytes
-- **windows/factory-windows-amd64-cn.exe** — 41,271,296 bytes
-- **windows/factory-windows-arm64-cn.exe** — 37,991,424 bytes
+- **darwin/aruhan-darwin-amd64-2.1.34-cn.tar.gz** — 43,244,890 bytes
+- **darwin/aruhan-darwin-arm64-2.1.34-cn.tar.gz** — 40,923,695 bytes
+- **darwin/factory-darwin-amd64-2.1.34-cn.tar.gz** — 45,225,578 bytes
+- **darwin/factory-darwin-arm64-2.1.34-cn.tar.gz** — 42,615,882 bytes
+- **linux/aruhan-linux-amd64-2.1.34-cn.tar.gz** — 42,580,113 bytes
+- **linux/aruhan-linux-arm64-2.1.34-cn.tar.gz** — 39,443,192 bytes
+- **linux/factory-linux-amd64-2.1.34-cn.tar.gz** — 44,533,247 bytes
+- **linux/factory-linux-arm64-2.1.34-cn.tar.gz** — 41,119,587 bytes
+- **vscode/aruhan-vscode-cn.vsix** — 88,282,311 bytes
+- **windows/Aruhan-CLI-Setup-2.1.34-cn.exe** — 21,898,625 bytes
+- **windows/aruhan-cn.exe** — 72,830,464 bytes
+- **windows/aruhan-desktop-arm64-cn.exe** — 38,299,648 bytes
+- **windows/aruhan-desktop-cn.exe** — 44,043,264 bytes
+- **windows/Aruhan-Desktop-Setup-2.1.34-cn.exe** — 33,524,655 bytes
+- **windows/aruhan-desktop-windows-amd64-2.1.34-cn.zip** — 15,561,481 bytes
+- **windows/aruhan-desktop-windows-arm64-2.1.34-cn.zip** — 13,075,258 bytes
+- **windows/Aruhan-Setup-2.1.34-cn.exe** — 33,537,912 bytes
+- **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,389,376 bytes
+- **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,437,312 bytes
+- **windows/aruhan-windows-amd64-2.1.34-cn.zip** — 29,059,069 bytes
+- **windows/aruhan-windows-amd64-cn.exe** — 72,830,464 bytes
+- **windows/aruhan-windows-arm64-2.1.34-cn.zip** — 26,780,104 bytes
+- **windows/aruhan-windows-arm64-cn.exe** — 68,076,032 bytes
+- **windows/factory-cn.exe** — 41,264,640 bytes
+- **windows/Factory-Setup-2.1.34-cn.exe** — 34,172,751 bytes
+- **windows/factory-windows-amd64-cn.exe** — 41,264,640 bytes
+- **windows/factory-windows-arm64-cn.exe** — 37,983,744 bytes
 
 </details>
 
