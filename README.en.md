@@ -1,5 +1,8 @@
 # Aruhan — China mainland edition / 国内版
 
+**⬇ [下载 / Download](https://github.com/xizhihao1/Aruhan-AI/releases/tag/v2.1.33)**
+
+
 **Version v2.1.33** · **China mainland edition** · [Download](https://gitee.com/guleng2005/Aruhan-AI/releases) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
 
 **⬇ [Download Aruhan 2.1.33 for Windows](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.33/Aruhan-Setup-2.1.33-cn.exe)** —
