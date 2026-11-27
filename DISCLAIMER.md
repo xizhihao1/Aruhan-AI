@@ -1,6 +1,6 @@
 # Disclaimer, Acceptable Use & Legal Notice / 免责声明、可接受使用与法律提示
 
-**Version / 版本：2.1.33** · [English](#english) · [中文](#中文)
+**Version / 版本：2.1.34** · [English](#english) · [中文](#中文)
 
 > This document is a project notice, not legal advice. Use of the distributed
 > software is subject to the terms published with each release.
