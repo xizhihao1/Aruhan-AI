@@ -306,9 +306,6 @@ Aruhan 会执行模型请求的工具，可能修改文件、运行命令、调�
 - **linux/factory-linux-arm64-2.1.35-cn.tar.gz** — 41,162,282 bytes
 - **vscode/aruhan-vscode-cn.vsix** — 88,416,845 bytes
 - **windows/Aruhan-CLI-Setup-2.1.35-cn.exe** — 21,934,123 bytes
-- **windows/aruhan-cn.exe** — 72,948,736 bytes
-- **windows/aruhan-desktop-arm64-cn.exe** — 38,301,184 bytes
-- **windows/aruhan-desktop-cn.exe** — 44,044,800 bytes
 - **windows/Aruhan-Desktop-Setup-2.1.35-cn.exe** — 33,569,555 bytes
 - **windows/aruhan-desktop-windows-amd64-2.1.35-cn.zip** — 15,561,969 bytes
 - **windows/aruhan-desktop-windows-arm64-2.1.35-cn.zip** — 13,075,550 bytes
@@ -316,13 +313,8 @@ Aruhan 会执行模型请求的工具，可能修改文件、运行命令、调�
 - **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,507,648 bytes
 - **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,543,808 bytes
 - **windows/aruhan-windows-amd64-2.1.35-cn.zip** — 29,100,036 bytes
-- **windows/aruhan-windows-amd64-cn.exe** — 72,948,736 bytes
 - **windows/aruhan-windows-arm64-2.1.35-cn.zip** — 26,817,173 bytes
-- **windows/aruhan-windows-arm64-cn.exe** — 68,182,528 bytes
-- **windows/factory-cn.exe** — 41,266,688 bytes
 - **windows/Factory-Setup-2.1.35-cn.exe** — 34,212,348 bytes
-- **windows/factory-windows-amd64-cn.exe** — 41,266,688 bytes
-- **windows/factory-windows-arm64-cn.exe** — 37,986,304 bytes
 
 </details>
 
@@ -693,9 +685,6 @@ not legal advice; obtain local counsel for your jurisdiction.
 - **linux/factory-linux-arm64-2.1.35-cn.tar.gz** — 41,162,282 bytes
 - **vscode/aruhan-vscode-cn.vsix** — 88,416,845 bytes
 - **windows/Aruhan-CLI-Setup-2.1.35-cn.exe** — 21,934,123 bytes
-- **windows/aruhan-cn.exe** — 72,948,736 bytes
-- **windows/aruhan-desktop-arm64-cn.exe** — 38,301,184 bytes
-- **windows/aruhan-desktop-cn.exe** — 44,044,800 bytes
 - **windows/Aruhan-Desktop-Setup-2.1.35-cn.exe** — 33,569,555 bytes
 - **windows/aruhan-desktop-windows-amd64-2.1.35-cn.zip** — 15,561,969 bytes
 - **windows/aruhan-desktop-windows-arm64-2.1.35-cn.zip** — 13,075,550 bytes
@@ -703,13 +692,8 @@ not legal advice; obtain local counsel for your jurisdiction.
 - **windows/aruhan-tui-installer-windows-amd64-cn.exe** — 76,507,648 bytes
 - **windows/aruhan-tui-installer-windows-arm64-cn.exe** — 71,543,808 bytes
 - **windows/aruhan-windows-amd64-2.1.35-cn.zip** — 29,100,036 bytes
-- **windows/aruhan-windows-amd64-cn.exe** — 72,948,736 bytes
 - **windows/aruhan-windows-arm64-2.1.35-cn.zip** — 26,817,173 bytes
-- **windows/aruhan-windows-arm64-cn.exe** — 68,182,528 bytes
-- **windows/factory-cn.exe** — 41,266,688 bytes
 - **windows/Factory-Setup-2.1.35-cn.exe** — 34,212,348 bytes
-- **windows/factory-windows-amd64-cn.exe** — 41,266,688 bytes
-- **windows/factory-windows-arm64-cn.exe** — 37,986,304 bytes
 
 </details>
 
