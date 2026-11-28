@@ -36,7 +36,7 @@ param(
 # --- 可配置常量 ---
 $Owner   = "guleng2005"
 $Repo    = "Aruhan-AI"
-$DefaultVersion = "v2.1.33"
+$DefaultVersion = "v2.1.35"
 $BaseUrl = "https://gitee.com/$Owner/$Repo/releases/download"
 
 # --- 颜色输出辅助 ---
