@@ -14,7 +14,7 @@
 
 | 平台 | 安装包 | 说明 | 下载 |
 |---|---|---|---|
-| Windows | 合集：CLI + 桌面 | 一次安装 CLI 与桌面端（Factory 使用单独安装包）。 | [Aruhan 安装包](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-Setup-2.1.35-cn.exe) |
+| Windows | 合集：CLI + 桌面 | 一次安装 CLI 与桌面端。 | [Aruhan 安装包](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-Setup-2.1.35-cn.exe) |
 | Windows | 单独安装包 | 只安装需要的端。 | [CLI](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-CLI-Setup-2.1.35-cn.exe) · [桌面](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-Desktop-Setup-2.1.35-cn.exe) · [Factory](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Factory-Setup-2.1.35-cn.exe) |
 | Windows | 便携 ZIP | 免安装，解压即用。 | [amd64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-windows-amd64-2.1.35-cn.zip) · [arm64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-windows-arm64-2.1.35-cn.zip) |
 | Windows arm64 | TUI 安装器 | Windows ARM 终端界面安装器。 | [amd64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-tui-installer-windows-arm64-cn.exe) |
@@ -118,7 +118,7 @@ i18n、RPC schema 与 plan 检查通过。
 
 | Platform | Package | What it is | Download |
 |---|---|---|---|
-| Windows | Bundle: CLI + desktop | Single installer for the CLI and desktop app (Factory has its own installer). | [Aruhan bundle installer](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-Setup-2.1.35-cn.exe) |
+| Windows | Bundle: CLI + desktop | Single installer for the CLI and desktop app. | [Aruhan bundle installer](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-Setup-2.1.35-cn.exe) |
 | Windows | Separate installers | Install only the surface you need. | [CLI](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-CLI-Setup-2.1.35-cn.exe) · [Desktop](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Aruhan-Desktop-Setup-2.1.35-cn.exe) · [Factory](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/Factory-Setup-2.1.35-cn.exe) |
 | Windows | Portable ZIP | No-install ZIP; unpack and run. | [amd64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-windows-amd64-2.1.35-cn.zip) · [arm64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-windows-arm64-2.1.35-cn.zip) |
 | Windows arm64 | TUI installer | Terminal UI installer for Windows on ARM. | [amd64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://github.com/xizhihao1/Aruhan-AI/releases/download/v2.1.35/aruhan-tui-installer-windows-arm64-cn.exe) |
