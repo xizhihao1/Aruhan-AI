@@ -20,9 +20,6 @@ one configuration directory. This release contains compiled artifacts only.
 | **linux/factory-linux-arm64-2.1.35-cn.tar.gz** | 41162282 |
 | **vscode/aruhan-vscode-cn.vsix** | 88416845 |
 | **windows/Aruhan-CLI-Setup-2.1.35-cn.exe** | 21934123 |
-| **windows/aruhan-cn.exe** | 72948736 |
-| **windows/aruhan-desktop-arm64-cn.exe** | 38301184 |
-| **windows/aruhan-desktop-cn.exe** | 44044800 |
 | **windows/Aruhan-Desktop-Setup-2.1.35-cn.exe** | 33569555 |
 | **windows/aruhan-desktop-windows-amd64-2.1.35-cn.zip** | 15561969 |
 | **windows/aruhan-desktop-windows-arm64-2.1.35-cn.zip** | 13075550 |
@@ -30,13 +27,8 @@ one configuration directory. This release contains compiled artifacts only.
 | **windows/aruhan-tui-installer-windows-amd64-cn.exe** | 76507648 |
 | **windows/aruhan-tui-installer-windows-arm64-cn.exe** | 71543808 |
 | **windows/aruhan-windows-amd64-2.1.35-cn.zip** | 29100036 |
-| **windows/aruhan-windows-amd64-cn.exe** | 72948736 |
 | **windows/aruhan-windows-arm64-2.1.35-cn.zip** | 26817173 |
-| **windows/aruhan-windows-arm64-cn.exe** | 68182528 |
-| **windows/factory-cn.exe** | 41266688 |
 | **windows/Factory-Setup-2.1.35-cn.exe** | 34212348 |
-| **windows/factory-windows-amd64-cn.exe** | 41266688 |
-| **windows/factory-windows-arm64-cn.exe** | 37986304 |
 
 ## Notes / 说明
 
