@@ -1,6 +1,6 @@
-# Release v2.1.34 — China mainland edition / 国内版
+# Release v2.1.35 — China mainland edition / 国内版
 
-**Version v2.1.34** · **China mainland edition** · [README](README.md) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
+**Version v2.1.35** · **China mainland edition** · [README](README.md) · [Install](INSTALL.md) · [License](LICENSE) · [Disclaimer](DISCLAIMER.md)
 
 Aruhan is a local-first AI engineering workspace: CLI, terminal UI, desktop
 app, VS Code extension, and the Factory control plane share one runtime and
@@ -10,33 +10,33 @@ one configuration directory. This release contains compiled artifacts only.
 
 | Asset | Bytes |
 |---|---|
-| **darwin/aruhan-darwin-amd64-2.1.34-cn.tar.gz** | 43244890 |
-| **darwin/aruhan-darwin-arm64-2.1.34-cn.tar.gz** | 40923695 |
-| **darwin/factory-darwin-amd64-2.1.34-cn.tar.gz** | 45225578 |
-| **darwin/factory-darwin-arm64-2.1.34-cn.tar.gz** | 42615882 |
-| **linux/aruhan-linux-amd64-2.1.34-cn.tar.gz** | 42580113 |
-| **linux/aruhan-linux-arm64-2.1.34-cn.tar.gz** | 39443192 |
-| **linux/factory-linux-amd64-2.1.34-cn.tar.gz** | 44533247 |
-| **linux/factory-linux-arm64-2.1.34-cn.tar.gz** | 41119587 |
-| **vscode/aruhan-vscode-cn.vsix** | 88282311 |
-| **windows/Aruhan-CLI-Setup-2.1.34-cn.exe** | 21898625 |
-| **windows/aruhan-cn.exe** | 72830464 |
-| **windows/aruhan-desktop-arm64-cn.exe** | 38299648 |
-| **windows/aruhan-desktop-cn.exe** | 44043264 |
-| **windows/Aruhan-Desktop-Setup-2.1.34-cn.exe** | 33524655 |
-| **windows/aruhan-desktop-windows-amd64-2.1.34-cn.zip** | 15561481 |
-| **windows/aruhan-desktop-windows-arm64-2.1.34-cn.zip** | 13075258 |
-| **windows/Aruhan-Setup-2.1.34-cn.exe** | 33537912 |
-| **windows/aruhan-tui-installer-windows-amd64-cn.exe** | 76389376 |
-| **windows/aruhan-tui-installer-windows-arm64-cn.exe** | 71437312 |
-| **windows/aruhan-windows-amd64-2.1.34-cn.zip** | 29059069 |
-| **windows/aruhan-windows-amd64-cn.exe** | 72830464 |
-| **windows/aruhan-windows-arm64-2.1.34-cn.zip** | 26780104 |
-| **windows/aruhan-windows-arm64-cn.exe** | 68076032 |
-| **windows/factory-cn.exe** | 41264640 |
-| **windows/Factory-Setup-2.1.34-cn.exe** | 34172751 |
-| **windows/factory-windows-amd64-cn.exe** | 41264640 |
-| **windows/factory-windows-arm64-cn.exe** | 37983744 |
+| **darwin/aruhan-darwin-amd64-2.1.35-cn.tar.gz** | 43284219 |
+| **darwin/aruhan-darwin-arm64-2.1.35-cn.tar.gz** | 40956854 |
+| **darwin/factory-darwin-amd64-2.1.35-cn.tar.gz** | 45263695 |
+| **darwin/factory-darwin-arm64-2.1.35-cn.tar.gz** | 42660160 |
+| **linux/aruhan-linux-amd64-2.1.35-cn.tar.gz** | 42623495 |
+| **linux/aruhan-linux-arm64-2.1.35-cn.tar.gz** | 39480271 |
+| **linux/factory-linux-amd64-2.1.35-cn.tar.gz** | 44576541 |
+| **linux/factory-linux-arm64-2.1.35-cn.tar.gz** | 41162282 |
+| **vscode/aruhan-vscode-cn.vsix** | 88416845 |
+| **windows/Aruhan-CLI-Setup-2.1.35-cn.exe** | 21934123 |
+| **windows/aruhan-cn.exe** | 72948736 |
+| **windows/aruhan-desktop-arm64-cn.exe** | 38301184 |
+| **windows/aruhan-desktop-cn.exe** | 44044800 |
+| **windows/Aruhan-Desktop-Setup-2.1.35-cn.exe** | 33569555 |
+| **windows/aruhan-desktop-windows-amd64-2.1.35-cn.zip** | 15561969 |
+| **windows/aruhan-desktop-windows-arm64-2.1.35-cn.zip** | 13075550 |
+| **windows/Aruhan-Setup-2.1.35-cn.exe** | 33569052 |
+| **windows/aruhan-tui-installer-windows-amd64-cn.exe** | 76507648 |
+| **windows/aruhan-tui-installer-windows-arm64-cn.exe** | 71543808 |
+| **windows/aruhan-windows-amd64-2.1.35-cn.zip** | 29100036 |
+| **windows/aruhan-windows-amd64-cn.exe** | 72948736 |
+| **windows/aruhan-windows-arm64-2.1.35-cn.zip** | 26817173 |
+| **windows/aruhan-windows-arm64-cn.exe** | 68182528 |
+| **windows/factory-cn.exe** | 41266688 |
+| **windows/Factory-Setup-2.1.35-cn.exe** | 34212348 |
+| **windows/factory-windows-amd64-cn.exe** | 41266688 |
+| **windows/factory-windows-arm64-cn.exe** | 37986304 |
 
 ## Notes / 说明
 
