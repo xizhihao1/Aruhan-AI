@@ -7,18 +7,18 @@
 
 ## Download / 下载
 
-| Platform | Package | Download |
-|---|---|---|
-| Windows | Bundle: CLI + desktop + Factory | [Aruhan bundle installer](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Setup-2.1.34-cn.exe) |
-| Windows | Separate installers | [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-CLI-Setup-2.1.34-cn.exe) · [Desktop](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Desktop-Setup-2.1.34-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Factory-Setup-2.1.34-cn.exe) |
-| Windows | Portable ZIP | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-amd64-2.1.34-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-arm64-2.1.34-cn.zip) |
-| Windows arm64 | TUI installer | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-arm64-cn.exe) |
-| macOS | Desktop app | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-amd64-cn) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-arm64-cn) |
-| macOS | CLI/TUI tarball | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-amd64-2.1.34-cn.tar.gz) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-arm64-2.1.34-cn.tar.gz) |
-| Linux | Desktop app | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-amd64-cn) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-arm64-cn) |
-| Linux | CLI/TUI/Factory tarball | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-amd64-2.1.34-cn.tar.gz) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-arm64-2.1.34-cn.tar.gz) |
-| VS Code | Extension | [VSIX](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-vscode-cn.vsix) |
-| All | Integrity | [SHA256SUMS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/SHA256SUMS) |
+| Platform | Package | What it is | Download |
+|---|---|---|---|
+| Windows | Bundle: CLI + desktop + Factory | Single installer for CLI, desktop app and Factory. | [Aruhan bundle installer](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Setup-2.1.34-cn.exe) |
+| Windows | Separate installers | Install only the surface you need. | [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-CLI-Setup-2.1.34-cn.exe) · [Desktop](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Aruhan-Desktop-Setup-2.1.34-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/Factory-Setup-2.1.34-cn.exe) |
+| Windows | Portable ZIP | No-install ZIP; unpack and run. | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-amd64-2.1.34-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-windows-arm64-2.1.34-cn.zip) |
+| Windows arm64 | TUI installer | Terminal UI installer for Windows on ARM. | [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-tui-installer-windows-arm64-cn.exe) |
+| macOS | Desktop app | Native app; headless builds serve the UI in a browser. | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-amd64-cn) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-darwin-arm64-cn) |
+| macOS | CLI/TUI tarball | CLI and TUI in a .tar.gz archive. | [Intel](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-amd64-2.1.34-cn.tar.gz) · [Apple Silicon](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-darwin-arm64-2.1.34-cn.tar.gz) |
+| Linux | Desktop app | Native app; headless builds serve the UI in a browser. | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-amd64-cn) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-desktop-linux-arm64-cn) |
+| Linux | CLI/TUI/Factory tarball | CLI, TUI and Factory in a .tar.gz archive. | [x64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-amd64-2.1.34-cn.tar.gz) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-linux-arm64-2.1.34-cn.tar.gz) |
+| VS Code | Extension | Install from the VS Code Extensions view. | [VSIX](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/aruhan-vscode-cn.vsix) |
+| All | Integrity | Checksums for every distributed file. | [SHA256SUMS](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.34/SHA256SUMS) |
 
 Install, upgrade, PATH, Gatekeeper and SmartScreen notes are in
 [INSTALL.md](INSTALL.md); the full asset list is at the bottom of this page.
