@@ -9,7 +9,7 @@
 
 | Platform | Package | What it is | Download |
 |---|---|---|---|
-| Windows | Bundle: CLI + desktop |Single installer for the CLI and desktop app (Factory has its own installer). |  [Aruhan bundle installer](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/Aruhan-Setup-2.1.35-cn.exe) |
+| Windows | Bundle: CLI + desktop |Single installer for the CLI and desktop app. |  [Aruhan bundle installer](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/Aruhan-Setup-2.1.35-cn.exe) |
 | Windows | Separate installers |Install only the surface you need. |  [CLI](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/Aruhan-CLI-Setup-2.1.35-cn.exe) · [Desktop](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/Aruhan-Desktop-Setup-2.1.35-cn.exe) · [Factory](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/Factory-Setup-2.1.35-cn.exe) |
 | Windows | Portable ZIP |No-install ZIP; unpack and run. |  [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/aruhan-windows-amd64-2.1.35-cn.zip) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/aruhan-windows-arm64-2.1.35-cn.zip) |
 | Windows arm64 | TUI installer |Terminal UI installer for Windows on ARM. |  [amd64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/aruhan-tui-installer-windows-amd64-cn.exe) · [arm64](https://gitee.com/guleng2005/Aruhan-AI/releases/download/v2.1.35/aruhan-tui-installer-windows-arm64-cn.exe) |
